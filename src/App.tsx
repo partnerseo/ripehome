@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import CategoryPage from './pages/CategoryPage';
 import WholesaleOrder from './pages/WholesaleOrder';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/category/:slug" element={<CategoryPage />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/toptan-siparis" element={<WholesaleOrder />} />
+          <Route path="/hakkimizda" element={<About />} />
+          <Route path="/iletisim" element={<Contact />} />
         </Routes>
         <Footer />
       </div>

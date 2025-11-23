@@ -99,43 +99,45 @@ const Navbar = () => {
 
               {/* Dropdown Menu */}
               {isProductsOpen && categories.length > 0 && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 py-4 max-h-[32rem] overflow-y-auto">
-                  <div className="px-6 pb-3 border-b border-gray-100">
-                    <p className="text-xs uppercase tracking-wider text-gray-500 font-medium">
-                      Kategorilerimiz
-                    </p>
-                  </div>
-                  {categories.map(cat => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        navigate(`/category/${cat.slug}`);
-                        setIsProductsOpen(false);
-                      }}
-                      className="block w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors group/item"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="font-medium text-gray-900 group-hover/item:text-gray-900">
-                            {cat.name}
-                          </div>
-                          {cat.products_count > 0 && (
-                            <div className="text-xs text-gray-500 mt-1">
-                              {cat.products_count} ürün
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
+                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-80 py-4 max-h-[32rem] overflow-y-auto">
+                    <div className="px-6 pb-3 border-b border-gray-100">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-medium">
+                        Kategorilerimiz
+                      </p>
+                    </div>
+                    {categories.map(cat => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          navigate(`/category/${cat.slug}`);
+                          setIsProductsOpen(false);
+                        }}
+                        className="block w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors group/item"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium text-gray-900 group-hover/item:text-gray-900">
+                              {cat.name}
                             </div>
-                          )}
+                            {cat.products_count > 0 && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                {cat.products_count} ürün
+                              </div>
+                            )}
+                          </div>
+                          <svg 
+                            className="w-4 h-4 text-gray-400 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
                         </div>
-                        <svg 
-                          className="w-4 h-4 text-gray-400 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </button>
-                  ))}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
