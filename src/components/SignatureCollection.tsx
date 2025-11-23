@@ -77,7 +77,7 @@ export default function SignatureCollection() {
             return (
               <div 
                 key={item.id}
-                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col"
+                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full"
               >
                 {/* Image */}
                 <div className="relative overflow-hidden aspect-[3/4]">
@@ -130,7 +130,7 @@ export default function SignatureCollection() {
                   )}
 
                   {/* Spacer - Pushes button to bottom */}
-                  <div className="flex-1"></div>
+                  <div className="flex-grow"></div>
 
                   {/* Button - Always at bottom */}
                   <a 
@@ -139,7 +139,7 @@ export default function SignatureCollection() {
                   >
                     <span className="absolute inset-0 w-full h-full bg-gray-800 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
                     <span className="relative z-10">
-                      {item.button_text || 'Detayları Gör'}
+                      Detayları Gör
                     </span>
                     <svg className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
