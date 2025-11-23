@@ -77,7 +77,7 @@ export default function SignatureCollection() {
             return (
               <div 
                 key={item.id}
-                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col"
               >
                 {/* Image */}
                 <div className="relative overflow-hidden aspect-[3/4]">
@@ -104,7 +104,7 @@ export default function SignatureCollection() {
                 </div>
 
                 {/* Content */}
-                <div className="p-8">
+                <div className="p-8 flex flex-col flex-1">
                   <h3 className="text-2xl font-light text-gray-900 mb-3 line-clamp-2 group-hover:text-gray-700 transition">
                     {item.title}
                   </h3>
@@ -129,10 +129,13 @@ export default function SignatureCollection() {
                     </div>
                   )}
 
-                  {/* Button */}
+                  {/* Spacer - Pushes button to bottom */}
+                  <div className="flex-1"></div>
+
+                  {/* Button - Always at bottom */}
                   <a 
                     href={item.button_link || '#'}
-                    className="group/btn relative inline-flex items-center justify-between w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-xl"
+                    className="group/btn relative inline-flex items-center justify-between w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-xl mt-auto"
                   >
                     <span className="absolute inset-0 w-full h-full bg-gray-800 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
                     <span className="relative z-10">
