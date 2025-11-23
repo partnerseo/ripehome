@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ShoppingBag, Search, User, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getCategories } from '../lib/api';
 import type { Category } from '../types/api';
@@ -36,29 +36,17 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-neutral-800" />
-              ) : (
-                <Menu className="w-6 h-6 text-neutral-800" />
-              )}
-            </button>
-
-            <button onClick={() => navigate('/')} className="flex items-center">
-              <div className="flex flex-col">
-                <span className="font-serif text-3xl font-light tracking-wide transition-colors duration-300 text-neutral-800">
-                  LUXURY
-                </span>
-                <span className="font-sans text-xs tracking-[0.3em] uppercase transition-colors duration-300 text-neutral-600">
-                  Home Textiles
-                </span>
-              </div>
-            </button>
-          </div>
+          {/* Logo */}
+          <button onClick={() => navigate('/')} className="flex items-center">
+            <div className="flex flex-col">
+              <span className="font-serif text-3xl font-light tracking-wide transition-colors duration-300 text-neutral-800">
+                LUXURY
+              </span>
+              <span className="font-sans text-xs tracking-[0.3em] uppercase transition-colors duration-300 text-neutral-600">
+                Home Textiles
+              </span>
+            </div>
+          </button>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-10">
@@ -166,20 +154,17 @@ const Navbar = () => {
             </button>
           </nav>
 
-          <div className="flex items-center gap-6">
-            <button className="hover:opacity-70 transition-opacity duration-300 text-neutral-800">
-              <Search className="w-5 h-5" strokeWidth={1.5} />
-            </button>
-            <button className="hover:opacity-70 transition-opacity duration-300 text-neutral-800">
-              <User className="w-5 h-5" strokeWidth={1.5} />
-            </button>
-            <button className="relative hover:opacity-70 transition-opacity duration-300 text-neutral-800">
-              <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
-              <span className="absolute -top-2 -right-2 bg-[#8B7355] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-sans">
-                0
-              </span>
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-neutral-800" />
+            ) : (
+              <Menu className="w-6 h-6 text-neutral-800" />
+            )}
+          </button>
         </div>
 
         {/* Mobile Menu */}
