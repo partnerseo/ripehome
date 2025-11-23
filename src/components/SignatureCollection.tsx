@@ -106,18 +106,25 @@ const SignatureCollection = () => {
                   </p>
                 </div>
 
-                {item.tags && Array.isArray(item.tags) && item.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {item.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 bg-[#F8F6F3] text-neutral-700 font-sans text-xs rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                {item.tags && (() => {
+                  try {
+                    const tagsArray = typeof item.tags === 'string' ? JSON.parse(item.tags) : item.tags;
+                    return Array.isArray(tagsArray) && tagsArray.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {tagsArray.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-[#F8F6F3] text-neutral-700 font-sans text-xs rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    );
+                  } catch {
+                    return null;
+                  }
+                })()}
 
                 <button className="group/btn w-full flex items-center justify-center gap-2 bg-neutral-800 text-white py-4 hover:bg-[#8B7355] transition-all duration-300">
                   <span className="font-sans text-sm tracking-wide">{item.button_text}</span>
