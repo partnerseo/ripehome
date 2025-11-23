@@ -1,6 +1,6 @@
 import type { Category, Product, HomeSlider, FeaturedSection, FeaturedProduct, Page, Settings, ApiResponse, WholesaleOrderForm } from '../types/api';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 // Kategorileri çek
 export async function getCategories(): Promise<Category[]> {
