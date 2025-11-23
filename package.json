@@ -11,7 +11,10 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "optimize": "node scripts/optimize-images.cjs",
     "flatten": "python3 scripts/flatten-folders.py",
-    "prepare-products": "npm run optimize && npm run flatten"
+    "prepare-products": "npm run optimize && npm run flatten",
+    "save": "npm run git:save",
+    "git:save": "git add . && git commit -m \"Auto save: $(date '+%Y-%m-%d %H:%M:%S')\" && git push origin main",
+    "git:quick": "git add . && git commit -m \"Quick update\" && git push origin main"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

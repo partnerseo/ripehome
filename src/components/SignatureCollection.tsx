@@ -106,7 +106,7 @@ const SignatureCollection = () => {
                   </p>
                 </div>
 
-                {item.tags && item.tags.length > 0 && (
+                {item.tags && Array.isArray(item.tags) && item.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-6">
                     {item.tags.map((tag, idx) => (
                       <span
