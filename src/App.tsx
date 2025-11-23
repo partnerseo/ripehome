@@ -9,12 +9,16 @@ import WholesaleOrder from './pages/WholesaleOrder';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-// Scroll to top on route change
+// Scroll to top on route change and page load
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
   }, [pathname]);
 
   return null;
