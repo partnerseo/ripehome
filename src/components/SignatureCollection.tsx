@@ -1,155 +1,153 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
 import { getFeaturedProducts } from '../lib/api';
 import type { FeaturedProduct } from '../types/api';
 
-const SignatureCollection = () => {
-  const [collections, setCollections] = useState<FeaturedProduct[]>([]);
+export default function SignatureCollection() {
+  const [products, setProducts] = useState<FeaturedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchFeaturedProducts() {
-      try {
-        const data = await getFeaturedProducts();
-        setCollections(data);
-      } catch (error) {
-        console.error('Öne çıkan ürünler yüklenemedi:', error);
-      } finally {
+    getFeaturedProducts()
+      .then(data => {
+        console.log('✅ Featured products loaded:', data);
+        setProducts(data || []);
+      })
+      .catch(error => {
+        console.error('❌ Error:', error);
+        setProducts([]);
+      })
+      .finally(() => {
         setLoading(false);
+      });
+  }, []);
+
+  // Tags parse - GÜVENLİ
+  const parseTags = (tags: any): string[] => {
+    if (!tags) return [];
+    if (Array.isArray(tags)) return tags;
+    if (typeof tags === 'string') {
+      try {
+        const parsed = JSON.parse(tags);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
       }
     }
-    fetchFeaturedProducts();
-  }, []);
+    return [];
+  };
+
   if (loading) {
     return (
-      <section className="py-16 md:py-32 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-[#F8F6F3] to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-20">
-            <div className="animate-pulse">
-              <div className="h-16 bg-gray-200 rounded w-96 mx-auto mb-4"></div>
-              <div className="h-8 bg-gray-200 rounded w-64 mx-auto"></div>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-10">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="animate-pulse bg-white" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-                <div className="aspect-[4/5] bg-gray-200"></div>
-                <div className="p-8">
-                  <div className="h-4 bg-gray-200 rounded w-32 mb-4"></div>
-                  <div className="h-8 bg-gray-200 rounded w-full mb-3"></div>
-                  <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
-                  <div className="flex gap-2 mb-6">
-                    <div className="h-6 bg-gray-200 rounded-full w-20"></div>
-                    <div className="h-6 bg-gray-200 rounded-full w-20"></div>
-                  </div>
-                  <div className="h-12 bg-gray-200 rounded"></div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
         </div>
       </section>
     );
   }
 
+  if (!products || products.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="py-16 md:py-32 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-[#F8F6F3] to-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 md:mb-20">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <Sparkles className="w-6 h-6 text-[#D4AF37]" strokeWidth={1.5} />
-            <span className="font-sans text-sm tracking-[0.3em] uppercase text-[#8B7355]">
-              Signature
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4">
+        {/* Premium Başlık */}
+        <div className="text-center mb-16">
+          <div className="inline-block">
+            <span className="text-sm uppercase tracking-[0.3em] text-gray-500 font-medium">
+              Premium Koleksiyon
             </span>
-            <Sparkles className="w-6 h-6 text-[#D4AF37]" strokeWidth={1.5} />
+            <h2 className="text-5xl font-light tracking-tight text-gray-900 mt-4 mb-6">
+              Öne Çıkan Ürünlerimiz
+            </h2>
+            <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gray-900 to-transparent mx-auto"></div>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-neutral-800 mb-6 font-light leading-tight">
-            İmza Koleksiyonumuz
-          </h2>
-          <p className="font-sans text-neutral-600 text-xl max-w-2xl mx-auto leading-relaxed">
-            Doğal dokuların zarafeti ile el işçiliğinin mükemmelliğini bir araya getiren,
-            özenle seçilmiş koleksiyonlarımız
+          <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+            Özenle seçilmiş, en kaliteli ürünlerimizi keşfedin
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
-          {collections.map((item) => (
-            <a
-              key={item.id}
-              href={item.button_link}
-              className="group relative bg-white overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 block"
-              style={{
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              }}
-            >
-              <div className="aspect-[4/5] overflow-hidden relative">
-                <img
-                  src={item.image || '/pexels-cottonbro-4327012.jpg'}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              <div className="p-8">
-                <div className="mb-4">
-                  {item.category_label && (
-                    <span className="font-sans text-xs tracking-widest uppercase text-[#8B7355] mb-2 block">
-                      {item.category_label}
-                    </span>
+        {/* Premium Kartlar */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((item) => {
+            const tags = parseTags(item.tags);
+            
+            return (
+              <div 
+                key={item.id}
+                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100"
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden aspect-[3/4]">
+                  {item.image ? (
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                      <span className="text-gray-400">Görsel Yok</span>
+                    </div>
                   )}
-                  <h3 className="font-serif text-3xl text-neutral-800 mb-3 font-light leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="font-sans text-neutral-600 text-sm leading-relaxed mb-4">
-                    {item.description}
-                  </p>
+                  
+                  {/* Category Badge */}
+                  {item.category_label && (
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block bg-white/95 backdrop-blur-sm text-gray-900 text-xs font-medium px-4 py-2 rounded-full">
+                        {item.category_label}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                {item.tags && (() => {
-                  try {
-                    const tagsArray = typeof item.tags === 'string' ? JSON.parse(item.tags) : item.tags;
-                    return Array.isArray(tagsArray) && tagsArray.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {tagsArray.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 bg-[#F8F6F3] text-neutral-700 font-sans text-xs rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    );
-                  } catch {
-                    return null;
-                  }
-                })()}
+                {/* Content */}
+                <div className="p-8">
+                  <h3 className="text-2xl font-light text-gray-900 mb-3 line-clamp-2 group-hover:text-gray-700 transition">
+                    {item.title}
+                  </h3>
 
-                <button className="group/btn w-full flex items-center justify-center gap-2 bg-neutral-800 text-white py-4 hover:bg-[#8B7355] transition-all duration-300">
-                  <span className="font-sans text-sm tracking-wide">{item.button_text}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                </button>
+                  {item.description && (
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                      {item.description}
+                    </p>
+                  )}
+
+                  {/* Tags */}
+                  {tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {tags.map((tag, i) => (
+                        <span 
+                          key={i}
+                          className="inline-block bg-gray-50 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Button */}
+                  <a 
+                    href={item.button_link || '#'}
+                    className="group/btn relative inline-flex items-center justify-between w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-xl"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gray-800 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
+                    <span className="relative z-10">
+                      {item.button_text || 'Detayları Gör'}
+                    </span>
+                    <svg className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-
-              <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </a>
-          ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <a
-            href="#"
-            className="inline-flex items-center gap-3 font-sans text-neutral-800 hover:text-[#8B7355] transition-colors duration-300 group"
-          >
-            <span className="text-sm tracking-wide">Tüm Koleksiyonu Görüntüle</span>
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
-          </a>
+            );
+          })}
         </div>
       </div>
     </section>
   );
-};
-
-export default SignatureCollection;
+}
