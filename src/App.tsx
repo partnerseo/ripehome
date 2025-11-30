@@ -8,6 +8,9 @@ import CategoryPage from './pages/CategoryPage';
 import WholesaleOrder from './pages/WholesaleOrder';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Shipping from './pages/Shipping';
+import Returns from './pages/Returns';
 
 // Scroll to top on route change and page load
 function ScrollToTop() {
@@ -37,6 +40,9 @@ function App() {
           <Route path="/toptan-siparis" element={<WholesaleOrder />} />
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
+          <Route path="/sss" element={<FAQ />} />
+          <Route path="/kargo" element={<Shipping />} />
+          <Route path="/iade-ve-degisim" element={<Returns />} />
         </Routes>
         <Footer />
       </div>

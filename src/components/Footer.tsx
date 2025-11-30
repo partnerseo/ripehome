@@ -104,11 +104,11 @@ const Footer = () => {
           <div>
             <h3 className="font-serif text-2xl text-neutral-800 mb-6">Destek</h3>
             <ul className="space-y-3 font-sans text-neutral-600 text-sm">
-              <li><a href="#" className="hover:text-[#8B7355] transition-colors duration-300">Sıkça Sorulan Sorular</a></li>
-              <li><a href="#" className="hover:text-[#8B7355] transition-colors duration-300">Kargo ve İade</a></li>
-              <li><a href="#" className="hover:text-[#8B7355] transition-colors duration-300">Ürün Bakımı</a></li>
-              <li><a href="#" className="hover:text-[#8B7355] transition-colors duration-300">Gizlilik Politikası</a></li>
-              <li><a href="#" className="hover:text-[#8B7355] transition-colors duration-300">Kullanım Koşulları</a></li>
+              <li><a href="/sss" className="hover:text-[#8B7355] transition-colors duration-300">Sıkça Sorulan Sorular</a></li>
+              <li><a href="/kargo" className="hover:text-[#8B7355] transition-colors duration-300">Kargo Bilgileri</a></li>
+              <li><a href="/iade-ve-degisim" className="hover:text-[#8B7355] transition-colors duration-300">İade ve Değişim</a></li>
+              <li><a href="/hakkimizda" className="hover:text-[#8B7355] transition-colors duration-300">Hakkımızda</a></li>
+              <li><a href="/iletisim" className="hover:text-[#8B7355] transition-colors duration-300">İletişim</a></li>
             </ul>
           </div>
 
