@@ -28,20 +28,20 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg py-4'
-          : 'bg-white/90 backdrop-blur-sm shadow-md py-6'
+          ? 'bg-white shadow-lg py-2'
+          : 'bg-white shadow-md py-3'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <div className="flex items-center justify-between">
           {/* Logo */}
             <button onClick={() => navigate('/')} className="flex items-center">
               <img 
                 src="/ripehomelogo.jpg" 
                 alt="Ripe Home Logo" 
-                className="h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:opacity-80"
+                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:opacity-80"
               />
             </button>
 
@@ -138,14 +138,14 @@ const Navbar = () => {
             {/* Toptan Sipariş Button */}
             <button 
               onClick={() => navigate('/toptan-siparis')}
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              className="group relative inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
-              <span className="relative z-10 tracking-wide">Toptan Sipariş</span>
-              <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative z-10 tracking-wide text-sm">Toptan Sipariş</span>
+              <svg className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -166,7 +166,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-6 bg-white mt-6">
+          <div className="lg:hidden border-t border-gray-100 py-4 bg-white mt-4">
             <nav className="flex flex-col space-y-2">
               <button 
                 onClick={() => {
