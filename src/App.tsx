@@ -11,6 +11,8 @@ import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import Shipping from './pages/Shipping';
 import Returns from './pages/Returns';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 // Scroll to top on route change and page load
 function ScrollToTop() {
@@ -41,8 +43,10 @@ function App() {
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
           <Route path="/sss" element={<FAQ />} />
-          <Route path="/kargo" element={<Shipping />} />
-          <Route path="/iade-ve-degisim" element={<Returns />} />
+          <Route path="/kargo-teslimat" element={<Shipping />} />
+          <Route path="/iade-degisim" element={<Returns />} />
+          <Route path="/gizlilik-politikasi" element={<Privacy />} />
+          <Route path="/kullanim-kosullari" element={<Terms />} />
         </Routes>
         <Footer />
       </div>

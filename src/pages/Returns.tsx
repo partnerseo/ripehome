@@ -1,200 +1,166 @@
 export default function Returns() {
   return (
     <div className="min-h-screen pt-32 pb-16">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
+      <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm uppercase tracking-[0.3em] text-gray-500 font-medium">
             Return Policy
           </span>
           <h1 className="text-5xl font-light tracking-tight text-gray-900 mt-4 mb-6">
-            İade ve Değişim
+            İade & Değişim
           </h1>
           <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gray-900 to-transparent mx-auto"></div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-8">
-          {/* İade Koşulları */}
-          <div>
-            <h2 className="text-2xl font-light text-gray-900 mb-4 flex items-center gap-3">
-              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              İade Koşulları
-            </h2>
-            <div className="space-y-3 text-gray-700">
-              <p className="flex items-start gap-3">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>Ürünü teslim aldıktan sonra <strong>14 gün içerisinde</strong> iade edebilirsiniz.</span>
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-light text-gray-900 mb-6">İade Koşulları</h2>
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p>
+                Ürünlerinizi teslim aldığınız tarihten itibaren <strong className="text-gray-900">14 gün içinde</strong> iade edebilirsiniz.
               </p>
-              <p className="flex items-start gap-3">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>İade edilecek ürün <strong>kullanılmamış, yıkanmamış ve etiketli</strong> olmalıdır.</span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>Ürün <strong>orijinal ambalajında</strong> ve faturası ile birlikte iade edilmelidir.</span>
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="text-green-600 mt-1">✓</span>
-                <span>İade kargo ücreti <strong>müşteriye</strong> aittir.</span>
-              </p>
+              <p className="font-medium text-gray-900 mt-6 mb-3">İade için gerekli koşullar:</p>
+              <ul className="space-y-2 ml-6">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Ürün kullanılmamış ve yıkanmamış olmalıdır</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Orijinal ambalajında ve etiketleriyle birlikte olmalıdır</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Fatura fotokopisi ile birlikte gönderilmelidir</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Hijyen kuralları gereği tek kullanımlık ve kişisel ürünler iade edilemez</span>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <hr className="border-gray-200" />
-
-          {/* İade Süreci */}
-          <div>
-            <h2 className="text-2xl font-light text-gray-900 mb-4 flex items-center gap-3">
-              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              İade Süreci
-            </h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-light text-gray-900 mb-6">İade Süreci</h2>
+            <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">
                   1
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">İade Talebinde Bulunun</h3>
-                  <p className="text-gray-600 text-sm">
-                    Müşteri hizmetlerimize e-posta veya telefon ile ulaşarak iade talebinizi iletin. 
-                    Sipariş numaranızı ve iade sebebinizi belirtiniz.
+                  <h3 className="font-medium text-gray-900 mb-2">İade Talebi</h3>
+                  <p className="text-gray-700">
+                    İletişim sayfamızdan veya info@luxuryhometextiles.com adresinden 
+                    iade talebinizi iletin. Sipariş numaranızı ve iade sebebini belirtin.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">
                   2
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">İade Onayı Alın</h3>
-                  <p className="text-gray-600 text-sm">
-                    İade talebiniz değerlendirildikten sonra size bir iade kodu ve iade adresi gönderilecektir.
+                  <h3 className="font-medium text-gray-900 mb-2">Onay & Kargo</h3>
+                  <p className="text-gray-700">
+                    İade talebiniz onaylandıktan sonra, size iade kargo kodu gönderilecektir. 
+                    Ürünü anlaşmalı kargo firması ile ücretsiz gönderebilirsiniz.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">
                   3
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Ürünü Kargolayın</h3>
-                  <p className="text-gray-600 text-sm">
-                    Ürünü orijinal ambalajında, faturası ile birlikte belirtilen adrese kargo ile gönderin. 
-                    İade kodu paket üzerine yazılmalıdır.
+                  <h3 className="font-medium text-gray-900 mb-2">İnceleme</h3>
+                  <p className="text-gray-700">
+                    İade edilen ürün tarafımıza ulaştıktan sonra 2-3 iş günü içinde 
+                    incelenir ve onaylanır.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">
                   4
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">İade İşleminiz Tamamlanır</h3>
-                  <p className="text-gray-600 text-sm">
-                    Ürün tarafımıza ulaştıktan ve kontrolü yapıldıktan sonra 5-7 iş günü içerisinde 
-                    ödemeniz iade edilir veya değişim yapılır.
+                  <h3 className="font-medium text-gray-900 mb-2">İade Ödemesi</h3>
+                  <p className="text-gray-700">
+                    İade onayından sonra 5-7 iş günü içinde ödemeniz kredi kartınıza 
+                    veya banka hesabınıza iade edilir.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <hr className="border-gray-200" />
-
-          {/* Değişim */}
-          <div>
-            <h2 className="text-2xl font-light text-gray-900 mb-4 flex items-center gap-3">
-              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-              </svg>
-              Ürün Değişimi
-            </h2>
-            <p className="text-gray-700 mb-4">
-              Aldığınız ürünü başka bir ürünle değiştirmek istiyorsanız:
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-light text-gray-900 mb-6">Ürün Değişimi</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Aldığınız üründe renk, beden veya model değişikliği yapmak isterseniz, 
+              önce iade işlemi başlatıp ardından yeni sipariş vermeniz gerekmektedir.
             </p>
-            <ul className="space-y-2 text-gray-700">
+            <p className="text-gray-700 leading-relaxed">
+              Hatalı veya hasarlı ürün teslimatı durumunda, kargo ücreti tarafımızca 
+              karşılanarak yeni ürün gönderimi yapılır.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-light text-gray-900 mb-6">Toptan Sipariş İadeleri</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Toptan siparişlerde iade koşulları farklılık gösterebilir. Toptan siparişlerde:
+            </p>
+            <ul className="space-y-2 ml-6 text-gray-700">
               <li className="flex items-start gap-3">
-                <span className="text-gray-600 mt-1">•</span>
-                <span>İade sürecini başlatın ve ürünü geri gönderin.</span>
+                <svg className="w-5 h-5 text-gray-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clipRule="evenodd" />
+                </svg>
+                <span>Üretim hatası veya hasar durumunda tam iade yapılır</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-gray-600 mt-1">•</span>
-                <span>İstediğiniz yeni ürün için ayrı bir sipariş oluşturun.</span>
+                <svg className="w-5 h-5 text-gray-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clipRule="evenodd" />
+                </svg>
+                <span>Müşteri kaynaklı iadeler için özel şartlar geçerlidir</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-gray-600 mt-1">•</span>
-                <span>İade işlemi tamamlandıktan sonra ödemeniz iade edilecektir.</span>
+                <svg className="w-5 h-5 text-gray-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clipRule="evenodd" />
+                </svg>
+                <span>Detaylı bilgi için satış ekibimizle görüşünüz</span>
               </li>
             </ul>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-              <p className="text-sm text-blue-900">
-                <strong>Not:</strong> Aynı ürünün farklı bedeni veya rengi için değişim talep ediyorsanız, 
-                müşteri hizmetlerimiz ile iletişime geçerek daha hızlı değişim yapabilirsiniz.
+          </div>
+
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
+            <div className="text-center">
+              <h3 className="text-xl font-medium text-gray-900 mb-4">
+                İade konusunda yardıma mı ihtiyacınız var?
+              </h3>
+              <p className="text-gray-700 mb-6">
+                Müşteri hizmetlerimiz size yardımcı olmaktan mutluluk duyar.
               </p>
-            </div>
-          </div>
-
-          <hr className="border-gray-200" />
-
-          {/* İade Edilemeyen Ürünler */}
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-            <h3 className="text-lg font-medium text-red-900 mb-3 flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              İade Edilemeyen Ürünler
-            </h3>
-            <ul className="space-y-2 text-sm text-red-900">
-              <li className="flex items-start gap-2">
-                <span>✗</span>
-                <span>Kullanılmış, yıkanmış veya kirlenmiş ürünler</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span>✗</span>
-                <span>Etiketi koparılmış ürünler</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span>✗</span>
-                <span>Özel sipariş üzerine hazırlanmış ürünler</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span>✗</span>
-                <span>İndirimli ürünler (kampanya şartlarına göre değişir)</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* İletişim */}
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 text-white text-center">
-            <h3 className="text-xl font-light mb-2">İade Desteği</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              İade sürecinizle ilgili sorularınız için bize ulaşın
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="mailto:info@luxuryhometextiles.com"
-                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition text-sm"
+                href="/iletisim"
+                className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-xl font-medium hover:bg-gray-800 transition"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                Bize Ulaşın
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-                E-posta Gönder
-              </a>
-              <a
-                href="tel:+90XXXXXXXXXX"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-6 py-2 rounded-lg font-medium hover:bg-white/20 transition text-sm"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                Bizi Arayın
               </a>
             </div>
           </div>
@@ -203,4 +169,3 @@ export default function Returns() {
     </div>
   );
 }
-
