@@ -59,7 +59,7 @@ export default function Returns() {
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">İade Talebi</h3>
                   <p className="text-gray-700">
-                    İletişim sayfamızdan veya info@luxuryhometextiles.com adresinden 
+                    İletişim sayfamızdan veya info@ripehome.com.tr adresinden 
                     iade talebinizi iletin. Sipariş numaranızı ve iade sebebini belirtin.
                   </p>
                 </div>

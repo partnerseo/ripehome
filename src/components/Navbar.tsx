@@ -37,16 +37,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <button onClick={() => navigate('/')} className="flex items-center">
-            <div className="flex flex-col">
-              <span className="font-serif text-3xl font-light tracking-wide transition-colors duration-300 text-neutral-800">
-                LUXURY
-              </span>
-              <span className="font-sans text-xs tracking-[0.3em] uppercase transition-colors duration-300 text-neutral-600">
-                Home Textiles
-              </span>
-            </div>
-          </button>
+            <button onClick={() => navigate('/')} className="flex items-center">
+              <div className="flex flex-col">
+                <span className="font-serif text-3xl font-light tracking-wide transition-colors duration-300 text-neutral-800">
+                  RIPE HOME
+                </span>
+                <span className="font-sans text-xs tracking-[0.3em] uppercase transition-colors duration-300 text-neutral-600">
+                  Premium Textiles
+                </span>
+              </div>
+            </button>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-10">

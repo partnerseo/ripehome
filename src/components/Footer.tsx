@@ -23,9 +23,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-12 md:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <h3 className="font-serif text-2xl text-neutral-800 mb-6">Hakkımızda</h3>
+            <h3 className="font-serif text-2xl text-neutral-800 mb-6">Ripe Home</h3>
             <p className="font-sans text-neutral-600 leading-relaxed mb-4 text-sm">
-              Doğal liflerden üretilmiş premium ev tekstil ürünleriyle evinize doğallık ve şıklık katıyoruz.
+              Denizli'den doğal liflerden üretilmiş premium ev tekstil ürünleriyle evinize doğallık ve şıklık katıyoruz.
             </p>
             <div className="flex gap-3">
               {settings?.social_media?.instagram && (
@@ -118,9 +118,18 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-[#E5DDD1]">
-          <p className="text-center font-sans text-neutral-600 text-sm">
-            {settings?.footer_text || '© 2024 Luxury Home Textiles. Tüm hakları saklıdır.'}
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-center md:text-left font-sans text-neutral-600 text-sm">
+              {settings?.footer_text || '© 2025 Ripe Home. Tüm hakları saklıdır.'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-600">
+              <a href="/gizlilik-politikasi" className="hover:text-neutral-800 transition">Gizlilik Politikası</a>
+              <span>•</span>
+              <a href="/kullanim-kosullari" className="hover:text-neutral-800 transition">Kullanım Koşulları</a>
+              <span>•</span>
+              <a href="/iade-degisim" className="hover:text-neutral-800 transition">İade & Değişim</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

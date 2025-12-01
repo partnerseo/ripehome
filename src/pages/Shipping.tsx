@@ -79,9 +79,11 @@ export default function Shipping() {
             </p>
             <p className="text-gray-700 leading-relaxed">
               Yurt dışı siparişler için lütfen bizimle iletişime geçiniz: 
-              <a href="mailto:info@luxuryhometextiles.com" className="text-gray-900 font-medium hover:underline ml-1">
-                info@luxuryhometextiles.com
+              <a href="mailto:info@ripehome.com.tr" className="text-gray-900 font-medium hover:underline ml-1">
+                info@ripehome.com.tr
               </a>
+              <br />
+              Telefon: <a href="tel:+905442519716" className="text-gray-900 font-medium hover:underline">+90 544 251 9716</a>
             </p>
           </div>
 

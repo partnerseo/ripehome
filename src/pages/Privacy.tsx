@@ -18,7 +18,7 @@ export default function Privacy() {
             
             <h2 className="text-2xl font-light text-gray-900 mb-4">Kişisel Verilerin Korunması</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
-              Luxury Home Textiles olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") 
+              Ripe Home olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") 
               kapsamında kişisel verilerinizin gizliliğini ve güvenliğini korumayı taahhüt ediyoruz.
             </p>
 
@@ -112,9 +112,11 @@ export default function Privacy() {
             <p className="text-gray-700 leading-relaxed">
               Gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:
               <br />
-              E-posta: <a href="mailto:info@luxuryhometextiles.com" className="text-gray-900 font-medium hover:underline">info@luxuryhometextiles.com</a>
+              E-posta: <a href="mailto:info@ripehome.com.tr" className="text-gray-900 font-medium hover:underline">info@ripehome.com.tr</a>
               <br />
-              Adres: İzmir, Türkiye
+              Telefon: +90 544 251 9716
+              <br />
+              Adres: Sevindik Mah., 2291. Sok., No: 5A, Merkezefendi, Denizli, Türkiye
             </p>
           </div>
         </div>

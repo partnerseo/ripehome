@@ -95,7 +95,7 @@ export default function Terms() {
             <h2 className="text-2xl font-light text-gray-900 mb-4 mt-8">Fikri Mülkiyet Hakları</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
               Bu web sitesindeki tüm içerik (metin, görsel, logo, tasarım vb.) 
-              Luxury Home Textiles'e aittir ve telif hakları ile korunmaktadır. 
+              Ripe Home'e aittir ve telif hakları ile korunmaktadır. 
               İzinsiz kullanım, kopyalama veya dağıtım yasaktır.
             </p>
 
@@ -125,7 +125,7 @@ export default function Terms() {
             <h2 className="text-2xl font-light text-gray-900 mb-4 mt-8">Uyuşmazlık Çözümü</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
               Bu sözleşmeden doğabilecek uyuşmazlıklarda Türkiye Cumhuriyeti yasaları 
-              geçerlidir. Uyuşmazlıkların çözümünde İzmir Mahkemeleri ve İcra Daireleri 
+              geçerlidir. Uyuşmazlıkların çözümünde Denizli Mahkemeleri ve İcra Daireleri 
               yetkilidir.
             </p>
 
@@ -139,9 +139,11 @@ export default function Terms() {
             <p className="text-gray-700 leading-relaxed">
               Kullanım koşulları hakkında sorularınız için:
               <br />
-              E-posta: <a href="mailto:info@luxuryhometextiles.com" className="text-gray-900 font-medium hover:underline">info@luxuryhometextiles.com</a>
+              E-posta: <a href="mailto:info@ripehome.com.tr" className="text-gray-900 font-medium hover:underline">info@ripehome.com.tr</a>
               <br />
-              Adres: İzmir, Türkiye
+              Telefon: +90 544 251 9716
+              <br />
+              Adres: Sevindik Mah., 2291. Sok., No: 5A, Merkezefendi, Denizli, Türkiye
             </p>
           </div>
         </div>
