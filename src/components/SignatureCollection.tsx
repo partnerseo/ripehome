@@ -38,7 +38,7 @@ export default function SignatureCollection() {
 
   if (loading) {
     return (
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="pt-16 pb-12 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
         </div>
@@ -51,7 +51,7 @@ export default function SignatureCollection() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="pt-16 pb-12 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         {/* Premium Başlık */}
         <div className="text-center mb-16">

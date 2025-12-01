@@ -25,7 +25,7 @@ const BrandPhilosophy = () => {
             bir araya getiriyor. Evinize sıcaklık katarken, doğaya saygı duyarak
             üretilen koleksiyonlarımızla lüksü yeniden tanımlıyoruz.
           </p>
-          <button className="group flex items-center gap-3 bg-white text-neutral-800 px-8 py-4 hover:bg-neutral-100 transition-all duration-300 hover:gap-5">
+          <button className="group flex items-center gap-3 bg-white text-neutral-800 px-8 py-4 hover:bg-neutral-100 transition-all duration-300 hover:gap-5 mb-8">
             <span className="font-sans text-sm tracking-wide">Marka Hikayemizi Keşfet</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
