@@ -38,14 +38,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
             <button onClick={() => navigate('/')} className="flex items-center">
-              <div className="flex flex-col">
-                <span className="font-serif text-3xl font-light tracking-wide transition-colors duration-300 text-neutral-800">
-                  RIPE HOME
-                </span>
-                <span className="font-sans text-xs tracking-[0.3em] uppercase transition-colors duration-300 text-neutral-600">
-                  Premium Textiles
-                </span>
-              </div>
+              <img 
+                src="/ripehomelogo.jpg" 
+                alt="Ripe Home Logo" 
+                className="h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300 hover:opacity-80"
+              />
             </button>
 
           {/* Desktop Nav */}

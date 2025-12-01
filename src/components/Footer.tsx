@@ -23,7 +23,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-12 md:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <h3 className="font-serif text-2xl text-neutral-800 mb-6">Ripe Home</h3>
+            <img 
+              src="/ripehomelogo.jpg" 
+              alt="Ripe Home Logo" 
+              className="h-14 md:h-16 lg:h-20 w-auto object-contain mb-6"
+            />
             <p className="font-sans text-neutral-600 leading-relaxed mb-4 text-sm">
               Denizli'den doğal liflerden üretilmiş premium ev tekstil ürünleriyle evinize doğallık ve şıklık katıyoruz.
             </p>
