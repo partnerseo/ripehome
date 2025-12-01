@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Mail, Phone, MapPin, Twitter, Linkedin } from 'lucide-react';
 import { getSettings } from '../lib/api';
 import type { Settings } from '../types/api';
@@ -32,44 +33,49 @@ const Footer = () => {
               Denizli'den doğal liflerden üretilmiş premium ev tekstil ürünleriyle evinize doğallık ve şıklık katıyoruz.
             </p>
             <div className="flex gap-3">
-              {settings?.social_media?.instagram && (
-                <a 
-                  href={settings.social_media.instagram} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-2 bg-[#F8F6F3] hover:bg-[#E5DDD1] transition-colors duration-300 rounded-full"
-                >
-                  <Instagram className="w-5 h-5 text-neutral-800" />
-                </a>
-              )}
+              <a 
+                href={settings?.social_media?.instagram || 'https://www.instagram.com/ripe_home/'} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-[#F8F6F3] hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-500 hover:text-white transition-all duration-300 rounded-full"
+                title="Instagram'da bizi takip edin"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              
               {settings?.social_media?.facebook && (
                 <a 
                   href={settings.social_media.facebook} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#F8F6F3] hover:bg-[#E5DDD1] transition-colors duration-300 rounded-full"
+                  className="p-2 bg-[#F8F6F3] hover:bg-blue-600 hover:text-white transition-all duration-300 rounded-full"
+                  title="Facebook'ta bizi takip edin"
                 >
-                  <Facebook className="w-5 h-5 text-neutral-800" />
+                  <Facebook className="w-5 h-5" />
                 </a>
               )}
+              
               {settings?.social_media?.twitter && (
                 <a 
                   href={settings.social_media.twitter} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#F8F6F3] hover:bg-[#E5DDD1] transition-colors duration-300 rounded-full"
+                  className="p-2 bg-[#F8F6F3] hover:bg-sky-500 hover:text-white transition-all duration-300 rounded-full"
+                  title="Twitter'da bizi takip edin"
                 >
-                  <Twitter className="w-5 h-5 text-neutral-800" />
+                  <Twitter className="w-5 h-5" />
                 </a>
               )}
+              
               {settings?.social_media?.linkedin && (
                 <a 
                   href={settings.social_media.linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-[#F8F6F3] hover:bg-[#E5DDD1] transition-colors duration-300 rounded-full"
+                  className="p-2 bg-[#F8F6F3] hover:bg-blue-700 hover:text-white transition-all duration-300 rounded-full"
+                  title="LinkedIn'de bizi takip edin"
                 >
-                  <Linkedin className="w-5 h-5 text-neutral-800" />
+                  <Linkedin className="w-5 h-5" />
                 </a>
               )}
             </div>
@@ -77,45 +83,115 @@ const Footer = () => {
 
           <div>
             <h3 className="font-serif text-2xl text-neutral-800 mb-6">İletişim</h3>
-            <ul className="space-y-3 font-sans text-neutral-600 text-sm">
-              {settings?.address && (
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                  <span>{settings.address}</span>
-                </li>
-              )}
-              {settings?.phone && (
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 flex-shrink-0" />
-                  <span>{settings.phone}</span>
-                </li>
-              )}
-              {settings?.email && (
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span>{settings.email}</span>
-                </li>
-              )}
+            <ul className="space-y-4 font-sans text-neutral-600 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#8B7355]" />
+                <a 
+                  href="https://maps.google.com/?q=Sevindik+Mah.+2291+Sok.+No:5A+Merkezefendi+Denizli"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#8B7355] transition-colors leading-relaxed"
+                >
+                  Sevindik Mah., 2291. Sok., No: 5A<br />
+                  Merkezefendi, Denizli
+                </a>
+              </li>
+              
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 flex-shrink-0 text-[#8B7355]" />
+                <a 
+                  href={`tel:${settings?.phone || '+905442519716'}`}
+                  className="hover:text-[#8B7355] transition-colors font-medium"
+                >
+                  {settings?.phone || '+90 544 251 9716'}
+                </a>
+              </li>
+              
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 flex-shrink-0 text-[#8B7355]" />
+                <a 
+                  href={`mailto:${settings?.email || 'info@ripehome.com.tr'}`}
+                  className="hover:text-[#8B7355] transition-colors font-medium"
+                >
+                  {settings?.email || 'info@ripehome.com.tr'}
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-serif text-2xl text-neutral-800 mb-6">Müşteri Desteği</h3>
             <ul className="space-y-3 font-sans text-neutral-600 text-sm">
-              <li><a href="/sss" className="hover:text-[#8B7355] transition-colors duration-300">Sıkça Sorulan Sorular</a></li>
-              <li><a href="/kargo-teslimat" className="hover:text-[#8B7355] transition-colors duration-300">Kargo & Teslimat</a></li>
-              <li><a href="/iade-degisim" className="hover:text-[#8B7355] transition-colors duration-300">İade & Değişim</a></li>
-              <li><a href="/toptan-siparis" className="hover:text-[#8B7355] transition-colors duration-300">Toptan Sipariş</a></li>
-              <li><a href="/iletisim" className="hover:text-[#8B7355] transition-colors duration-300">İletişim</a></li>
+              <li>
+                <Link to="/sss" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Sıkça Sorulan Sorular</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/kargo-teslimat" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Kargo & Teslimat</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/iade-degisim" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>İade & Değişim</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/toptan-siparis" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Toptan Sipariş</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/iletisim" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>İletişim</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-serif text-2xl text-neutral-800 mb-6">Kurumsal</h3>
             <ul className="space-y-3 font-sans text-neutral-600 text-sm">
-              <li><a href="/hakkimizda" className="hover:text-[#8B7355] transition-colors duration-300">Hakkımızda</a></li>
-              <li><a href="/gizlilik-politikasi" className="hover:text-[#8B7355] transition-colors duration-300">Gizlilik Politikası</a></li>
-              <li><a href="/kullanim-kosullari" className="hover:text-[#8B7355] transition-colors duration-300">Kullanım Koşulları</a></li>
+              <li>
+                <Link to="/hakkimizda" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Hakkımızda</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/gizlilik-politikasi" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Gizlilik Politikası</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <Link to="/kullanim-kosullari" className="hover:text-[#8B7355] transition-colors duration-300 inline-flex items-center gap-1 group">
+                  <span>Kullanım Koşulları</span>
+                  <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -127,11 +203,21 @@ const Footer = () => {
               {settings?.footer_text || '© 2025 Ripe Home. Tüm hakları saklıdır.'}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-600">
-              <a href="/gizlilik-politikasi" className="hover:text-neutral-800 transition">Gizlilik Politikası</a>
+              <Link to="/gizlilik-politikasi" className="hover:text-[#8B7355] transition">
+                Gizlilik Politikası
+              </Link>
               <span>•</span>
-              <a href="/kullanim-kosullari" className="hover:text-neutral-800 transition">Kullanım Koşulları</a>
+              <Link to="/kullanim-kosullari" className="hover:text-[#8B7355] transition">
+                Kullanım Koşulları
+              </Link>
               <span>•</span>
-              <a href="/iade-degisim" className="hover:text-neutral-800 transition">İade & Değişim</a>
+              <Link to="/iade-degisim" className="hover:text-[#8B7355] transition">
+                İade & Değişim
+              </Link>
+              <span>•</span>
+              <Link to="/iletisim" className="hover:text-[#8B7355] transition">
+                İletişim
+              </Link>
             </div>
           </div>
         </div>
