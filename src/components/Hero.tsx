@@ -28,28 +28,38 @@ const Hero = ({ scrollY }: HeroProps) => {
     fetchSliders();
   }, []);
 
+  // Loading bitene kadar hiçbir şey gösterme
+  if (loading) {
+    return (
+      <section className="relative h-screen overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900"></div>
+      </section>
+    );
+  }
+
+  // API'den slider gelmezse default göster
   const defaultSliders = [
     {
       id: 1,
-      title: 'Pamuk Keten',
-      subtitle: 'Nevresim Setleri',
+      title: 'Ripe Home',
+      subtitle: 'Premium Ev Tekstili',
       button_text: 'Ürünleri Keşfet',
-      button_link: '/category/nevresim',
+      button_link: '/',
       image: '/pexels-cottonbro-4327012.jpg',
       order: 1
     },
     {
       id: 2,
-      title: 'Muslin',
-      subtitle: 'Yatak Örtüleri',
+      title: 'Doğal Tekstiller',
+      subtitle: 'Kalite & Şıklık',
       button_text: 'Ürünleri Keşfet',
-      button_link: '/category/yatak-ortuleri',
+      button_link: '/',
       image: '/pexels-shvetsa-5069401.jpg',
       order: 2
     }
   ];
 
-  const displaySliders = !loading && sliders.length > 0 ? sliders : defaultSliders;
+  const displaySliders = sliders.length > 0 ? sliders : defaultSliders;
   const firstSlider = displaySliders[0];
   const secondSlider = displaySliders[1] || firstSlider;
 

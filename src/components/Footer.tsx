@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Mail, Phone, MapPin, Twitter, Linkedin } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, Twitter, Linkedin, FileText } from 'lucide-react';
 import { getSettings } from '../lib/api';
 import type { Settings } from '../types/api';
 
@@ -199,9 +199,23 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-[#E5DDD1]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-center md:text-left font-sans text-neutral-600 text-sm">
-              {settings?.footer_text || '© 2025 Ripe Home. Tüm hakları saklıdır.'}
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <p className="text-center md:text-left font-sans text-neutral-600 text-sm">
+                {settings?.footer_text || '© 2025 Ripe Home. Tüm hakları saklıdır.'}
+              </p>
+              <a 
+                href="/yikamatalimati.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8B7355] to-[#A0826D] text-white text-sm font-medium rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Yıkama Talimatı (PDF)</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-600">
               <Link to="/gizlilik-politikasi" className="hover:text-[#8B7355] transition">
                 Gizlilik Politikası

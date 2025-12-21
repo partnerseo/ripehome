@@ -26,3 +26,26 @@ dist-ssr
 public/ÜRÜNLER
 public/ÜRÜNLER-optimized
 public/ÜRÜNLER-temiz
+# Ürün görselleri backend'den serve edilir
+public/ÜRÜNLER-temiz/
+dist/
+
+# Ürün görselleri backend'den serve edilmeli
+public/ÜRÜNLER-temiz/
+dist/ÜRÜNLER-temiz/
+
+# Ürün görselleri - backend/storage'dan serve edilmeli
+public/ÜRÜNLER/
+public/ÜRÜNLER-optimized/
+public/ÜRÜNLER-temiz/
+dist/ÜRÜNLER/
+dist/ÜRÜNLER-optimized/
+dist/ÜRÜNLER-temiz/
+
+# Ürün görselleri - Backend storage'dan serve edilir
+public/ÜRÜNLER/
+public/ÜRÜNLER-optimized/
+public/ÜRÜNLER-temiz/
+dist/ÜRÜNLER/
+dist/ÜRÜNLER-optimized/
+dist/ÜRÜNLER-temiz/

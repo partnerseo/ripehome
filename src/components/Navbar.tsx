@@ -95,7 +95,7 @@ const Navbar = () => {
                       <button
                         key={cat.id}
                         onClick={() => {
-                          navigate(`/category/${cat.slug}`);
+                          navigate(`/kategori/${cat.slug}`);
                           setIsProductsOpen(false);
                         }}
                         className="block w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors group/item"
@@ -210,7 +210,7 @@ const Navbar = () => {
                       <button
                         key={cat.id}
                         onClick={() => {
-                          navigate(`/category/${cat.slug}`);
+                          navigate(`/kategori/${cat.slug}`);
                           setIsMobileMenuOpen(false);
                           setIsProductsOpen(false);
                         }}

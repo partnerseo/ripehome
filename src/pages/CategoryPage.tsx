@@ -130,16 +130,31 @@ const CategoryPage = () => {
     { value: 'name', label: 'A-Z' }
   ];
 
-  if (loading && page === 1) {
+  if (loading && page === 1 && !category) {
     return (
       <div className="min-h-screen bg-[#F8F6F3] pt-20">
+        {/* Skeleton Header */}
+        <div className="relative h-64 md:h-80 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center space-y-4">
+              <div className="h-12 w-64 bg-gray-300 rounded mx-auto"></div>
+              <div className="h-6 w-96 bg-gray-300 rounded mx-auto"></div>
+            </div>
+          </div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-12">
           <div className="animate-pulse">
-            <div className="h-64 bg-gray-200 rounded mb-8"></div>
-            <div className="h-8 bg-gray-200 rounded w-64 mb-4"></div>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="h-8 bg-gray-200 rounded w-64 mb-8"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-64 bg-gray-200 rounded"></div>
+                <div key={i} className="bg-white rounded-lg overflow-hidden">
+                  <div className="aspect-square bg-gray-200"></div>
+                  <div className="p-4 space-y-3">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -175,12 +190,25 @@ const CategoryPage = () => {
   return (
     <div className="min-h-screen bg-[#F8F6F3] pt-20">
       {/* Hero Section */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
-        <img
-          src={category.image || '/pexels-cottonbro-4327012.jpg'}
-          alt={category.name}
-          className="w-full h-full object-cover"
-        />
+      <div className="relative h-64 md:h-80 overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300">
+        {category.image ? (
+          <img
+            src={category.image}
+            alt={category.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              console.error('❌ Kategori resmi yüklenemedi:', category.image);
+              e.currentTarget.style.display = 'none';
+            }}
+            onLoad={() => {
+              console.log('✅ Kategori resmi yüklendi:', category.image);
+            }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#E5DDD1] to-[#C9B7A1]">
+            <div className="text-white text-6xl opacity-20">📦</div>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
           <div>

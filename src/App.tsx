@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import StickyContact from './components/StickyContact';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import CategoryPage from './pages/CategoryPage';
@@ -37,7 +38,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/:slug" element={<CategoryPage />} />
+          <Route path="/kategori/:slug" element={<CategoryPage />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/toptan-siparis" element={<WholesaleOrder />} />
           <Route path="/hakkimizda" element={<About />} />
@@ -49,6 +50,7 @@ function App() {
           <Route path="/kullanim-kosullari" element={<Terms />} />
         </Routes>
         <Footer />
+        <StickyContact />
       </div>
     </Router>
   );

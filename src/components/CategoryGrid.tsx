@@ -19,7 +19,7 @@ const CategoryGrid = ({ categories }: CategoryGridProps) => {
   }
 
   const handleCategoryClick = (slug: string) => {
-    navigate(`/category/${slug}`);
+    navigate(`/kategori/${slug}`);
   };
   
   if (!categories || categories.length === 0) {
