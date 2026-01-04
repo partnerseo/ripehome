@@ -49,3 +49,5 @@ public/ÜRÜNLER-temiz/
 dist/ÜRÜNLER/
 dist/ÜRÜNLER-optimized/
 dist/ÜRÜNLER-temiz/
+*.zip
+localhost_database_*.sql

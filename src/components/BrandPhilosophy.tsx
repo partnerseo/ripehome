@@ -1,13 +1,20 @@
 import { ArrowRight } from 'lucide-react';
 
 const BrandPhilosophy = () => {
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+  const brandImage = `${API_URL.replace('/api', '')}/storage/products/natural-setler/DOGA4715.JPG`;
+
   return (
     <section className="relative h-auto md:min-h-[70vh] overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/pexels-75707588-9148737.jpg"
+          src={brandImage}
           alt="Brand Philosophy"
           className="w-full h-full object-cover"
+          onError={(e) => {
+            console.error('❌ Brand image failed to load:', brandImage);
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&auto=format&fit=crop';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
       </div>

@@ -18,9 +18,11 @@ const Hero = ({ scrollY }: HeroProps) => {
     async function fetchSliders() {
       try {
         const data = await getHomeSliders();
+        console.log('🎨 Hero - Sliders loaded:', data);
+        console.log('📸 First slider image:', data[0]?.image);
         setSliders(data);
       } catch (error) {
-        console.error('Slider verisi yüklenemedi:', error);
+        console.error('❌ Slider verisi yüklenemedi:', error);
       } finally {
         setLoading(false);
       }
