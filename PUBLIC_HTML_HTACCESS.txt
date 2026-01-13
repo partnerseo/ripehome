@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # API isteklerini api/public/ dizinine yönlendir
+    RewriteRule ^api/(.*)$ api/public/$1 [L]
+    
+    # Frontend SPA routing - index.html'e yönlendir
+    # Dosya değilse ve dizin değilse ve API değilse
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/api
+    RewriteRule ^(.*)$ /index.html [L]
+</IfModule>
+
+
