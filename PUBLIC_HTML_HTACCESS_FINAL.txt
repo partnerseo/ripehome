@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # HTTPS yönlendirme
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Backend static files (Filament assets)
+    RewriteCond %{REQUEST_URI} ^/filament/ [OR]
+    RewriteCond %{REQUEST_URI} ^/css/ [OR]
+    RewriteCond %{REQUEST_URI} ^/js/ [OR]
+    RewriteCond %{REQUEST_URI} ^/storage/
+    RewriteRule ^(.*)$ backend/public/$1 [L,QSA]
+    
+    # Backend routes (Admin panel & API)
+    RewriteCond %{REQUEST_URI} ^/admin [OR]
+    RewriteCond %{REQUEST_URI} ^/api/
+    RewriteRule ^(.*)$ backend/public/index.php [L,QSA]
+    
+    # Frontend (React Router - catch-all)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.html [L,QSA]
+</IfModule>
+
+Options -Indexes
+Options +FollowSymLinks
+
