@@ -6,14 +6,16 @@
 2. [Dashboard (Ana Sayfa)](#dashboard)
 3. [Kategori Yönetimi](#kategori-yönetimi)
 4. [Ürün Yönetimi](#ürün-yönetimi)
-5. [Öne Çıkan Ürünler](#öne-çıkan-ürünler)
-6. [Anasayfa Slider](#anasayfa-slider)
-7. [Sayfa Yönetimi](#sayfa-yönetimi)
-8. [İletişim Mesajları](#iletişim-mesajları)
-9. [Toptan Siparişler](#toptan-siparişler)
-10. [Site Ayarları](#site-ayarları)
-11. [Resim Yükleme ve Yönetimi](#resim-yükleme)
-12. [Sık Sorulan Sorular](#sss)
+5. [Etiket Yönetimi](#etiket-yönetimi)
+6. [Öne Çıkan Bölümler](#öne-çıkan-bölümler)
+7. [Öne Çıkan Ürünler](#öne-çıkan-ürünler)
+8. [Anasayfa Slider](#anasayfa-slider)
+9. [Sayfa Yönetimi](#sayfa-yönetimi)
+10. [İletişim Mesajları](#iletişim-mesajları)
+11. [Toptan Siparişler](#toptan-siparişler)
+12. [Site Ayarları](#site-ayarları)
+13. [Resim Yükleme ve Yönetimi](#resim-yükleme)
+14. [Sık Sorulan Sorular](#sss)
 
 ---
 
@@ -56,9 +58,10 @@ Sol menüden aşağıdaki bölümlere hızlıca erişebilirsiniz:
 
 - 📂 Kategoriler
 - 📦 Ürünler
+- 🏷️ Etiketler
+- 📑 Öne Çıkan Bölümler
 - ⭐ Öne Çıkan Ürünler
 - 🖼️ Anasayfa Slider
-- 🏷️ Etiketler
 - 📄 Sayfalar
 - 💬 İletişim Mesajları
 - 📋 Toptan Siparişler
@@ -164,6 +167,55 @@ Birden fazla ürünü aynı anda işleyebilirsiniz:
 - **Kategori:** Kategoriye göre filtrele
 - **Durum:** Aktif/Pasif ürünleri filtrele
 - **Öne Çıkan:** Sadece öne çıkan ürünleri göster
+
+---
+
+## 🏷️ Etiket Yönetimi
+
+Etiketler, ürünlerinizi anahtar kelimelerle etiketlemek için kullanılır.
+
+### Yeni Etiket Ekleme:
+
+1. Sol menüden **"Etiketler"** seçin
+2. **"Yeni Etiket"** butonuna tıklayın
+3. Formu doldurun:
+   - **İsim:** Etiket adı (örn: "Bornoz", "Kimono", "Natural")
+   - **Slug:** URL dostu isim (otomatik oluşur)
+4. **"Kaydet"** butonuna tıklayın
+
+### Etiketleri Kullanma:
+
+Ürün eklerken veya düzenlerken **"Etiketler"** alanından:
+- Mevcut etiketleri seçebilirsiniz
+- Yeni etiket oluşturabilirsiniz (yazmaya başlayın ve Enter'a basın)
+
+**💡 İpucu:** Etiketler SEO için önemlidir. İlgili ve açıklayıcı etiketler kullanın.
+
+---
+
+## 📑 Öne Çıkan Bölümler
+
+Anasayfada ürün kategorilerini öne çıkaran özel bölümlerdir.
+
+### Yeni Öne Çıkan Bölüm Ekleme:
+
+1. Sol menüden **"Öne Çıkan Bölümler"** seçin
+2. **"Yeni Öne Çıkan Bölüm"** butonuna tıklayın
+3. Formu doldurun:
+   - **Başlık:** Bölüm başlığı (örn: "Yeni Sezon Ürünleri")
+   - **Açıklama:** Bölüm açıklaması
+   - **Görsel:** Bölüm görseli (1200x600px önerilir)
+   - **Link:** Tıklandığında gidilecek sayfa
+   - **Buton Metni:** "Tümünü Gör", "Keşfet" gibi
+   - **Sıra:** Gösterilme sırası
+   - **Aktif:** Anasayfada göster/gizle
+4. **"Kaydet"** butonuna tıklayın
+
+**Kullanım Örneği:**
+- "Yeni Sezon Koleksiyonu"
+- "En Çok Satanlar"
+- "İndirimli Ürünler"
+- "Özel Tasarım"
 
 ---
 
