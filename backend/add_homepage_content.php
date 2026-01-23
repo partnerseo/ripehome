@@ -66,10 +66,10 @@ $settings = [
     ['key' => 'hero_title', 'value' => 'Doğallık, Kalite ve Şıklık'],
     ['key' => 'hero_subtitle', 'value' => 'Ev Tekstilinde Buluşuyor'],
     ['key' => 'email', 'value' => 'info@ripehome.com.tr'],
-    ['key' => 'phone', 'value' => '+90 544 251 9716'],
-    ['key' => 'address', 'value' => 'Denizli, Türkiye'],
-    ['key' => 'instagram', 'value' => 'https://instagram.com/ripehome'],
-    ['key' => 'whatsapp', 'value' => '+905442519716'],
+    ['key' => 'phone', 'value' => '+90 534 573 06 69'],
+    ['key' => 'address', 'value' => 'Sevindik Mahallesi, 2291 Sokak, No: 7, Merkezefendi, Denizli'],
+    ['key' => 'instagram', 'value' => 'https://www.instagram.com/ripe_home/'],
+    ['key' => 'whatsapp', 'value' => '+905345730669'],
 ];
 
 foreach ($settings as $setting) {

@@ -255,8 +255,8 @@ INSERT INTO `settings` (`key`, `value`, `created_at`, `updated_at`) VALUES
 ('site_name', 'Ripe Home', NOW(), NOW()),
 ('site_description', 'Ev tekstili ürünleri', NOW(), NOW()),
 ('email', 'info@ripehome.com.tr', NOW(), NOW()),
-('phone', '+90 544 251 9716', NOW(), NOW()),
-('address', 'Türkiye', NOW(), NOW()),
+('phone', '+90 534 573 06 69', NOW(), NOW()),
+('address', 'Sevindik Mahallesi, 2291 Sokak, No: 7, Merkezefendi, Denizli', NOW(), NOW()),
 ('footer_text', '© 2025 Ripe Home. Tüm hakları saklıdır.', NOW(), NOW());
 
 -- Sayfalar
