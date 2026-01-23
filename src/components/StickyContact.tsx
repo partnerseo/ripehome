@@ -23,9 +23,9 @@ const StickyContact = () => {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const phoneNumber = settings?.phone || '+905442519716';
+  const phoneNumber = settings?.phone || '+905345730669';
   const whatsappNumber = phoneNumber.replace(/\s/g, '').replace('+', '');
-  const displayPhone = settings?.phone || '+90 544 251 9716';
+  const displayPhone = settings?.phone || '+90 534 573 06 69';
 
   return (
     <div

@@ -24,7 +24,7 @@ export default function Contact() {
                     </svg>
                     <div>
                       <p className="font-medium text-gray-900">Telefon</p>
-                      <p className="text-gray-600">+90 544 251 9716</p>
+                      <p className="text-gray-600">+90 534 573 06 69</p>
                     </div>
                   </div>
 
@@ -45,7 +45,7 @@ export default function Contact() {
                     </svg>
                     <div>
                       <p className="font-medium text-gray-900">Adres</p>
-                      <p className="text-gray-600">Sevindik Mah., 2291. Sok., No: 5A<br />Merkezefendi, Denizli, Türkiye</p>
+                      <p className="text-gray-600">Sevindik Mahallesi, 2291 Sokak, No: 7<br />Merkezefendi, Denizli, Türkiye</p>
                     </div>
                   </div>
                 </div>

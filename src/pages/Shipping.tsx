@@ -83,7 +83,7 @@ export default function Shipping() {
                 info@ripehome.com.tr
               </a>
               <br />
-              Telefon: <a href="tel:+905442519716" className="text-gray-900 font-medium hover:underline">+90 544 251 9716</a>
+              Telefon: <a href="tel:+905345730669" className="text-gray-900 font-medium hover:underline">+90 534 573 06 69</a>
             </p>
           </div>
 

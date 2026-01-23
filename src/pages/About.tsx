@@ -33,8 +33,8 @@ export default function About() {
             <div className="mt-8 pt-8 border-t border-gray-200">
               <h3 className="text-xl font-medium text-gray-900 mb-4">İletişim Bilgilerimiz</h3>
               <div className="space-y-2 text-gray-700">
-                <p><strong>Adres:</strong> Sevindik Mah., 2291. Sok., No: 5A, Merkezefendi, Denizli</p>
-                <p><strong>Telefon:</strong> +90 544 251 9716</p>
+                <p><strong>Adres:</strong> Sevindik Mahallesi, 2291 Sokak, No: 7, Merkezefendi, Denizli</p>
+                <p><strong>Telefon:</strong> +90 534 573 06 69</p>
                 <p><strong>E-posta:</strong> info@ripehome.com.tr</p>
                 <p><strong>Web:</strong> www.ripehome.com.tr</p>
               </div>

@@ -87,12 +87,12 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#8B7355]" />
                 <a 
-                  href="https://maps.google.com/?q=Sevindik+Mah.+2291+Sok.+No:5A+Merkezefendi+Denizli"
+                  href="https://maps.google.com/?q=Sevindik+Mahallesi+2291+Sokak+No:7+Merkezefendi+Denizli"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#8B7355] transition-colors leading-relaxed"
                 >
-                  Sevindik Mah., 2291. Sok., No: 5A<br />
+                  Sevindik Mahallesi, 2291 Sokak, No: 7<br />
                   Merkezefendi, Denizli
                 </a>
               </li>
@@ -100,10 +100,10 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 flex-shrink-0 text-[#8B7355]" />
                 <a 
-                  href={`tel:${settings?.phone || '+905442519716'}`}
+                  href={`tel:${settings?.phone || '+905345730669'}`}
                   className="hover:text-[#8B7355] transition-colors font-medium"
                 >
-                  {settings?.phone || '+90 544 251 9716'}
+                  {settings?.phone || '+90 534 573 06 69'}
                 </a>
               </li>
               
