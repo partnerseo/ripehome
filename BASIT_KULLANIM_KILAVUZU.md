@@ -201,9 +201,10 @@ Yüklemeden önce bu siteleri kullanın:
 
 Sorun yaşarsanız:
 
-- **Email:** support@ripehome.com.tr
-- **Telefon:** 0850 XXX XX XX
-- **WhatsApp:** +90 5XX XXX XX XX
+- **Email:** info@ripehome.com.tr
+- **Telefon:** 0534 573 06 69
+- **WhatsApp:** +90 534 573 06 69
+- **Adres:** Sevindik mahallesi 2291 sokak No: 7 Merkezefendi / Denizli
 
 **Çalışma Saatleri:** Hafta içi 09:00 - 18:00
 
