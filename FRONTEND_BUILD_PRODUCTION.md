@@ -109,3 +109,4 @@ echo "✅ Build tamamlandı! dist/ klasörünü sunucuya yükle"
 - `.env` olmadan build yaparsan API localhost'a gider ❌
 - Build sonrası dist/ klasörünü public_html'e yükle ✅
 
+

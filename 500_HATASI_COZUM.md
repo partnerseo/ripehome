@@ -236,3 +236,4 @@ Sonra `.env` dosyasını kontrol et.
 
 **Hatayı çözdüğünde bana log'dan gelen hata mesajını gönder, daha spesifik yardım edeyim!**
 
+

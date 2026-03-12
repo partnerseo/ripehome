@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\FeaturedSectionResource\Pages;
 use App\Models\FeaturedSection;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -43,17 +44,50 @@ class FeaturedSectionResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->label('Görsel')
                     ->image()
-                    ->directory('featured-sections'),
+                    ->disk('public')
+                    ->directory('featured-sections')
+                    ->visibility('public')
+                    ->maxSize(10240)
+                    ->imageEditor()
+                    ->imageEditorAspectRatios(['1:1', '4:3', '16:9']),
 
                 Forms\Components\TextInput::make('icon')
                     ->label('İkon (Heroicon adı)')
                     ->placeholder('heroicon-o-star')
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('link')
+                Forms\Components\Select::make('link')
                     ->label('Link')
-                    ->url()
-                    ->maxLength(255),
+                    ->options(function () {
+                        $pages = [
+                            '/' => 'Ana Sayfa',
+                            '/hakkimizda' => 'Hakkımızda',
+                            '/iletisim' => 'İletişim',
+                            '/toptan-siparis' => 'Toptan Sipariş',
+                            '/sss' => 'Sıkça Sorulan Sorular',
+                            '/kargo-teslimat' => 'Kargo & Teslimat',
+                            '/iade-degisim' => 'İade & Değişim',
+                        ];
+
+                        $categories = Category::orderBy('name')
+                            ->pluck('name', 'slug')
+                            ->mapWithKeys(fn ($name, $slug) => ["/kategori/{$slug}" => $name])
+                            ->toArray();
+
+                        return [
+                            'Site Sayfaları' => $pages,
+                            'Kategoriler' => $categories,
+                        ];
+                    })
+                    ->searchable()
+                    ->placeholder('Sayfa veya kategori seçin')
+                    ->helperText('Tıklandığında gidilecek sayfayı seçin'),
+
+                Forms\Components\TextInput::make('button_text')
+                    ->label('Buton Yazısı')
+                    ->maxLength(50)
+                    ->default('Keşfet')
+                    ->placeholder('Keşfet'),
 
                 Forms\Components\TextInput::make('order')
                     ->label('Sıra')

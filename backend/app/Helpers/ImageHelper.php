@@ -20,7 +20,7 @@ class ImageHelper
         }
 
         // Base URL'i al (ASSET_URL varsa onu, yoksa APP_URL kullan)
-        $baseUrl = config('app.asset_url') ?: config('app.url');
+        $baseUrl = env('ASSET_URL') ?: env('APP_URL', 'http://localhost:8000');
         
         // Temizle ve birleştir
         return rtrim($baseUrl, '/') . '/storage/' . ltrim($path, '/');
@@ -34,5 +34,6 @@ class ImageHelper
         return array_map(fn($path) => self::getStorageUrl($path), $paths);
     }
 }
+
 
 

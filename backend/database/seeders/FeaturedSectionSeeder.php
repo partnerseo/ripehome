@@ -62,3 +62,4 @@ class FeaturedSectionSeeder extends Seeder
 
 
 
+

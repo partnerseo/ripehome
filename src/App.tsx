@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StickyContact from './components/StickyContact';
@@ -14,17 +15,18 @@ import Shipping from './pages/Shipping';
 import Returns from './pages/Returns';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import NotFound from './pages/NotFound';
 
-// Scroll to top on route change and page load
 function ScrollToTop() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
 
   return null;
@@ -33,13 +35,14 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
+      <CartProvider>
       <ScrollToTop />
       <div className="min-h-screen bg-[#F8F6F3]">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/kategori/:slug" element={<CategoryPage />} />
-          <Route path="/product/:slug" element={<ProductDetail />} />
+          <Route path="/urun/:slug" element={<ProductDetail />} />
           <Route path="/toptan-siparis" element={<WholesaleOrder />} />
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
@@ -48,10 +51,12 @@ function App() {
           <Route path="/iade-degisim" element={<Returns />} />
           <Route path="/gizlilik-politikasi" element={<Privacy />} />
           <Route path="/kullanim-kosullari" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <StickyContact />
       </div>
+      </CartProvider>
     </Router>
   );
 }

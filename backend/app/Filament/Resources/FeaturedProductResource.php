@@ -56,7 +56,12 @@ class FeaturedProductResource extends Resource
                         Forms\Components\FileUpload::make('image')
                             ->label('Ana Görsel')
                             ->image()
+                            ->disk('public')
                             ->directory('featured-products')
+                            ->visibility('public')
+                            ->maxSize(10240)
+                            ->imageEditor()
+                            ->imageEditorAspectRatios(['1:1', '4:3', '16:9'])
                             ->required()
                             ->columnSpanFull(),
                     ]),
@@ -162,6 +167,7 @@ class FeaturedProductResource extends Resource
         ];
     }
 }
+
 
 
 

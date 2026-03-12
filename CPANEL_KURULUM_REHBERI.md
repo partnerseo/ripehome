@@ -319,3 +319,4 @@ Sorun yaşıyorsan:
 
 **NOT:** Terminal yoksa hosting desteğinden "storage:link" oluşturmalarını isteyebilirsin!
 
+

@@ -69,3 +69,4 @@ echo "🔟 Test: https://ripehome.com.tr/admin"
 echo ""
 echo "🎉 BİTTİ!"
 
+

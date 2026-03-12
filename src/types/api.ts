@@ -25,11 +25,17 @@ export interface Product {
   id: number;
   name: string;
   slug: string;
+  sku?: string;
   description: string;
+  short_description?: string;
+  price?: string;
   images: string[];
   category?: Category;
   tags?: Tag[];
   features?: ProductFeature[];
+  stock?: number;
+  min_order?: number;
+  production_time?: string;
   is_featured: boolean;
   order: number;
   meta_title?: string;
@@ -55,6 +61,7 @@ export interface FeaturedSection {
   image?: string;
   icon?: string;
   link?: string;
+  button_text?: string;
   order: number;
 }
 
@@ -93,6 +100,14 @@ export interface Settings {
     linkedin?: string;
   };
   footer_text?: string;
+  brand?: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    image?: string;
+    button_text?: string;
+    button_link?: string;
+  };
 }
 
 export interface PaginationMeta {

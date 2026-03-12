@@ -2,10 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\OptimizesImages;
 use Illuminate\Database\Eloquent\Model;
 
 class FeaturedProduct extends Model
 {
+    use OptimizesImages;
+
+    protected array $optimizableImages = [
+        'image' => [
+            'maxWidth' => 1200,
+            'maxHeight' => 1200,
+            'quality' => 82,
+        ],
+    ];
+
     protected $fillable = [
         'category_label',
         'title',
@@ -23,6 +34,7 @@ class FeaturedProduct extends Model
         'is_active' => 'boolean',
     ];
 }
+
 
 
 

@@ -15,10 +15,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         try {
+            $perPage = min((int) $request->get('per_page', 12), 500);
+
             $products = Product::with(['category'])
                 ->where('is_active', true)
                 ->orderBy('order')
-                ->paginate(12);
+                ->paginate($perPage);
 
             return response()->json([
                 'success' => true,

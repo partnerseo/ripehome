@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SettingResource\Pages;
 use App\Models\Setting;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -79,6 +80,72 @@ class SettingResource extends Resource
                                     ->label('LinkedIn')
                                     ->url()
                                     ->maxLength(255),
+                            ])
+                            ->columns(2),
+
+                        Forms\Components\Tabs\Tab::make('Marka Hikayesi')
+                            ->icon('heroicon-o-book-open')
+                            ->schema([
+                                Forms\Components\TextInput::make('brand_title')
+                                    ->label('Başlık')
+                                    ->placeholder('Doğallık, Kalite ve Şıklık Ev Tekstilinde Buluşuyor')
+                                    ->maxLength(255)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('brand_subtitle')
+                                    ->label('Alt Başlık')
+                                    ->placeholder('Pamuk, keten ve muslinin zamansız dokusu evinizde.')
+                                    ->maxLength(255)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Textarea::make('brand_description')
+                                    ->label('Açıklama')
+                                    ->placeholder('Her ürün, doğal liflerin benzersiz dokusunu...')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\FileUpload::make('brand_image')
+                                    ->label('Arka Plan Görseli')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('settings')
+                                    ->visibility('public')
+                                    ->maxSize(20480)
+                                    ->imageEditor()
+                                    ->imageEditorAspectRatios(['16:9', '4:3'])
+                                    ->helperText('Geniş, yüksek çözünürlüklü bir görsel kullanın (1920x1080 önerilir)'),
+
+                                Forms\Components\TextInput::make('brand_button_text')
+                                    ->label('Buton Yazısı')
+                                    ->placeholder('Marka Hikayemizi Keşfet')
+                                    ->maxLength(100),
+
+                                Forms\Components\Select::make('brand_button_link')
+                                    ->label('Buton Linki')
+                                    ->options(function () {
+                                        $pages = [
+                                            '/' => 'Ana Sayfa',
+                                            '/hakkimizda' => 'Hakkımızda',
+                                            '/iletisim' => 'İletişim',
+                                            '/toptan-siparis' => 'Toptan Sipariş',
+                                            '/sss' => 'Sıkça Sorulan Sorular',
+                                            '/kargo-teslimat' => 'Kargo & Teslimat',
+                                            '/iade-degisim' => 'İade & Değişim',
+                                        ];
+
+                                        $categories = Category::orderBy('name')
+                                            ->pluck('name', 'slug')
+                                            ->mapWithKeys(fn ($name, $slug) => ["/kategori/{$slug}" => $name])
+                                            ->toArray();
+
+                                        return [
+                                            'Site Sayfaları' => $pages,
+                                            'Kategoriler' => $categories,
+                                        ];
+                                    })
+                                    ->searchable()
+                                    ->placeholder('Sayfa veya kategori seçin')
+                                    ->helperText('Butonun tıklandığında gideceği sayfayı seçin'),
                             ])
                             ->columns(2),
 

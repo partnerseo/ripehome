@@ -62,3 +62,4 @@ class FeaturedProductSeeder extends Seeder
 
 
 
+

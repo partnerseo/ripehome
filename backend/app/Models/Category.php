@@ -2,11 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\OptimizesImages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Category extends Model
 {
+    use OptimizesImages;
+
+    protected array $optimizableImages = [
+        'image' => [
+            'maxWidth' => 1200,
+            'maxHeight' => 1200,
+            'quality' => 82,
+        ],
+    ];
+
     protected $fillable = [
         'name',
         'slug',

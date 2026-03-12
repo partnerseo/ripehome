@@ -17,5 +17,11 @@ class Setting extends Model
         'twitter',
         'linkedin',
         'footer_text',
+        'brand_title',
+        'brand_subtitle',
+        'brand_description',
+        'brand_image',
+        'brand_button_text',
+        'brand_button_link',
     ];
 }

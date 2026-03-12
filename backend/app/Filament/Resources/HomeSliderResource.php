@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HomeSliderResource\Pages;
 use App\Models\HomeSlider;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -41,17 +42,45 @@ class HomeSliderResource extends Resource
 
                 Forms\Components\TextInput::make('button_text')
                     ->label('Buton Metni')
+                    ->placeholder('Örn: Keşfet, İncele, Sipariş Ver')
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('button_link')
+                Forms\Components\Select::make('button_link')
                     ->label('Buton Linki')
-                    ->url()
-                    ->maxLength(255),
+                    ->options(function () {
+                        $pages = [
+                            '/' => 'Ana Sayfa',
+                            '/hakkimizda' => 'Hakkımızda',
+                            '/iletisim' => 'İletişim',
+                            '/toptan-siparis' => 'Toptan Sipariş',
+                            '/sss' => 'Sıkça Sorulan Sorular',
+                            '/kargo-teslimat' => 'Kargo & Teslimat',
+                            '/iade-degisim' => 'İade & Değişim',
+                        ];
+
+                        $categories = Category::orderBy('name')
+                            ->pluck('name', 'slug')
+                            ->mapWithKeys(fn ($name, $slug) => ["/kategori/{$slug}" => $name])
+                            ->toArray();
+
+                        return [
+                            'Site Sayfaları' => $pages,
+                            'Kategoriler' => $categories,
+                        ];
+                    })
+                    ->searchable()
+                    ->placeholder('Sayfa veya kategori seçin')
+                    ->helperText('Butonun tıklandığında gideceği sayfayı seçin'),
 
                 Forms\Components\FileUpload::make('image')
                     ->label('Slider Görseli')
                     ->image()
+                    ->disk('public')
                     ->directory('sliders')
+                    ->visibility('public')
+                    ->maxSize(20480)
+                    ->imageEditor()
+                    ->imageEditorAspectRatios(['16:9', '4:3', '21:9'])
                     ->required()
                     ->columnSpanFull(),
 

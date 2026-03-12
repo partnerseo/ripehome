@@ -1,27 +1,26 @@
 import { ArrowUpRight, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import type { Category } from '../types/api';
+import type { Category, FeaturedSection } from '../types/api';
 
 interface CategoryGridProps {
   categories: Category[];
+  featuredSections?: FeaturedSection[];
 }
 
-const CategoryGrid = ({ categories }: CategoryGridProps) => {
-  const navigate = useNavigate();
+const gradients = [
+  'from-[#F8F6F3] to-[#E5DDD1]',
+  'from-[#E5DDD1] to-[#D4C5B5]',
+  'from-[#D4C5B5] to-[#C9B7A1]',
+  'from-[#C9B7A1] to-[#B8A48E]',
+];
 
-  console.log('📂 CategoryGrid render:');
-  console.log('  Received categories:', categories?.length || 0);
-  if (categories && categories.length > 0) {
-    console.log('  First 3 categories:', categories.slice(0, 3).map(c => ({
-      name: c.name,
-      products_count: c.products_count
-    })));
-  }
+const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) => {
+  const navigate = useNavigate();
 
   const handleCategoryClick = (slug: string) => {
     navigate(`/kategori/${slug}`);
   };
-  
+
   if (!categories || categories.length === 0) {
     return (
       <section className="pt-8 pb-16 md:pt-12 md:pb-24 px-4 md:px-12 lg:px-24 bg-white">
@@ -42,10 +41,10 @@ const CategoryGrid = ({ categories }: CategoryGridProps) => {
             <div className="w-12 h-px bg-[#C9B7A1]" />
           </div>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-neutral-800 mb-6 font-light">
-            Kategoriler
+            Koleksiyonlarımız
           </h2>
           <p className="font-sans text-neutral-600 text-xl max-w-2xl mx-auto leading-relaxed">
-            İhtiyacınıza özel, özenle hazırlanmış koleksiyonlarımızı keşfedin
+            İhtiyacınıza özel, özenle hazırlanmış ürün koleksiyonlarımızı keşfedin
           </p>
         </div>
 
@@ -87,74 +86,50 @@ const CategoryGrid = ({ categories }: CategoryGridProps) => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-16">
-          {/* Premium Koleksiyon - En popüler kategori */}
-          <button
-            onClick={() => {
-              const topCategory = [...categories].sort((a, b) => (b.products_count || 0) - (a.products_count || 0))[0];
-              if (topCategory) {
-                handleCategoryClick(topCategory.slug);
-              }
-            }}
-            className="bg-gradient-to-br from-[#F8F6F3] to-[#E5DDD1] p-8 rounded-2xl text-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
-          >
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-              </svg>
-            </div>
-            <h3 className="font-serif text-2xl text-neutral-800 mb-2">Premium Koleksiyon</h3>
-            <p className="font-sans text-neutral-600 text-sm mb-4">
-              {categories[0]?.name || 'En özel ürünlerimiz'}
-            </p>
-            <span className="font-sans text-sm text-[#8B7355] hover:underline inline-flex items-center gap-1">
-              Keşfet
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
-          </button>
-
-          {/* Toptan Sipariş */}
-          <button
-            onClick={() => navigate('/toptan-siparis')}
-            className="bg-gradient-to-br from-[#E5DDD1] to-[#D4C5B5] p-8 rounded-2xl text-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
-          >
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </div>
-            <h3 className="font-serif text-2xl text-neutral-800 mb-2">Toptan Sipariş</h3>
-            <p className="font-sans text-neutral-600 text-sm mb-4">Özel fiyatlar ve avantajlar</p>
-            <span className="font-sans text-sm text-[#8B7355] hover:underline inline-flex items-center gap-1">
-              Teklif Al
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
-          </button>
-
-          {/* İletişim */}
-          <button
-            onClick={() => navigate('/iletisim')}
-            className="bg-gradient-to-br from-[#D4C5B5] to-[#C9B7A1] p-8 rounded-2xl text-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
-          >
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="font-serif text-2xl text-neutral-800 mb-2">Bize Ulaşın</h3>
-            <p className="font-sans text-neutral-600 text-sm mb-4">Özel talepleriniz için</p>
-            <span className="font-sans text-sm text-[#8B7355] hover:underline inline-flex items-center gap-1">
-              İletişim
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
-          </button>
-        </div>
+        {/* Öne Çıkan Bölümler - Admin panelden yönetilir */}
+        {featuredSections.length > 0 && (
+          <div className={`grid md:grid-cols-${Math.min(featuredSections.length, 3)} gap-6 mt-16`}>
+            {featuredSections.map((section, index) => (
+              <button
+                key={section.id}
+                onClick={() => {
+                  if (section.link) {
+                    if (section.link.startsWith('http')) {
+                      window.open(section.link, '_blank');
+                    } else {
+                      navigate(section.link);
+                    }
+                  }
+                }}
+                className={`bg-gradient-to-br ${gradients[index % gradients.length]} p-8 rounded-2xl text-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer`}
+              >
+                {section.image ? (
+                  <div className="w-12 h-12 rounded-full overflow-hidden mx-auto mb-4">
+                    <img src={section.image} alt={section.title} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                )}
+                <h3 className="font-serif text-2xl text-neutral-800 mb-2">{section.title}</h3>
+                {section.description && (
+                  <p className="font-sans text-neutral-600 text-sm mb-4">{section.description}</p>
+                )}
+                {section.link && (
+                  <span className="font-sans text-sm text-[#8B7355] hover:underline inline-flex items-center gap-1">
+                    {section.button_text || 'Keşfet'}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

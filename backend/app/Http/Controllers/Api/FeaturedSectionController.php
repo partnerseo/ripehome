@@ -23,6 +23,7 @@ class FeaturedSectionController extends Controller
                         'image' => ImageHelper::getStorageUrl($section->image),
                         'icon' => $section->icon,
                         'link' => $section->link,
+                        'button_text' => $section->button_text ?? 'Keşfet',
                         'order' => $section->order,
                     ];
                 });

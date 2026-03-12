@@ -30,3 +30,4 @@ class ViewContactMessage extends ViewRecord
 
 
 
+

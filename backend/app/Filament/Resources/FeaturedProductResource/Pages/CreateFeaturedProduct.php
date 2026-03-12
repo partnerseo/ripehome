@@ -22,3 +22,4 @@ class CreateFeaturedProduct extends CreateRecord
 
 
 
+

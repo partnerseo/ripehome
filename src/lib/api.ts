@@ -5,22 +5,14 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 // Kategorileri çek
 export async function getCategories(): Promise<Category[]> {
   try {
-    const response = await fetch(`${API_URL}/categories`);
+    const response = await fetch(`${API_URL}/kategoriler`);
     const data: ApiResponse<Category[]> = await response.json();
-    
-    console.log('✅ Categories API response:', data);
-    console.log('📦 Total categories:', data.data?.length);
-    
     if (data.success && data.data) {
-      data.data.forEach(cat => {
-        console.log(`  - ${cat.name}: ${cat.products_count || 0} products`);
-      });
       return data.data;
     }
-    
     return [];
   } catch (error) {
-    console.error('❌ Categories API error:', error);
+    console.error('Kategoriler yüklenemedi:', error);
     return [];
   }
 }
@@ -28,7 +20,7 @@ export async function getCategories(): Promise<Category[]> {
 // Tekil kategori
 export async function getCategory(slug: string): Promise<Category | null> {
   try {
-    const response = await fetch(`${API_URL}/categories/${slug}`);
+    const response = await fetch(`${API_URL}/kategoriler/${slug}`);
     const data: ApiResponse<Category> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -38,9 +30,9 @@ export async function getCategory(slug: string): Promise<Category | null> {
 }
 
 // Ürünleri çek
-export async function getProducts(page = 1) {
+export async function getProducts(page = 1, perPage = 12) {
   try {
-    const response = await fetch(`${API_URL}/products?page=${page}`);
+    const response = await fetch(`${API_URL}/urunler?page=${page}&per_page=${perPage}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -53,18 +45,9 @@ export async function getProducts(page = 1) {
 export async function getProductsByCategory(categorySlug: string, page = 1, perPage = 100) {
   try {
     const response = await fetch(
-      `${API_URL}/products/category/${categorySlug}?page=${page}&per_page=${perPage}`
+      `${API_URL}/urunler/kategori/${categorySlug}?page=${page}&per_page=${perPage}`
     );
     const data = await response.json();
-    
-    console.log(`✅ Category products API response:`, {
-      category: data.category?.name,
-      products: data.data?.length,
-      total: data.meta?.total,
-      currentPage: data.meta?.current_page,
-      lastPage: data.meta?.last_page,
-    });
-    
     if (data.success) {
       return {
         products: data.data || [],
@@ -72,10 +55,9 @@ export async function getProductsByCategory(categorySlug: string, page = 1, perP
         meta: data.meta
       };
     }
-    
     return { products: [], category: null, meta: null };
   } catch (error) {
-    console.error('❌ Category products error:', error);
+    console.error('Kategori ürünleri yüklenemedi:', error);
     return { products: [], category: null, meta: null };
   }
 }
@@ -83,7 +65,7 @@ export async function getProductsByCategory(categorySlug: string, page = 1, perP
 // Tekil ürün
 export async function getProduct(slug: string): Promise<Product | null> {
   try {
-    const response = await fetch(`${API_URL}/products/${slug}`);
+    const response = await fetch(`${API_URL}/urunler/${slug}`);
     const data: ApiResponse<Product> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -95,7 +77,7 @@ export async function getProduct(slug: string): Promise<Product | null> {
 // Anasayfa slider
 export async function getHomeSliders(): Promise<HomeSlider[]> {
   try {
-    const response = await fetch(`${API_URL}/home-sliders`);
+    const response = await fetch(`${API_URL}/anasayfa-slider`);
     const data: ApiResponse<HomeSlider[]> = await response.json();
     return data.success ? data.data : [];
   } catch (error) {
@@ -107,7 +89,7 @@ export async function getHomeSliders(): Promise<HomeSlider[]> {
 // Öne çıkan bölümler
 export async function getFeaturedSections(): Promise<FeaturedSection[]> {
   try {
-    const response = await fetch(`${API_URL}/featured-sections`);
+    const response = await fetch(`${API_URL}/one-cikan-bolumler`);
     const data: ApiResponse<FeaturedSection[]> = await response.json();
     return data.success ? data.data : [];
   } catch (error) {
@@ -116,23 +98,14 @@ export async function getFeaturedSections(): Promise<FeaturedSection[]> {
   }
 }
 
-// Öne çıkan ürünler (Büyük kartlar)
+// Öne çıkan ürünler
 export async function getFeaturedProducts(): Promise<FeaturedProduct[]> {
-  console.log('📞 getFeaturedProducts() called');
   try {
-    const url = `${API_URL}/featured-products`;
-    console.log('🌐 Fetching:', url);
-    
-    const response = await fetch(url);
-    console.log('📡 Response status:', response.status);
-    
+    const response = await fetch(`${API_URL}/one-cikan-urunler`);
     const data: ApiResponse<FeaturedProduct[]> = await response.json();
-    console.log('📦 Featured products data:', data);
-    console.log('✅ Featured products count:', data.data?.length || 0);
-    
     return data.success ? data.data : [];
   } catch (error) {
-    console.error('❌ Öne çıkan ürünler yüklenemedi:', error);
+    console.error('Öne çıkan ürünler yüklenemedi:', error);
     return [];
   }
 }
@@ -140,7 +113,7 @@ export async function getFeaturedProducts(): Promise<FeaturedProduct[]> {
 // Sayfa içeriği
 export async function getPage(slug: string): Promise<Page | null> {
   try {
-    const response = await fetch(`${API_URL}/pages/${slug}`);
+    const response = await fetch(`${API_URL}/sayfalar/${slug}`);
     const data: ApiResponse<Page> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -152,7 +125,7 @@ export async function getPage(slug: string): Promise<Page | null> {
 // Site ayarları
 export async function getSettings(): Promise<Settings | null> {
   try {
-    const response = await fetch(`${API_URL}/settings`);
+    const response = await fetch(`${API_URL}/ayarlar`);
     const data: ApiResponse<Settings> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -169,7 +142,7 @@ export async function submitContact(formData: {
   message: string;
 }) {
   try {
-    const response = await fetch(`${API_URL}/contact`, {
+    const response = await fetch(`${API_URL}/iletisim`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -184,7 +157,7 @@ export async function submitContact(formData: {
 // Toptan sipariş oluştur
 export async function createWholesaleOrder(data: WholesaleOrderForm) {
   try {
-    const response = await fetch(`${API_URL}/wholesale-orders`, {
+    const response = await fetch(`${API_URL}/toptan-siparisler`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -195,5 +168,3 @@ export async function createWholesaleOrder(data: WholesaleOrderForm) {
     return { success: false, message: 'Bir hata oluştu' };
   }
 }
-
-

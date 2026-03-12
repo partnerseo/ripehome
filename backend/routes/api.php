@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-// Ping test - En basit endpoint
+// Ping test
 Route::get('/ping', function () {
     return response()->json([
         'status' => 'API çalışıyor! ✅',
@@ -29,7 +29,7 @@ Route::get('/test-db', function () {
         DB::connection()->getPdo();
         $categoriesCount = DB::table('categories')->count();
         $productsCount = DB::table('products')->count();
-        
+
         return response()->json([
             'status' => 'Database bağlantısı OK ✅',
             'categories_count' => $categoriesCount,
@@ -44,48 +44,52 @@ Route::get('/test-db', function () {
     }
 });
 
-// Protected routes (require authentication)
+// Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 });
 
-// Public API routes
+// Bilinmeyen rotalara 404 JSON döndür
+Route::fallback(function () {
+    return response()->json(['message' => 'Sayfa bulunamadı.'], 404);
+});
+
+// Health
 Route::get('/health', function () {
     return response()->json([
         'status' => 'ok',
-        'message' => 'API is running',
         'timestamp' => now()->toIso8601String()
     ]);
 });
 
-// Categories
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{slug}', [CategoryController::class, 'show']);
+// Kategoriler
+Route::get('/kategoriler', [CategoryController::class, 'index']);
+Route::get('/kategoriler/{slug}', [CategoryController::class, 'show']);
 
-// Products
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{slug}', [ProductController::class, 'show']);
-Route::get('/products/category/{category_slug}', [ProductController::class, 'byCategory']);
+// Ürünler
+Route::get('/urunler', [ProductController::class, 'index']);
+Route::get('/urunler/{slug}', [ProductController::class, 'show']);
+Route::get('/urunler/kategori/{category_slug}', [ProductController::class, 'byCategory']);
 
-// Pages
-Route::get('/pages/{slug}', [PageController::class, 'show']);
+// Sayfalar
+Route::get('/sayfalar/{slug}', [PageController::class, 'show']);
 
-// Home Sliders
-Route::get('/home-sliders', [HomeSliderController::class, 'index']);
+// Anasayfa Slider
+Route::get('/anasayfa-slider', [HomeSliderController::class, 'index']);
 
-// Featured Sections
-Route::get('/featured-sections', [FeaturedSectionController::class, 'index']);
+// Öne Çıkan Bölümler
+Route::get('/one-cikan-bolumler', [FeaturedSectionController::class, 'index']);
 
-// Featured Products
-Route::get('/featured-products', [FeaturedProductController::class, 'index']);
+// Öne Çıkan Ürünler
+Route::get('/one-cikan-urunler', [FeaturedProductController::class, 'index']);
 
-// Settings
-Route::get('/settings', [SettingController::class, 'index']);
+// Ayarlar
+Route::get('/ayarlar', [SettingController::class, 'index']);
 
-// Contact Form
-Route::post('/contact', [ContactController::class, 'store']);
+// İletişim Formu
+Route::post('/iletisim', [ContactController::class, 'store']);
 
-// Wholesale Orders
-Route::post('/wholesale-orders', [WholesaleOrderController::class, 'store']);
+// Toptan Siparişler
+Route::post('/toptan-siparisler', [WholesaleOrderController::class, 'store']);

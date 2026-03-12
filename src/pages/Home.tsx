@@ -4,42 +4,37 @@ import SignatureCollection from '../components/SignatureCollection';
 import CategoryGrid from '../components/CategoryGrid';
 import BrandPhilosophy from '../components/BrandPhilosophy';
 import LifestyleInspiration from '../components/LifestyleInspiration';
-import WhyChooseUs from '../components/WhyChooseUs';
+
 import Testimonials from '../components/Testimonials';
 import SocialProof from '../components/SocialProof';
 import Newsletter from '../components/Newsletter';
-import { getCategories } from '../lib/api';
-import type { Category } from '../types/api';
+import { getCategories, getFeaturedSections, getSettings } from '../lib/api';
+import type { Category, FeaturedSection, Settings } from '../types/api';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [featuredSections, setFeaturedSections] = useState<FeaturedSection[]>([]);
+  const [settings, setSettings] = useState<Settings | null>(null);
 
   useEffect(() => {
-    // Scroll to top on mount
     window.scrollTo(0, 0);
-    
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    getCategories()
-      .then((cats) => {
-        console.log('🏠 Home data loaded:');
-        console.log('  Categories:', cats?.length || 0);
-        console.log('  Categories data:', cats);
-        
-        // Sadece ürünü olan kategorileri göster
+    Promise.all([getCategories(), getFeaturedSections(), getSettings()])
+      .then(([cats, sections, siteSettings]) => {
         const validCategories = (cats || []).filter(c => (c.products_count || 0) > 0);
-        console.log('  Valid categories (with products):', validCategories.length);
-        
         setCategories(validCategories);
+        setFeaturedSections(sections || []);
+        setSettings(siteSettings);
       })
       .catch((error) => {
-        console.error('❌ API çağrısı başarısız:', error);
+        console.error('API çağrısı başarısız:', error);
       })
       .finally(() => {
         setLoading(false);
@@ -61,10 +56,9 @@ const Home = () => {
     <>
       <Hero scrollY={scrollY} />
       <SignatureCollection />
-      <CategoryGrid categories={categories} />
-      <BrandPhilosophy />
+      <CategoryGrid categories={categories} featuredSections={featuredSections} />
+      <BrandPhilosophy brand={settings?.brand} />
       <LifestyleInspiration />
-      <WhyChooseUs />
       <Testimonials />
       <SocialProof />
       <Newsletter />
@@ -73,4 +67,3 @@ const Home = () => {
 };
 
 export default Home;
-

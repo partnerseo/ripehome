@@ -34,7 +34,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
           {products.map((product) => (
             <div 
               key={product.id} 
-              onClick={() => navigate(`/product/${product.slug}`)}
+              onClick={() => navigate(`/urun/${product.slug}`)}
               className="group cursor-pointer"
             >
               <div className="relative aspect-square mb-4 overflow-hidden bg-[#F8F6F3] rounded-lg">

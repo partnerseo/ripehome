@@ -376,7 +376,7 @@ const CategoryPage = () => {
                 {displayProducts.map((product) => (
                   <div
                     key={product.id}
-                    onClick={() => navigate(`/product/${product.slug}`)}
+                    onClick={() => navigate(`/urun/${product.slug}`)}
                     className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
                   >
                     <div className="aspect-square overflow-hidden">
@@ -435,7 +435,7 @@ const CategoryPage = () => {
                 {displayProducts.map((product) => (
                   <div
                     key={product.id}
-                    onClick={() => navigate(`/product/${product.slug}`)}
+                    onClick={() => navigate(`/urun/${product.slug}`)}
                     className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
                   >
                     <div className="flex gap-4 p-4">

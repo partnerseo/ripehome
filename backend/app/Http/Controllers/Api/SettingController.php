@@ -34,6 +34,14 @@ class SettingController extends Controller
                     'linkedin' => $setting->linkedin,
                 ],
                 'footer_text' => $setting->footer_text,
+                'brand' => [
+                    'title' => $setting->brand_title,
+                    'subtitle' => $setting->brand_subtitle,
+                    'description' => $setting->brand_description,
+                    'image' => ImageHelper::getStorageUrl($setting->brand_image),
+                    'button_text' => $setting->brand_button_text,
+                    'button_link' => $setting->brand_button_link,
+                ],
             ];
 
             return response()->json([

@@ -55,7 +55,12 @@ class CategoryResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->label('Görsel')
                     ->image()
+                    ->disk('public')
                     ->directory('categories')
+                    ->visibility('public')
+                    ->maxSize(10240)
+                    ->imageEditor()
+                    ->imageEditorAspectRatios(['1:1', '4:3', '16:9'])
                     ->columnSpanFull(),
 
                 Forms\Components\TextInput::make('order')

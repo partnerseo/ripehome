@@ -298,3 +298,4 @@ C:\xampp\...                    (Windows path olmamalı)
 **Proje:** Ripe Home - E-commerce Platform
 **Status:** ✅ Production Ready
 
+

@@ -121,3 +121,4 @@ echo "✅ Tamamlandı! .env dosyasını kontrol et: APP_URL"
 
 Sonra sadece .env'i düzenle, o kadar!
 
+
