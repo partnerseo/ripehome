@@ -184,16 +184,16 @@
 
                                 {{-- Image Thumbnails --}}
                                 @if(!empty($product['images']))
-                                    <div class="grid grid-cols-4 gap-2 mt-3">
+                                    <div class="flex flex-wrap gap-1.5 mt-2 max-h-24 overflow-y-auto">
                                         @foreach($product['images'] as $imgIndex => $imgPath)
-                                            <div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                                            <div class="relative group w-10 h-10 rounded overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
                                                 <img src="{{ Storage::disk('public')->url($imgPath) }}"
-                                                     alt="Görsel {{ $imgIndex + 1 }}"
+                                                     alt="{{ $imgIndex + 1 }}"
                                                      class="w-full h-full object-cover">
                                                 <button type="button"
                                                         wire:click="removeImage({{ $index }}, {{ $imgIndex }})"
-                                                        class="absolute inset-0 flex items-center justify-center bg-red-500/0 group-hover:bg-red-500/60 transition-colors duration-200">
-                                                    <x-heroicon-m-x-mark class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                                                        class="absolute inset-0 flex items-center justify-center bg-red-500/0 group-hover:bg-red-500/70 transition-colors">
+                                                    <x-heroicon-m-x-mark class="w-3 h-3 text-white opacity-0 group-hover:opacity-100" />
                                                 </button>
                                             </div>
                                         @endforeach
