@@ -18,48 +18,42 @@
         }
     </style>
 
-    {{-- ÜST KONTROL ALANI --}}
-    <div class="fi-section rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10 p-4 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-            {{-- Kategori --}}
-            <div class="md:col-span-2">
+    {{-- KATEGORİ SEÇİMİ --}}
+    <div class="rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10 p-4 mb-4">
+        <div class="flex flex-col sm:flex-row gap-4 items-end">
+            <div class="flex-1">
                 <label for="catSelect" class="field-label">Kategori</label>
                 <select id="catSelect"
                         wire:model.live="categoryId"
-                        class="fi-select-input w-full rounded-lg border-gray-300 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-amber-500 focus:ring-amber-500 py-2">
+                        class="w-full rounded-lg border-gray-300 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-amber-500 focus:ring-amber-500 py-2">
                     <option value="">-- Kategori seçin --</option>
                     @foreach($this->categories as $id => $name)
                         <option value="{{ $id }}">{{ $name }}</option>
                     @endforeach
                 </select>
             </div>
-
-            {{-- Otomatik Yayınla --}}
-            <div>
-                <label class="field-label">Durum</label>
-                <label class="inline-flex items-center cursor-pointer gap-2 py-2">
-                    <input type="checkbox" wire:model.live="autoPublish" class="sr-only peer">
-                    <div class="w-10 h-5 bg-gray-300 dark:bg-gray-600 rounded-full peer peer-checked:bg-amber-500 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all relative"></div>
-                    <span class="text-sm text-gray-700 dark:text-gray-300">Otomatik Yayınla</span>
-                </label>
-            </div>
-
-            {{-- Kaydet Butonu --}}
-            <div>
-                <button type="button"
-                        wire:click="save"
-                        wire:loading.attr="disabled"
-                        wire:target="save"
-                        class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm transition-all disabled:opacity-50">
-                    <svg wire:loading wire:target="save" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span wire:loading.remove wire:target="save">Tümünü Kaydet ({{ $this->filledCount }} ürün)</span>
-                    <span wire:loading wire:target="save">Kaydediliyor...</span>
-                </button>
-            </div>
+            <label class="inline-flex items-center cursor-pointer gap-2 pb-1">
+                <input type="checkbox" wire:model.live="autoPublish" class="sr-only peer">
+                <div class="w-10 h-5 bg-gray-300 dark:bg-gray-600 rounded-full peer peer-checked:bg-amber-500 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all relative"></div>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Otomatik Yayınla</span>
+            </label>
         </div>
+    </div>
+
+    {{-- TÜMÜNÜ KAYDET BUTONU --}}
+    <div class="mb-4">
+        <button type="button"
+                wire:click="save"
+                wire:loading.attr="disabled"
+                wire:target="save"
+                style="display:flex !important; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.75rem 1.5rem; border-radius:0.75rem; background-color:rgb(245 158 11); color:white; font-weight:700; font-size:0.95rem; cursor:pointer; border:none;">
+            <svg wire:loading wire:target="save" class="animate-spin" style="height:1.25rem;width:1.25rem;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span wire:loading.remove wire:target="save">TÜMÜNÜ KAYDET ({{ $this->filledCount }} ürün, {{ $this->totalImages }} görsel)</span>
+            <span wire:loading wire:target="save">Kaydediliyor...</span>
+        </button>
     </div>
 
     {{-- ÜRÜN KARTLARI --}}
