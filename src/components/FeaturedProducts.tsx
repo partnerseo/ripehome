@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLangNavigate } from '../hooks/useLang';
 import type { Product } from '../types/api';
 
 interface FeaturedProductsProps {
@@ -6,7 +6,7 @@ interface FeaturedProductsProps {
 }
 
 const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
-  const navigate = useNavigate();
+  const navigate = useLangNavigate();
   
   if (products.length === 0) {
     return (
@@ -37,11 +37,11 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
               onClick={() => navigate(`/urun/${product.slug}`)}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-square mb-4 overflow-hidden bg-[#F8F6F3] rounded-lg">
+              <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-[#F8F6F3] rounded-lg">
                 <img
                   src={product.images?.[0] || '/pexels-cottonbro-4327012.jpg'}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

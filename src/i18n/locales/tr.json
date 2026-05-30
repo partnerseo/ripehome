@@ -1,0 +1,635 @@
+{
+  "nav": {
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "products": "Ürünlerimiz",
+    "contact": "İletişim",
+    "wholesale": "Toptan Sipariş",
+    "categories": "Kategorilerimiz",
+    "productCount": "{{count}} ürün",
+    "blog": "Blog",
+    "login": "Giriş"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "back": "Geri Dön",
+    "goHome": "Ana Sayfaya Dön",
+    "homePage": "Ana Sayfa",
+    "send": "Gönder",
+    "search": "Ara",
+    "share": "Paylaş",
+    "copied": "Kopyalandı!",
+    "details": "Detaylar",
+    "viewDetails": "Detayları Gör",
+    "seeAll": "Tümünü Gör",
+    "explore": "Keşfet",
+    "continue": "Devam Et",
+    "addMore": "Daha Fazla Ürün Ekle",
+    "filter": "Filtrele",
+    "piece": "adet",
+    "product": "ürün",
+    "products": "Ürünler",
+    "productsFound": "ürün bulundu",
+    "showingFirst": "İlk {{count}} gösteriliyor",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "noImage": "Görsel Yok",
+    "image": "Görsel",
+    "contactUs": "Bize Ulaşın",
+    "getInTouch": "İletişime Geç",
+    "submitting": "Gönderiliyor...",
+    "error": "Bir hata oluştu",
+    "tryAgain": "Bir hata oluştu, lütfen tekrar deneyin",
+    "note": "Not",
+    "total": "Toplam",
+    "addToCart": "Sepete Ekle",
+    "returnToCart": "Sepete Dön ({{count}} ürün)",
+    "searchProductCategory": "Ürün veya kategori ara...",
+    "productNotFound": "Ürün bulunamadı.",
+    "stepLabel": "{{n}}. Adım"
+  },
+  "home": {
+    "defaultSubtitle": "Premium Ev Tekstili",
+    "defaultButton": "Keşfet",
+    "mobileSubtitle": "Doğal liflerden üretilen premium ev tekstil ürünleri",
+    "premiumCollection": "Premium Koleksiyon",
+    "featuredProducts": "Öne Çıkan Ürünlerimiz",
+    "featuredSubtitle": "Özenle seçilmiş, en kaliteli ürünlerimizi keşfedin",
+    "collections": "Koleksiyonlarımız",
+    "collectionsSubtitle": "İhtiyacınıza özel, özenle hazırlanmış ürün koleksiyonlarımızı keşfedin",
+    "categoryNotFound": "Kategori bulunamadı",
+    "productCount": "{{count}} Ürün",
+    "testimonials": "Müşteri Yorumları",
+    "testimonialsSubtitle": "Sizin gibi memnun müşterilerimizden",
+    "newsletter": "Yeni Koleksiyonlardan ve Özel Fırsatlardan\nİlk Siz Haberdar Olun",
+    "newsletterSubtitle": "Doğal dokuların dünyasına özel erişim kazanın",
+    "emailPlaceholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "subscribeSuccess": "Başarılı!",
+    "subscribeThank": "Teşekkürler! E-posta listemize eklendiniz.",
+    "emailRequired": "Lütfen e-posta adresinizi girin",
+    "whyRipeHome": "Neden Ripe Home?",
+    "advantages": "Avantajlarımız",
+    "advantagesSubtitle": "Kalite, doğallık ve güvenin adresi",
+    "premiumQuality": "Premium Kalite",
+    "premiumQualityDesc": "%100 doğal pamuk ve bambu liflerinden üretilmiş Oeko-Tex sertifikalı ürünler",
+    "naturalEcological": "Doğal & Ekolojik",
+    "naturalEcologicalDesc": "Zararlı kimyasal içermeyen, çevre dostu ve sürdürülebilir üretim",
+    "fastShipping": "Hızlı Kargo",
+    "fastShippingDesc": "Türkiye geneline hızlı teslimat, kargo ücreti alıcıya aittir",
+    "wholesaleAdvantages": "Toptan Avantajları",
+    "wholesaleAdvantagesDesc": "İşletmelere özel fiyatlar ve toplu sipariş kolaylığı",
+    "questionsHelp": "Sorularınız mı var? Size yardımcı olmaktan mutluluk duyarız.",
+    "brandDefaultTitle": "Doğallık, Kalite ve Şıklık\nEv Tekstilinde Buluşuyor",
+    "brandDefaultSubtitle": "Pamuk, keten ve muslinin zamansız dokusu evinizde.",
+    "brandDefaultDesc": "Her ürün, doğal liflerin benzersiz dokusunu ve zanaatkarlığın inceliğini bir araya getiriyor. Evinize sıcaklık katarken, doğaya saygı duyarak üretilen koleksiyonlarımızla lüksü yeniden tanımlıyoruz.",
+    "brandDefaultButton": "Marka Hikayemizi Keşfet",
+    "carefullySelected": "Özenle seçilmiş {{name}} ürünleri",
+    "lifestyleTitle": "Yaşam Tarzı İlhamı",
+    "lifestyleSubtitle": "Ürünlerimizle hayatınıza dokunun",
+    "instagramTitle": "Bizi Instagram'da Keşfedin",
+    "instagramSubtitle": "Ürünlerimiz ve güncel paylaşımlarımız için takipte kalın",
+    "instagramHandle": "@ripe_home hesabını takip et",
+    "instagramCta": "Güncel ürünlerimiz ve kampanyalarımız için bizi Instagram'da takip edin"
+  },
+  "about": {
+    "fromDenizli": "Denizli'den Dünyaya",
+    "heroTitle": "Doğallık ve Kalite\nBir Arada",
+    "heroSubtitle": "15 yılı aşkın deneyimimizle, kimonolar, bornozlar ve peştamallar başta olmak üzere doğal liflerden üretilen özel parçalarımızı dünyaya sunuyoruz.",
+    "stats": {
+      "experience": "Yıllık Deneyim",
+      "wholesale": "Toptan Müşteri",
+      "export": "Ülkeye İhracat",
+      "variety": "Ürün Çeşidi"
+    },
+    "ourStory": "Hikayemiz",
+    "storyTitle": "Denizli'den Dünyaya:\nKimono ve Peştamalin Hikayesi",
+    "storyP1": "<strong>Ripe Home</strong>, Türkiye'nin tekstil merkezi Denizli'de, doğal liflere duyulan derin bir sevgiyle kuruldu. Kuruluşumuzdan bu yana tek bir hedefimiz var: geleneksel kimono ve peştamal dokumacılığını çağdaş tasarımla buluşturarak dünyaya sunmak.",
+    "storyP2": "%100 pamuk ve muslin başta olmak üzere doğal hammaddelerden el işçiliğiyle üretilen kimonolarımız, bornozlarımız ve peştamallarımız; hafifliği, nefes alabilirliği ve özgün desenleriyle öne çıkıyor. Her parça, Denizli'nin usta tezgahlarından geçerek sizlere ulaşıyor.",
+    "storyP3": "Butik oteller, spa merkezleri, resort tesisleri ve butik markalar başta olmak üzere 50'den fazla ülkedeki iş ortaklarımıza güvenilir toptan üretim ve özel sipariş hizmeti sunuyoruz. Kaliteden ödün vermeden rekabetçi fiyat sunma becerimiz, sektördeki güçlü itibarımızın temelini oluşturuyor.",
+    "since": "yılından beri",
+    "mission": "Misyonumuz",
+    "missionText": "Doğal ve sürdürülebilir hammaddelerden ürettiğimiz kimonolar, bornozlar ve peştamallarla yaşam alanlarını daha konforlu ve estetik hale getirmek. İş ortaklarımıza güvenilir tedarik, rekabetçi fiyat ve kusursuz hizmet sunarak uzun vadeli değer yaratmak.",
+    "vision": "Vizyonumuz",
+    "visionText": "Kimono, bornoz ve peştamal üretiminde uluslararası arenada söz sahibi bir marka olmak. Sürdürülebilir üretim pratikleri ve yenilikçi tasarım anlayışımızla, dünya genelinde tercih edilen bir doğal tekstil markası haline gelmek.",
+    "whyUs": "Neden Biz?",
+    "valuesTitle": "Değerlerimiz ve Farkımız",
+    "values": {
+      "naturalRaw": "Doğal Hammadde",
+      "naturalRawDesc": "Tüm ürünlerimizde %100 doğal pamuk, bambu ve keten lifleri kullanıyoruz. Doğaya saygılı üretim anlayışımızdan asla ödün vermiyoruz.",
+      "certifiedQuality": "Sertifikalı Kalite",
+      "certifiedQualityDesc": "Oeko-Tex Standard 100 sertifikalı ürünlerimiz, insan sağlığına zararlı hiçbir kimyasal madde içermez.",
+      "reliableSupply": "Güvenilir Tedarik",
+      "reliableSupplyDesc": "Zamanında teslimat ve tutarlı kalite ile iş ortaklarımıza her zaman güvenilir bir tedarikçi oluyoruz.",
+      "customerFocused": "Müşteri Odaklı",
+      "customerFocusedDesc": "Her müşterimize özel çözümler sunuyor, ihtiyaçlarına göre kişiselleştirilmiş hizmet veriyoruz.",
+      "ownProduction": "Kendi Üretimimiz",
+      "ownProductionDesc": "Denizli'deki modern üretim tesislerimizde, son teknoloji makinelerle kaliteli üretim gerçekleştiriyoruz.",
+      "globalVision": "Küresel Vizyon",
+      "globalVisionDesc": "50'den fazla ülkeye ihracat yaparak Denizli kimonosunu ve peştamalını dünyaya tanıtıyoruz."
+    },
+    "milestones": "Kilometre Taşları",
+    "journey": "Yolculuğumuz",
+    "timeline": {
+      "founding": "Kuruluş",
+      "foundingDesc": "Denizli'de küçük bir atölyede kimono ve peştamal üretimine başladık.",
+      "firstExport": "İlk İhracat",
+      "firstExportDesc": "Avrupa pazarına ilk ihracatımızı gerçekleştirdik.",
+      "factoryInvestment": "Fabrika Yatırımı",
+      "factoryInvestmentDesc": "Modern üretim tesisimizi kurarak kapasitemizi 5 katına çıkardık.",
+      "certification": "Sertifikasyon",
+      "certificationDesc": "Oeko-Tex Standard 100 ve ISO 9001 sertifikalarımızı aldık.",
+      "brandTransformation": "Marka Dönüşümü",
+      "brandTransformationDesc": "Ripe Home markasıyla premium segmentte konumlandık.",
+      "digitalTransformation": "Dijital Dönüşüm",
+      "digitalTransformationDesc": "Online toptan satış platformumuzu hayata geçirdik."
+    },
+    "wholesaleServices": "Toptan Hizmetlerimiz",
+    "wholesaleTitle": "İşletmenize Özel\nÇözümler Sunuyoruz",
+    "wholesaleItems": {
+      "delivery": "Türkiye genelinde ve 50+ ülkeye hızlı teslimat",
+      "pricing": "Özel fiyat teklifi ve kişiselleştirilmiş hizmet",
+      "production": "Fason üretim ve özel etiket (private label) imkanı",
+      "certified": "Sertifikalı ürünler ve kalite garantisi"
+    },
+    "placeWholesaleOrder": "Toptan Sipariş Ver",
+    "workTogether": "Birlikte Çalışalım",
+    "workTogetherText": "İşletmenize özel fiyat teklifi almak veya ürünlerimiz hakkında bilgi edinmek için bizimle iletişime geçin.",
+    "ourAddress": "Adresimiz",
+    "email": "E-posta",
+    "phone": "Telefon"
+  },
+  "contact": {
+    "getInTouch": "Get in Touch",
+    "title": "İletişim",
+    "reachUs": "Bize Ulaşın",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "address": "Adres",
+    "addressText": "Sevindik Mahallesi, 2291 Sokak, No: 7\nMerkezefendi, Denizli, Türkiye",
+    "sendMessage": "Mesaj Gönderin",
+    "namePlaceholder": "Adınız Soyadınız",
+    "emailPlaceholder": "E-posta Adresiniz",
+    "phonePlaceholder": "Telefon Numaranız",
+    "companyPlaceholder": "Firma Adı",
+    "subjectPlaceholder": "Konu",
+    "messagePlaceholder": "Mesajınız",
+    "send": "Gönder",
+    "successMessage": "Mesajınız iletildi, en kısa sürede dönüş yapacağız.",
+    "subjectWholesale": "Toptan Sipariş",
+    "subjectCustom": "Özel Üretim",
+    "subjectProduct": "Ürün Bilgisi",
+    "subjectQuote": "Fiyat Teklifi",
+    "subjectOther": "Diğer",
+    "reachUsDesc": "Toptan alım ve özel üretim sorularınız için bize ulaşın.",
+    "officeHours": "Hafta içi 09:00 – 18:00 arası hizmetinizdeyiz.",
+    "thankYou": "Teşekkürler!"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Sıkça Sorulan Sorular",
+    "questions": [
+      {
+        "q": "Toptan sipariş için minimum miktar nedir?",
+        "a": "Toptan siparişlerimizde minimum miktar ürün bazında değişiklik göstermektedir. Genellikle 20 adet ve üzeri siparişlerde toptan fiyatlandırma uygulanmaktadır. Detaylı bilgi için Toptan Sipariş sayfamızdan bizimle iletişime geçebilirsiniz."
+      },
+      {
+        "q": "Ürünlerinizin kumaş kompozisyonu nedir?",
+        "a": "Ürünlerimiz %100 doğal pamuk ve muslin liflerinden üretilmektedir. Kimyasal katkı maddesi kullanılmaz; cilt dostu, nefes alabilen doğal bir yapıya sahiptir."
+      },
+      {
+        "q": "Kargo ücreti ne kadardır?",
+        "a": "Kargo ücretleri tamamıyla alıcıya aittir. Toptan siparişlerde kargo ücreti sipariş miktarı ve teslimat adresine göre değişkenlik gösterebilir."
+      },
+      {
+        "q": "Siparişim ne zaman kargoya verilir?",
+        "a": "Siparişiniz 2–6 iş günü içinde hazırlanarak kargoya teslim edilir. Hafta sonu verilen siparişler bir sonraki iş günü işleme alınır."
+      },
+      {
+        "q": "Toptan müşteri olarak özel fiyat alabilir miyim?",
+        "a": "Evet, düzenli ve yüksek miktarlı alımlar yapan toptan müşterilerimize özel fiyatlandırma ve ödeme koşulları sunuyoruz. Detaylı bilgi için satış ekibimizle görüşebilirsiniz."
+      },
+      {
+        "q": "Yurt dışına kargo gönderiyor musunuz?",
+        "a": "Evet, toptan siparişler için yurt dışı kargo hizmeti sunuyoruz. Kargo ücreti ve teslimat süresi hedef ülkeye göre değişiklik göstermektedir. Detaylı bilgi için bizimle iletişime geçebilirsiniz."
+      },
+      {
+        "q": "Ürünlerin bakım talimatları nelerdir?",
+        "a": "Ürünlerimiz 30 derecede, hassas programda yıkanmalıdır. Çamaşır suyu ve ağartıcı kullanmayınız. Doğrudan güneş ışığından uzak tutarak gölgede kurutunuz. Düşük ısıda ütülenebilir. Detaylı yıkama talimatı için sayfamızın altındaki 'Yıkama Talimatı' butonunu inceleyebilirsiniz."
+      },
+      {
+        "q": "Fatura düzenliyor musunuz?",
+        "a": "Evet, tüm siparişlerimizde e-fatura düzenlemekteyiz. Kurumsal müşterilerimiz için gerekli tüm belgelendirme işlemlerini yapıyoruz."
+      },
+      {
+        "q": "Özel tasarım veya logo baskısı yapıyor musunuz?",
+        "a": "Evet, toptan siparişlerde özel tasarım, renk ve logo baskısı hizmeti sunuyoruz. Minimum sipariş miktarı için satış ekibimizle görüşebilirsiniz."
+      }
+    ],
+    "notAnswered": "Sorunuz yanıtlanmadı mı?",
+    "happyToHelp": "Müşteri hizmetlerimiz size yardımcı olmaktan mutluluk duyar."
+  },
+  "footer": {
+    "description": "Denizli'den dünyaya; kimonolar, peştamallar ve doğal liflerden üretilen özel parçalarımızla size doğallık ve şıklık katıyoruz.",
+    "followInstagram": "Instagram'da bizi takip edin",
+    "contact": "İletişim",
+    "customerSupport": "Müşteri Desteği",
+    "faq": "Sıkça Sorulan Sorular",
+    "shippingDelivery": "Kargo & Teslimat",
+    "returnsExchange": "İade & Değişim",
+    "wholesale": "Toptan Sipariş",
+    "contactLink": "İletişim",
+    "corporate": "Kurumsal",
+    "aboutUs": "Hakkımızda",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfUse": "Kullanım Koşulları",
+    "copyright": "© 2025 Ripe Home. Tüm hakları saklıdır.",
+    "washingInstructions": "Yıkama Talimatı (PDF)"
+  },
+  "product": {
+    "notFound": "Ürün Bulunamadı",
+    "notFoundText": "Aradığınız ürün mevcut değil veya kaldırılmış olabilir.",
+    "featured": "Öne Çıkan Ürün",
+    "description": "Ürün Açıklaması",
+    "features": "Özellikler",
+    "tags": "Etiketler",
+    "productCode": "Ürün Kodu",
+    "minOrder": "Minimum Sipariş",
+    "productionTime": "Üretim Süresi",
+    "capacity": "Kapasite",
+    "inStock": "Stokta mevcut",
+    "inProduction": "Üretimde",
+    "getQuote": "Toptan Fiyat Teklifi Al",
+    "quoteNote": "Ortalama üretim süresi 2–3 haftadır.",
+    "relatedProducts": "Benzer Ürünler",
+    "defaultProductionTime": "1 hafta",
+    "orderNow": "SİPARİŞ VER"
+  },
+  "category": {
+    "notFound": "Kategori Bulunamadı",
+    "noProducts": "Ürün Bulunamadı",
+    "noProductsText": "Bu kategoride henüz ürün bulunmamaktadır.",
+    "material": "Malzeme",
+    "size": "Boyut",
+    "sortPopular": "En Popüler",
+    "sortNewest": "En Yeni",
+    "sortRating": "En Yüksek Puan",
+    "sortName": "A-Z"
+  },
+  "wholesale": {
+    "title": "Toptan Sipariş",
+    "subtitle": "Ürünlerinizi seçin, adetleri belirleyin ve teklif talep edin",
+    "step1": "1. Ürün Seçimi",
+    "step2": "2. Bilgiler & Gönder",
+    "cartProducts": "Sepetinizdeki Ürünler",
+    "cartSummary": "{{count}} ürün, toplam {{total}} adet",
+    "addNote": "Not ekleyin (opsiyonel)",
+    "companyInfo": "Şirket Bilgileriniz",
+    "companyName": "Şirket Adı",
+    "companyNamePlaceholder": "Şirket adınız",
+    "contactPerson": "Yetkili Kişi",
+    "contactPersonPlaceholder": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "city": "Şehir",
+    "address": "Adres",
+    "taxOffice": "Vergi Dairesi",
+    "taxNumber": "Vergi Numarası",
+    "additionalNotes": "Ek Notlarınız",
+    "additionalNotesPlaceholder": "Özel istekleriniz, renk/beden tercihleri vb...",
+    "requestQuote": "Teklif Talep Et",
+    "orderSummary": "Sipariş Özeti",
+    "addProduct": "Ürün Ekle",
+    "noProductsSelected": "Henüz ürün seçilmedi",
+    "startSelectingProducts": "Ürün seçmeye başla",
+    "selectAtLeastOne": "Lütfen en az bir ürün seçin",
+    "orderFailed": "Sipariş gönderilemedi, lütfen tekrar deneyin",
+    "success": "Talebiniz Alındı!",
+    "successText": "Toptan sipariş talebiniz başarıyla kaydedildi. En kısa sürede size özel fiyat teklifi ile dönüş yapacağız.",
+    "newOrder": "Yeni Sipariş Oluştur"
+  },
+  "shipping": {
+    "title": "Kargo & Teslimat",
+    "subtitle": "Siparişleriniz 2–6 iş günü içinde hazırlanır. Kargo ücreti alıcıya aittir.",
+    "wholesaleOrders": "Toptan Siparişlerde",
+    "freeShipping": "Kargo ücreti alıcıya aittir",
+    "freeShippingNote": "Kargo ücretleri tamamıyla alıcıya ait olup sipariş miktarına ve adrese göre değişiklik gösterebilir.",
+    "fastPreparation": "Hızlı Hazırlık",
+    "fastPreparationTime": "2–6 iş günü içinde kargoda",
+    "fastPreparationNote": "Siparişiniz özenle hazırlanır ve en kısa sürede kargoya teslim edilir.",
+    "stepByStep": "Adım Adım",
+    "orderProcess": "Sipariş Süreci",
+    "steps": {
+      "orderConfirmation": "Sipariş Onayı",
+      "orderConfirmationDesc": "Siparişiniz alındıktan sonra onay bilgisi gönderilir.",
+      "preparation": "Hazırlık",
+      "preparationDesc": "Ürünleriniz özenle paketlenir ve kalite kontrolden geçirilir.",
+      "shipped": "Kargoya Teslim",
+      "shippedDesc": "Paketiniz sizin istediğiniz kargo firmasına teslim edilir.",
+      "delivery": "Teslimat",
+      "deliveryDesc": "Kargo takip numaranızla siparişinizi anlık takip edebilirsiniz."
+    },
+    "byRegion": "Bölgelere Göre",
+    "deliveryTimes": "Teslimat Süreleri",
+    "estimatedDelivery": "Tahmini teslimat süresi",
+    "deliveryDisclaimer": "* Teslimat süreleri tahmini olup, kargo firmasının iş yoğunluğuna göre değişiklik gösterebilir.",
+    "zones": {
+      "marmaraEge": "Marmara & Ege",
+      "marmaraEgeTime": "1–2 iş günü",
+      "icAnadolu": "İç Anadolu & Akdeniz",
+      "icAnadoluTime": "2–3 iş günü",
+      "karadeniz": "Karadeniz & Doğu",
+      "karadenizTime": "3–4 iş günü",
+      "international": "Yurt Dışı (Avrupa)",
+      "internationalTime": "5–10 iş günü"
+    },
+    "shippingCompanies": "Kargo Firmaları",
+    "shippingCompaniesDesc": "Siparişleriniz Aras Kargo, Yurtiçi Kargo ve MNG Kargo aracılığıyla gönderilmektedir. Firma seçimi lokasyonunuza göre otomatik olarak yapılır.",
+    "shippingCompaniesItems": [
+      "Kargo takip numarası SMS ve e-posta ile iletilir",
+      "Tüm gönderiler sigortalıdır",
+      "Hasarlı teslimatlarda ücretsiz yenisi gönderilir"
+    ],
+    "wholesaleDelivery": "Toptan Sipariş Teslimatı",
+    "wholesaleDeliveryDesc": "Toptan siparişleriniz profesyonelce paletlenir ve güvenli şekilde taşınır. Büyük hacimli gönderiler için özel nakliye düzenlenir.",
+    "wholesaleDeliveryItems": [
+      "Stoklu ürünlerde 2–6 iş günü hazırlık",
+      "Üretimli siparişlerde 2–3 hafta",
+      "Paletli ve streçli ambalajlama",
+      "Kapıda teslimat veya depo teslim seçeneği"
+    ],
+    "internationalShipping": "Yurt Dışı Gönderim",
+    "internationalShippingDesc": "50'den fazla ülkeye ihracat deneyimimizle, uluslararası gönderimlerinizi sorunsuz yönetiyoruz.",
+    "internationalShippingItems": [
+      "FOB, CIF ve DDP teslim seçenekleri",
+      "Gümrük evraklarının hazırlanması",
+      "Konteyner ve parsiyel yükleme",
+      "İhracat faturası ve menşe belgesi"
+    ],
+    "packaging": "Ambalaj ve Paketleme",
+    "packagingDesc": "Ürünleriniz taşıma sırasında zarar görmemesi için özel ambalajlanır. İsteğe göre markalı paketleme de yapılır.",
+    "packagingItems": [
+      "Tekli poşet + kolektif kutu ambalaj",
+      "İsteğe bağlı markalı etiketleme",
+      "Barkod ve ürün bilgi kartı ekleme",
+      "Nem ve toz geçirmez paketleme"
+    ],
+    "faqTitle": "Sıkça Sorulan Sorular",
+    "faqs": [
+      {
+        "q": "Siparişimi nasıl takip edebilirim?",
+        "a": "Siparişiniz kargoya verildikten sonra, kargo takip numarası SMS ve e-posta ile tarafınıza iletilir. Bu numara ile kargo firmasının web sitesinden anlık takip yapabilirsiniz."
+      },
+      {
+        "q": "Teslimat adresimi değiştirebilir miyim?",
+        "a": "Siparişiniz kargoya teslim edilmeden önce adres değişikliği yapabilirsiniz. Bunun için müşteri hizmetlerimizle iletişime geçmeniz yeterlidir."
+      },
+      {
+        "q": "Hasarlı ürün teslim aldımsa ne yapmalıyım?",
+        "a": "Hasarlı paket teslim aldıysanız, kargo tutanağıyla birlikte teslim alın ve 24 saat içinde bizimle iletişime geçin. Hasarlı ürününüz ücretsiz olarak değiştirilecektir."
+      },
+      {
+        "q": "Toptan siparişlerde minimum tutar nedir?",
+        "a": "Toptan sipariş için minimum tutar ürün kategorisine göre değişiklik gösterir. Detaylı bilgi için toptan sipariş sayfamızı ziyaret edebilir veya bizimle iletişime geçebilirsiniz."
+      }
+    ],
+    "importantNotice": "Önemli Bilgilendirme",
+    "importantNoticeText": "Hava koşulları, doğal afetler, resmi tatiller ve kargo firmasının iş yoğunluğu teslimat sürelerini etkileyebilir. Bu tür mücbir sebeplerden kaynaklanan gecikmelerde sorumluluk kargo firmasına aittir.",
+    "shippingQuestion": "Kargo Hakkında Sorunuz mu Var?",
+    "shippingQuestionText": "Teslimat süreçleri veya özel kargo talepleri hakkında detaylı bilgi almak için bizimle iletişime geçin."
+  },
+  "returns": {
+    "label": "Return Policy",
+    "title": "İade & Değişim",
+    "conditions": "İade Koşulları",
+    "conditionsIntro": "Ürünlerinizi teslim aldığınız tarihten itibaren <strong>14 gün içinde</strong> iade edebilirsiniz.",
+    "conditionsRequired": "İade için gerekli koşullar:",
+    "conditionItems": [
+      "Ürün kullanılmamış ve yıkanmamış olmalıdır",
+      "Orijinal ambalajında ve etiketleriyle birlikte olmalıdır",
+      "Fatura fotokopisi ile birlikte gönderilmelidir",
+      "Hijyen kuralları gereği tek kullanımlık ve kişisel ürünler iade edilemez"
+    ],
+    "process": "İade Süreci",
+    "processSteps": [
+      {
+        "title": "İade Talebi",
+        "text": "İletişim sayfamızdan veya info@ripehome.com.tr adresinden iade talebinizi iletin. Sipariş numaranızı ve iade sebebini belirtin."
+      },
+      {
+        "title": "Onay & Kargo",
+        "text": "İade talebiniz onaylandıktan sonra, size iade kargo kodu gönderilecektir. Ürünü anlaşmalı kargo firması ile ücretsiz gönderebilirsiniz."
+      },
+      {
+        "title": "İnceleme",
+        "text": "İade edilen ürün tarafımıza ulaştıktan sonra 2-3 iş günü içinde incelenir ve onaylanır."
+      },
+      {
+        "title": "İade Ödemesi",
+        "text": "İade onayından sonra 5-7 iş günü içinde ödemeniz kredi kartınıza veya banka hesabınıza iade edilir."
+      }
+    ],
+    "exchange": "Ürün Değişimi",
+    "exchangeP1": "Aldığınız üründe renk, beden veya model değişikliği yapmak isterseniz, önce iade işlemi başlatıp ardından yeni sipariş vermeniz gerekmektedir.",
+    "exchangeP2": "Hatalı veya hasarlı ürün teslimatı durumunda, kargo ücreti tarafımızca karşılanarak yeni ürün gönderimi yapılır.",
+    "wholesaleReturns": "Toptan Sipariş İadeleri",
+    "wholesaleReturnsIntro": "Toptan siparişlerde iade koşulları farklılık gösterebilir. Toptan siparişlerde:",
+    "wholesaleReturnItems": [
+      "Üretim hatası veya hasar durumunda tam iade yapılır",
+      "Müşteri kaynaklı iadeler için özel şartlar geçerlidir",
+      "Detaylı bilgi için satış ekibimizle görüşünüz"
+    ],
+    "needHelp": "İade konusunda yardıma mı ihtiyacınız var?",
+    "happyToHelp": "Müşteri hizmetlerimiz size yardımcı olmaktan mutluluk duyar."
+  },
+  "privacy": {
+    "label": "Privacy",
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "Son Güncellenme: 23 Kasım 2025",
+    "dataProtection": "Kişisel Verilerin Korunması",
+    "dataProtectionText": "Ripe Home olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında kişisel verilerinizin gizliliğini ve güvenliğini korumayı taahhüt ediyoruz.",
+    "collectedInfo": "Toplanan Bilgiler",
+    "collectedInfoText": "Web sitemizi kullandığınızda aşağıdaki bilgiler toplanabilir:",
+    "collectedItems": [
+      "Ad, soyad, e-posta adresi, telefon numarası",
+      "Teslimat ve fatura adresi bilgileri",
+      "Sipariş geçmişi ve ödeme bilgileri",
+      "IP adresi, tarayıcı türü ve çerezler"
+    ],
+    "dataUsage": "Verilerin Kullanım Amaçları",
+    "dataUsageText": "Toplanan kişisel verileriniz aşağıdaki amaçlarla kullanılmaktadır:",
+    "dataUsageItems": [
+      "Siparişlerinizin işlenmesi ve teslimatı",
+      "Müşteri hizmetleri desteği sağlanması",
+      "Kampanya ve promosyonlar hakkında bilgilendirme",
+      "Web sitesi deneyiminin iyileştirilmesi",
+      "Yasal yükümlülüklerin yerine getirilmesi"
+    ],
+    "dataSecurity": "Veri Güvenliği",
+    "dataSecurityText": "Kişisel verileriniz, SSL şifreleme teknolojisi ile korunmaktadır. Ödeme bilgileriniz güvenli ödeme sistemleri aracılığıyla işlenmekte ve firmamız tarafından saklanmamaktadır.",
+    "cookies": "Çerezler (Cookies)",
+    "cookiesText": "Web sitemiz, kullanıcı deneyimini iyileştirmek amacıyla çerezler kullanmaktadır. Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz, ancak bu durumda bazı özellikler çalışmayabilir.",
+    "rights": "Haklarınız",
+    "rightsText": "KVKK kapsamında aşağıdaki haklara sahipsiniz:",
+    "rightsItems": [
+      "Kişisel verilerinizin işlenip işlenmediğini öğrenme",
+      "İşlenmişse buna ilişkin bilgi talep etme",
+      "Verilerin düzeltilmesini veya silinmesini isteme",
+      "Verilerin aktarıldığı üçüncü kişileri öğrenme"
+    ],
+    "contactTitle": "İletişim",
+    "contactText": "Gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:"
+  },
+  "terms": {
+    "label": "Terms & Conditions",
+    "title": "Kullanım Koşulları",
+    "lastUpdated": "Son Güncellenme: 23 Kasım 2025",
+    "general": "Genel Koşullar",
+    "generalText": "Bu web sitesini kullanarak, aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız. Koşulları kabul etmiyorsanız, lütfen siteyi kullanmayınız.",
+    "orderSales": "Sipariş ve Satış",
+    "orderSalesText": "Web sitemiz üzerinden verilen siparişler aşağıdaki koşullara tabidir:",
+    "orderSalesItems": [
+      "Fiyatlarımız USD üzerinden belirlenmiştir",
+      "Fiyatlarımıza KDV dahil değildir",
+      "Sipariş onayından sonra fiyat değişikliği yapılmaz",
+      "Stok durumu değişebilir, stokta olmayan ürünler iptal edilir",
+      "Hatalı fiyatlandırma durumunda sipariş iptal edilebilir"
+    ],
+    "payment": "Ödeme Koşulları",
+    "paymentText": "Ödemelerinizi aşağıdaki yöntemlerle yapabilirsiniz:",
+    "paymentItems": [
+      "Kredi Kartı (Visa, Mastercard, American Express)",
+      "Banka Havalesi / EFT (Toptan siparişler için)"
+    ],
+    "paymentSecurity": "Ödeme bilgileriniz SSL şifreleme ile korunmaktadır ve güvenli ödeme sistemleri aracılığıyla işlenmektedir.",
+    "deliveryShipping": "Teslimat ve Kargo",
+    "deliveryShippingText": "Teslimat koşulları hakkında detaylı bilgi için",
+    "deliveryShippingLink": "Kargo & Teslimat",
+    "deliveryShippingAfter": "sayfamızı inceleyebilirsiniz. Kargo süreleri tahmini olup, hava koşulları ve mücbir sebepler nedeniyle değişiklik gösterebilir.",
+    "cancelReturn": "İptal ve İade",
+    "cancelReturnText": "İptal ve iade koşulları hakkında detaylı bilgi için",
+    "cancelReturnLink": "İade & Değişim",
+    "cancelReturnAfter": "sayfamızı inceleyebilirsiniz. Tüketici hakları kapsamında yasal cayma hakkınız bulunmaktadır.",
+    "intellectualProperty": "Fikri Mülkiyet Hakları",
+    "intellectualPropertyText": "Bu web sitesindeki tüm içerik (metin, görsel, logo, tasarım vb.) Ripe Home'e aittir ve telif hakları ile korunmaktadır. İzinsiz kullanım, kopyalama veya dağıtım yasaktır.",
+    "disclaimer": "Sorumluluk Reddi",
+    "disclaimerText": "Firmamız aşağıdaki durumlardan sorumlu değildir:",
+    "disclaimerItems": [
+      "Web sitesinin kesintisiz veya hatasız çalışacağı",
+      "Ürün fotoğraflarındaki renk farklılıkları (ekran farklılıklarından kaynaklanabilir)",
+      "Mücbir sebeplerden kaynaklanan gecikmeler",
+      "Üçüncü parti web sitelerine verilen bağlantılar"
+    ],
+    "disputes": "Uyuşmazlık Çözümü",
+    "disputesText": "Bu sözleşmeden doğabilecek uyuşmazlıklarda Türkiye Cumhuriyeti yasaları geçerlidir. Uyuşmazlıkların çözümünde Denizli Mahkemeleri ve İcra Daireleri yetkilidir.",
+    "changes": "Değişiklikler",
+    "changesText": "Firmamız, kullanım koşullarında değişiklik yapma hakkını saklı tutar. Değişiklikler web sitesinde yayınlandığı tarihte yürürlüğe girer.",
+    "contactTitle": "İletişim",
+    "contactText": "Kullanım koşulları hakkında sorularınız için:"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "text": "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    "redirect": "{{count}} saniye içinde ana sayfaya yönlendirileceksiniz."
+  },
+  "sticky": {
+    "whatsapp": "WhatsApp ile yazın",
+    "whatsappMessage": "Merhaba, ürünleriniz hakkında bilgi almak istiyorum.",
+    "call": "Hemen ara"
+  },
+  "testimonials": [
+    {
+      "name": "Ayşe Demir",
+      "text": "Pamuk nevresim takımı gerçekten harika! Hem kalitesi hem de dokusu mükemmel. Uyku kalitenizi artırıyor."
+    },
+    {
+      "name": "Mehmet Yılmaz",
+      "text": "Waffle bornoz aldım, kalitesi ve konforu beklediğimden çok daha iyi. Kesinlikle tavsiye ederim."
+    },
+    {
+      "name": "Zeynep Kaya",
+      "text": "Organik muslin ürünleri için aradığım tüm özellikleri buldum. Hem çevre dostu hem de lüks."
+    }
+  ],
+  "video": {
+    "title": "Üretim Sürecimiz",
+    "subtitle": "Denizli'den dünyaya, el emeğiyle üretilen kimonolar"
+  },
+  "blog": {
+    "label": "Blog",
+    "latestPosts": "Son Yazılar",
+    "featured": "Öne Çıkan",
+    "moreStories": "Diğer Yazılar",
+    "subtitle": "Haberler, ipuçları ve ilham",
+    "heading": "Yaşam & İlham"
+  },
+  "member": {
+    "title": "Üye Paneli",
+    "welcome": "Hoş geldiniz",
+    "wholesaleMember": "Toptan Üye",
+    "activeMembership": "Aktif Üyelik",
+    "memberInfo": "Üye Bilgileri",
+    "fullName": "Ad Soyad",
+    "country": "Ülke",
+    "company": "Firma",
+    "privileges": "Üyelik Ayrıcalıkları",
+    "priv1": "Tüm ürünlerde toptan fiyat görme",
+    "priv2": "Özel koleksiyon erken erişim",
+    "priv3": "Denizli üretim garantisi",
+    "browseProducts": "Tüm Ürünleri Gez",
+    "createOrder": "Toptan Sipariş Oluştur",
+    "browseCategories": "Kategorileri İncele",
+    "logout": "Çıkış Yap",
+    "loginTitle": "Giriş Yapın",
+    "loginDesc": "Üye panelinize erişmek için\ntelefon numaranızla giriş yapın.",
+    "loginBtn": "Giriş Yap"
+  },
+  "auth": {
+    "chooseTitle": "Ripe Home Üyelik",
+    "subtitle": "Toptan alıcılara özel",
+    "chooseDesc": "Toptan fiyatları görmek ve sipariş vermek için üye olmanız gerekiyor.",
+    "loginBtn": "Giriş Yap",
+    "loginSub": "Zaten hesabım var",
+    "signupBtn": "Yeni Üye Ol",
+    "signupSub": "İlk kez başvuruyorum",
+    "otpNote": "Her iki durumda da e-postanıza doğrulama kodu gönderilir.",
+    "emailTitleLogin": "Giriş Yap",
+    "emailTitleSignup": "Yeni Üye Ol",
+    "emailDescLogin": "Kayıtlı e-posta adresinize doğrulama kodu göndereceğiz.",
+    "emailDescSignup": "Üyelik için e-posta adresinize doğrulama kodu göndereceğiz.",
+    "emailLabel": "E-posta Adresi",
+    "emailPlaceholder": "ornek@firma.com",
+    "sendCode": "Kod Gönder",
+    "sending": "Gönderiliyor...",
+    "noAccount": "Hesabınız yok mu?",
+    "hasAccount": "Zaten üye misiniz?",
+    "switchSignup": "Yeni üye ol",
+    "switchLogin": "Giriş yap",
+    "otpTitle": "Doğrulama Kodu",
+    "otpDesc": "adresine gönderilen 6 haneli kodu girin.",
+    "verifying": "Doğrulanıyor...",
+    "attemptsLeft": "deneme hakkınız kaldı",
+    "lockedHint": "Yeni kod göndermek için aşağıdaki butonu kullanın.",
+    "resendLocked": "Yeni kod gönder (kilidi sıfırla)",
+    "resendTimer": "saniye sonra tekrar gönder",
+    "resend": "Kodu tekrar gönder",
+    "spamHint": "Spam/Junk klasörünü kontrol etmeyi unutmayın.",
+    "registerTitle": "Hesabını Tamamla",
+    "registerDesc": "İlk girişiniz! Bilgilerinizi tamamlayın.",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "phone": "Telefon",
+    "phonePlaceholder": "5xxxxxxxxx",
+    "phoneHint": "İletişim amaçlı (sipariş bildirimleri)",
+    "company": "Firma Adı",
+    "companyPlaceholder": "ABC Tekstil Ltd.",
+    "country": "Ülke",
+    "register": "Üye Ol",
+    "registering": "Kaydediliyor...",
+    "successTitle": "Hoş Geldiniz!",
+    "successDesc": "Üyeliğiniz aktif. Artık tüm toptan fiyatları görebilir ve sipariş verebilirsiniz.",
+    "goOrder": "Sipariş Ver",
+    "browseProducts": "Ürünleri Keşfet",
+    "backToLogin": "Giriş sayfasına dön →"
+  }
+}

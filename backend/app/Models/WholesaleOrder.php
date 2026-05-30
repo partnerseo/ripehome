@@ -10,6 +10,7 @@ class WholesaleOrder extends Model
     use HasFactory;
 
     protected $fillable = [
+        'member_id',
         'company_name',
         'contact_person',
         'email',
@@ -29,6 +30,11 @@ class WholesaleOrder extends Model
         'items' => 'array',
         'reviewed_at' => 'datetime',
     ];
+
+    public function member(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Member::class);
+    }
 
     /**
      * Toplam ürün sayısını hesapla

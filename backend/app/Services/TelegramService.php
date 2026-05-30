@@ -29,9 +29,12 @@ class TelegramService
         try {
             $url = "https://api.telegram.org/bot{$this->botToken}/sendMessage";
             
+            // Hangi siteden geldiği net olsun (iki site aynı bot/chat kullanıyor)
+            $siteTag = "🟢 <b>RIPEHOME.COM.TR</b>\n\n";
+
             $data = [
                 'chat_id' => $this->chatId,
-                'text' => $message,
+                'text' => $siteTag . $message,
                 'parse_mode' => $options['parse_mode'] ?? 'HTML',
                 'disable_web_page_preview' => $options['disable_preview'] ?? false,
             ];

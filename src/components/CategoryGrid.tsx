@@ -1,5 +1,6 @@
 import { ArrowUpRight, Tag } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLangNavigate } from '../hooks/useLang';
 import type { Category, FeaturedSection } from '../types/api';
 
 interface CategoryGridProps {
@@ -15,7 +16,8 @@ const gradients = [
 ];
 
 const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) => {
-  const navigate = useNavigate();
+  const navigate = useLangNavigate();
+  const { t } = useTranslation();
 
   const handleCategoryClick = (slug: string) => {
     navigate(`/kategori/${slug}`);
@@ -25,7 +27,7 @@ const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) 
     return (
       <section className="pt-8 pb-16 md:pt-12 md:pb-24 px-4 md:px-12 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="text-xl text-neutral-500">Kategori bulunamadı</div>
+          <div className="text-xl text-neutral-500">{t('home.categoryNotFound')}</div>
         </div>
       </section>
     );
@@ -41,10 +43,10 @@ const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) 
             <div className="w-12 h-px bg-[#C9B7A1]" />
           </div>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-neutral-800 mb-6 font-light">
-            Koleksiyonlarımız
+            {t('home.collections')}
           </h2>
           <p className="font-sans text-neutral-600 text-xl max-w-2xl mx-auto leading-relaxed">
-            İhtiyacınıza özel, özenle hazırlanmış ürün koleksiyonlarımızı keşfedin
+            {t('home.collectionsSubtitle')}
           </p>
         </div>
 
@@ -59,7 +61,7 @@ const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) 
                 <img
                   src={category.image || '/pexels-cottonbro-4327012.jpg'}
                   alt={category.name}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                  className="w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -79,7 +81,7 @@ const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) 
                   {category.name}
                 </h3>
                 <p className="font-sans text-neutral-500 text-xs md:text-sm">
-                  {category.products_count ? `${category.products_count} Ürün` : 'Ürünler'}
+                  {category.products_count ? t('home.productCount', { count: category.products_count }) : t('common.products')}
                 </p>
               </div>
             </div>
@@ -120,7 +122,7 @@ const CategoryGrid = ({ categories, featuredSections = [] }: CategoryGridProps) 
                 )}
                 {section.link && (
                   <span className="font-sans text-sm text-[#8B7355] hover:underline inline-flex items-center gap-1">
-                    {section.button_text || 'Keşfet'}
+                    {section.button_text || t('common.explore')}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>

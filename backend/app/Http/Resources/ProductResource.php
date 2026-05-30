@@ -8,6 +8,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
 {
+    private function localizedSlug(): string
+    {
+        $loc = app()->getLocale();
+        if ($loc !== 'tr' && !empty($this->{'slug_' . $loc})) {
+            return $this->{'slug_' . $loc};
+        }
+        return $this->slug;
+    }
+
     public function toArray(Request $request): array
     {
         // Features'ı güvenli şekilde parse et
@@ -29,11 +38,11 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
+            'slug' => $this->localizedSlug(),
             'sku' => $this->sku,
             'description' => $this->description,
             'short_description' => $this->short_description,
-            'price' => $this->price,
+            'price' => $this->price ?? $this->category?->price,
             'images' => !empty($images) ? ImageHelper::getStorageUrls($images) : [],
             'category' => new CategoryResource($this->whenLoaded('category')),
             'features' => $features,

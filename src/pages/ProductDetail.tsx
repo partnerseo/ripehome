@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Award, Share2, ChevronRight } from 'lucide-react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLangNavigate, useLangPath, useLang } from '../hooks/useLang';
+import { slugFor } from '../lib/routes';
+import { applyHead, setPrerenderReady } from '../lib/seo';
 import { getProduct, getProductsByCategory } from '../lib/api';
+
+const IS_PRERENDER =
+  typeof navigator !== 'undefined' && /PrerenderBot/i.test(navigator.userAgent);
 import { useCart } from '../context/CartContext';
 import type { Product } from '../types/api';
 import ImageSwiper from '../components/ImageSwiper';
+import PriceDisplay from '../components/PriceDisplay';
 
 const ProductDetail = () => {
-  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const navigate = useLangNavigate();
+  const lp = useLangPath();
+  const lang = useLang();
+  const location = useLocation();
   const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
@@ -37,6 +49,26 @@ const ProductDetail = () => {
     }
     fetchProduct();
   }, [slug]);
+
+  useEffect(() => {
+    if (!product) return;
+    const canonical = `/${lang}/${slugFor('product', lang)}/${product.slug}`;
+    const img = Array.isArray(product.images) ? product.images[0] : undefined;
+    applyHead({
+      pathname: location.pathname,
+      lang,
+      title: (product as { meta_title?: string }).meta_title || product.name,
+      description: ((product as { meta_description?: string; short_description?: string; description?: string }).meta_description
+        || (product as { short_description?: string }).short_description
+        || product.description || '').replace(/<[^>]*>/g, '').slice(0, 160),
+      canonicalPath: canonical,
+      image: typeof img === 'string' ? img : undefined,
+    });
+    setPrerenderReady(true);
+    if (slug && product.slug && slug !== product.slug && !IS_PRERENDER) {
+      navigate(`/${slugFor('product', lang)}/${product.slug}`, { replace: true });
+    }
+  }, [product, lang]);
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -81,13 +113,13 @@ const ProductDetail = () => {
       <div className="min-h-screen bg-[#F8F6F3] pt-20 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🔍</div>
-          <h1 className="font-serif text-3xl text-neutral-800 mb-4">Ürün Bulunamadı</h1>
-          <p className="text-neutral-600 mb-6 font-sans">Aradığınız ürün mevcut değil veya kaldırılmış olabilir.</p>
+          <h1 className="font-serif text-3xl text-neutral-800 mb-4">{t('product.notFound')}</h1>
+          <p className="text-neutral-600 mb-6 font-sans">{t('product.notFoundText')}</p>
           <button
             onClick={() => navigate('/')}
             className="px-8 py-3 bg-[#8B7355] text-white hover:bg-[#6F5C46] transition-colors duration-300 rounded-lg font-sans"
           >
-            Ana Sayfaya Dön
+            {t('common.goHome')}
           </button>
         </div>
       </div>
@@ -104,14 +136,20 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-6">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              if (product?.category?.slug) {
+                navigate(lp(`/kategori/${product.category.slug}`));
+              } else {
+                navigate(-1);
+              }
+            }}
             className="flex items-center gap-2 text-neutral-600 hover:text-neutral-800 transition-colors duration-300"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="font-sans text-sm">Geri Dön</span>
+            <span className="font-sans text-sm">{t('common.back')}</span>
           </button>
           <nav className="hidden sm:flex items-center gap-1.5 text-sm text-neutral-500 font-sans">
-            <Link to="/" className="hover:text-neutral-800 transition-colors">Ana Sayfa</Link>
+            <Link to={lp('/')} className="hover:text-neutral-800 transition-colors">{t('common.homePage')}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             {product.category && (
               <>
@@ -151,7 +189,7 @@ const ProductDetail = () => {
               {product.is_featured && (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-[#D4AF37] to-[#C5A028] text-white text-xs font-sans rounded-full mb-3">
                   <Award className="w-3.5 h-3.5" />
-                  Öne Çıkan Ürün
+                  {t('product.featured')}
                 </span>
               )}
               <h1 className="font-serif text-3xl md:text-4xl text-neutral-800 font-light leading-tight">
@@ -174,14 +212,14 @@ const ProductDetail = () => {
                 className="flex items-center gap-2 px-4 py-2 border border-neutral-200 rounded-lg text-neutral-600 hover:bg-white hover:text-neutral-800 transition-all font-sans text-sm"
               >
                 <Share2 className="w-4 h-4" />
-                {shared ? 'Kopyalandı!' : 'Paylaş'}
+                {shared ? t('common.copied') : t('common.share')}
               </button>
             </div>
 
             {/* Description */}
             {product.description && (
               <div className="border-t border-neutral-200 pt-6">
-                <h3 className="font-serif text-lg text-neutral-800 mb-3">Ürün Açıklaması</h3>
+                <h3 className="font-serif text-lg text-neutral-800 mb-3">{t('product.description')}</h3>
                 <div
                   className="font-sans text-neutral-600 leading-relaxed prose prose-sm max-w-none prose-headings:font-serif prose-headings:text-neutral-800"
                   dangerouslySetInnerHTML={{ __html: product.description }}
@@ -192,7 +230,7 @@ const ProductDetail = () => {
             {/* Features */}
             {product.features && product.features.length > 0 && (
               <div className="border-t border-neutral-200 pt-6">
-                <h3 className="font-serif text-lg text-neutral-800 mb-4">Özellikler</h3>
+                <h3 className="font-serif text-lg text-neutral-800 mb-4">{t('product.features')}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.features.map((feature, index) => (
                     <div
@@ -219,7 +257,7 @@ const ProductDetail = () => {
             {/* Tags */}
             {product.tags && product.tags.length > 0 && (
               <div className="border-t border-neutral-200 pt-6">
-                <h3 className="font-serif text-lg text-neutral-800 mb-3">Etiketler</h3>
+                <h3 className="font-serif text-lg text-neutral-800 mb-3">{t('product.tags')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag) => (
                     <span
@@ -238,29 +276,33 @@ const ProductDetail = () => {
             <div className="border-t border-neutral-200 pt-6">
               <div className="bg-white rounded-xl border border-neutral-100 divide-y divide-neutral-100">
                 <div className="flex justify-between items-center px-5 py-3.5">
-                  <span className="font-sans text-sm text-neutral-500">Ürün Kodu</span>
+                  <span className="font-sans text-sm text-neutral-500">{t('product.unitPrice', 'Birim Fiyat')}</span>
+                  <PriceDisplay price={product.price} size="md" />
+                </div>
+                <div className="flex justify-between items-center px-5 py-3.5">
+                  <span className="font-sans text-sm text-neutral-500">{t('product.productCode')}</span>
                   <span className="font-sans text-sm font-medium text-neutral-800">
                     {product.sku || String(product.id).padStart(5, '0')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center px-5 py-3.5">
-                  <span className="font-sans text-sm text-neutral-500">Minimum Sipariş</span>
+                  <span className="font-sans text-sm text-neutral-500">{t('product.minOrder')}</span>
                   <span className="font-sans text-sm font-medium text-neutral-800">
-                    {product.min_order || 100} adet
+                    {product.min_order || 3} {t('common.piece')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center px-5 py-3.5">
-                  <span className="font-sans text-sm text-neutral-500">Üretim Süresi</span>
+                  <span className="font-sans text-sm text-neutral-500">{t('product.productionTime')}</span>
                   <span className="font-sans text-sm font-medium text-neutral-800">
-                    {product.production_time || '2-3 hafta'}
+                    {product.production_time || t('product.defaultProductionTime')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center px-5 py-3.5">
-                  <span className="font-sans text-sm text-neutral-500">Kapasite</span>
+                  <span className="font-sans text-sm text-neutral-500">{t('product.capacity')}</span>
                   <span className={`font-sans text-sm font-medium ${
                     (product.stock ?? 0) > 0 ? 'text-green-600' : 'text-amber-600'
                   }`}>
-                    {(product.stock ?? 0) > 0 ? 'Stokta mevcut' : 'Üretimde'}
+                    {(product.stock ?? 0) > 0 ? t('product.inStock') : t('product.inProduction')}
                   </span>
                 </div>
               </div>
@@ -275,16 +317,16 @@ const ProductDetail = () => {
                     product_name: product.name,
                     product_slug: product.slug,
                     product_image: product.images?.[0],
-                    quantity: product.min_order || 100,
+                    quantity: product.min_order || 3,
                   });
                   navigate('/toptan-siparis');
                 }}
                 className="w-full bg-[#8B7355] text-white py-4 rounded-xl font-sans font-medium hover:bg-[#6F5C46] transition-colors duration-300 text-lg text-center block shadow-lg shadow-[#8B7355]/20 cursor-pointer"
               >
-                Toptan Fiyat Teklifi Al
+                {t('product.orderNow')}
               </button>
               <p className="text-center text-xs text-neutral-500 font-sans mt-3">
-                24 saat içinde size özel fiyat teklifi göndereceğiz
+                {t('product.quoteNote')}
               </p>
             </div>
           </div>
@@ -295,14 +337,14 @@ const ProductDetail = () => {
           <div className="mt-20 border-t border-neutral-200 pt-12">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-serif text-2xl md:text-3xl text-neutral-800 font-light">
-                Benzer Ürünler
+                {t('product.relatedProducts')}
               </h2>
               {product.category && (
                 <Link
                   to={`/kategori/${product.category.slug}`}
                   className="flex items-center gap-1 text-[#8B7355] hover:text-[#6F5C46] font-sans text-sm transition-colors"
                 >
-                  Tümünü Gör
+                  {t('common.seeAll')}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               )}
@@ -314,11 +356,11 @@ const ProductDetail = () => {
                   to={`/urun/${rp.slug}`}
                   className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="aspect-square overflow-hidden">
+                  <div className="aspect-[3/4] overflow-hidden">
                     <img
                       src={rp.images?.[0] || '/pexels-cottonbro-4327012.jpg'}
                       alt={rp.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
                   </div>

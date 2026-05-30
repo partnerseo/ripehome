@@ -1,0 +1,636 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Our Products",
+    "contact": "Contact",
+    "wholesale": "Wholesale Orders",
+    "categories": "Our Categories",
+    "productCount": "{{count}} products",
+    "blog": "Blog",
+    "login": "Sign In"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Go Back",
+    "goHome": "Return to Home Page",
+    "homePage": "Home Page",
+    "send": "Send",
+    "search": "Search",
+    "share": "Share",
+    "copied": "Copied!",
+    "details": "Details",
+    "viewDetails": "View Details",
+    "seeAll": "See All",
+    "explore": "Explore",
+    "continue": "Continue",
+    "addMore": "Add More Products",
+    "filter": "Filter",
+    "piece": "pcs",
+    "product": "product",
+    "products": "Products",
+    "productsFound": "products found",
+    "showingFirst": "Showing first {{count}}",
+    "previous": "Previous",
+    "next": "Next",
+    "noImage": "No Image",
+    "image": "Image",
+    "contactUs": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "submitting": "Submitting...",
+    "error": "An error occurred",
+    "tryAgain": "An error occurred, please try again",
+    "note": "Note",
+    "total": "Total",
+    "addToCart": "Add to Cart",
+    "returnToCart": "Return to Cart ({{count}} products)",
+    "searchProductCategory": "Search products or categories...",
+    "productNotFound": "Product not found.",
+    "stepLabel": "Step {{n}}"
+  },
+  "home": {
+    "defaultSubtitle": "Premium Home Textiles",
+    "defaultButton": "Explore",
+    "mobileSubtitle": "Premium home textile products crafted from natural fibers",
+    "premiumCollection": "Premium Collection",
+    "featuredProducts": "Our Featured Products",
+    "featuredSubtitle": "Discover our finest, carefully curated products",
+    "collections": "Our Collections",
+    "collectionsSubtitle": "Explore our carefully crafted product collections tailored to your needs",
+    "categoryNotFound": "Category not found",
+    "productCount": "{{count}} Products",
+    "testimonials": "Customer Reviews",
+    "testimonialsSubtitle": "From our satisfied customers like you",
+    "newsletter": "Be the First to Know About\nNew Collections and Exclusive Offers",
+    "newsletterSubtitle": "Gain exclusive access to the world of natural textures",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "subscribeSuccess": "Success!",
+    "subscribeThank": "Thank you! You have been added to our mailing list.",
+    "emailRequired": "Please enter your email address",
+    "whyRipeHome": "Why Ripe Home?",
+    "advantages": "Our Advantages",
+    "advantagesSubtitle": "Your destination for quality, nature, and trust",
+    "premiumQuality": "Premium Quality",
+    "premiumQualityDesc": "Oeko-Tex certified products made from 100% natural cotton and bamboo fibers",
+    "naturalEcological": "Natural & Ecological",
+    "naturalEcologicalDesc": "Eco-friendly and sustainable production free from harmful chemicals",
+    "fastShipping": "Fast Shipping",
+    "fastShippingDesc": "Fast delivery across Turkey, free shipping on orders over 500 TL",
+    "wholesaleAdvantages": "Wholesale Advantages",
+    "wholesaleAdvantagesDesc": "Exclusive pricing for businesses and easy bulk ordering",
+    "questionsHelp": "Have questions? We are happy to help.",
+    "brandDefaultTitle": "Nature, Quality, and Elegance\nUnited in Home Textiles",
+    "brandDefaultSubtitle": "The timeless texture of cotton, linen, and muslin in your home.",
+    "brandDefaultDesc": "Each product brings together the unique texture of natural fibers and the finesse of craftsmanship. We redefine luxury with collections that add warmth to your home while being produced with respect for nature.",
+    "brandDefaultButton": "Discover Our Brand Story",
+    "carefullySelected": "Carefully selected {{name}} products",
+    "lifestyleTitle": "Lifestyle Inspiration",
+    "lifestyleSubtitle": "Let our products touch your life",
+    "instagramTitle": "Discover Us on Instagram",
+    "instagramSubtitle": "Follow us for our latest products and posts",
+    "instagramHandle": "Follow @ripe_home",
+    "instagramCta": "Follow us on Instagram for our latest products and campaigns"
+  },
+  "about": {
+    "fromDenizli": "From Denizli to the World",
+    "heroTitle": "Nature and Quality\nCombined",
+    "heroSubtitle": "With over 15 years of experience, we bring kimonos, robes and pestemals crafted from natural fibers to the world.",
+    "stats": {
+      "experience": "Years of Experience",
+      "wholesale": "Wholesale Clients",
+      "export": "Countries Exported To",
+      "variety": "Product Varieties"
+    },
+    "ourStory": "Our Story",
+    "storyTitle": "From Denizli to the World:\nThe Story of Kimono & Pestemal",
+    "storyP1": "<strong>Ripe Home</strong> was born in Denizli, Turkey's textile hub, with a deep passion for natural fibers. Since day one, our mission has been to unite traditional kimono and pestemal weaving with contemporary design and bring it to the world.",
+    "storyP2": "Crafted by hand from 100% cotton, muslin, and other natural materials, our kimonos, robes, and pestemals stand out for their lightness, breathability, and distinctive patterns. Every piece passes through the skilled hands of Denizli's master weavers before reaching you.",
+    "storyP3": "We provide reliable wholesale production and custom order services to business partners in more than 50 countries — including boutique hotels, spas, resorts, and lifestyle brands. Our ability to deliver competitive pricing without compromising quality is the foundation of our strong industry reputation.",
+    "since": "since",
+    "mission": "Our Mission",
+    "missionText": "To bring kimonos, robes, and pestemals crafted from natural and sustainable materials into everyday life — making it more comfortable, elegant, and authentic. To create long-term value for our business partners through reliable supply, competitive pricing, and impeccable service.",
+    "vision": "Our Vision",
+    "visionText": "To become a globally recognized name in kimono, robe, and pestemal craftsmanship. Through sustainable production and innovative design, to be the world's most trusted source for natural, handcrafted Turkish textiles.",
+    "whyUs": "Why Us?",
+    "valuesTitle": "Our Values and What Sets Us Apart",
+    "values": {
+      "naturalRaw": "Natural Raw Materials",
+      "naturalRawDesc": "We use 100% natural cotton, bamboo, and linen fibers in all our products. We never compromise on our commitment to nature-friendly production.",
+      "certifiedQuality": "Certified Quality",
+      "certifiedQualityDesc": "Our Oeko-Tex Standard 100 certified products contain no chemicals harmful to human health.",
+      "reliableSupply": "Reliable Supply",
+      "reliableSupplyDesc": "We are always a dependable supplier to our business partners with on-time delivery and consistent quality.",
+      "customerFocused": "Customer-Focused",
+      "customerFocusedDesc": "We offer tailored solutions to every customer, providing personalized service based on their needs.",
+      "ownProduction": "Our Own Production",
+      "ownProductionDesc": "We carry out high-quality production with state-of-the-art machinery at our modern facilities in Denizli.",
+      "globalVision": "Global Vision",
+      "globalVisionDesc": "We bring Denizli's kimonos and pestemals to the world, exporting to more than 50 countries."
+    },
+    "milestones": "Milestones",
+    "journey": "Our Journey",
+    "timeline": {
+      "founding": "Foundation",
+      "foundingDesc": "We started crafting kimonos and pestemals in a small workshop in Denizli.",
+      "firstExport": "First Export",
+      "firstExportDesc": "We completed our first export to the European market.",
+      "factoryInvestment": "Factory Investment",
+      "factoryInvestmentDesc": "We established our modern production facility and increased our capacity fivefold.",
+      "certification": "Certification",
+      "certificationDesc": "We obtained our Oeko-Tex Standard 100 and ISO 9001 certifications.",
+      "brandTransformation": "Brand Transformation",
+      "brandTransformationDesc": "We positioned ourselves in the premium segment with the Ripe Home brand.",
+      "digitalTransformation": "Digital Transformation",
+      "digitalTransformationDesc": "We launched our online wholesale sales platform."
+    },
+    "wholesaleServices": "Our Wholesale Services",
+    "wholesaleTitle": "Tailored Solutions\nfor Your Business",
+    "wholesaleItems": {
+      "delivery": "Fast delivery across Turkey and to 50+ countries",
+      "pricing": "Custom pricing and personalized service",
+      "production": "Contract manufacturing and private label options",
+      "certified": "Certified products and quality guarantee"
+    },
+    "placeWholesaleOrder": "Place a Wholesale Order",
+    "workTogether": "Let's Work Together",
+    "workTogetherText": "Contact us to receive a custom price quote for your business or to learn more about our products.",
+    "ourAddress": "Our Address",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "contact": {
+    "getInTouch": "Get in Touch",
+    "title": "Contact",
+    "reachUs": "Reach Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "addressText": "Sevindik Mahallesi, 2291 Sokak, No: 7\nMerkezefendi, Denizli, Turkey",
+    "sendMessage": "Send a Message",
+    "namePlaceholder": "Your Name",
+    "phonePlaceholder": "Phone Number",
+    "emailPlaceholder": "Email",
+    "companyPlaceholder": "Company Name",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Your Message",
+    "send": "Send",
+    "successMessage": "Your message has been received, we will get back to you as soon as possible.",
+    "subjectWholesale": "Wholesale Order",
+    "subjectCustom": "Custom Production",
+    "subjectProduct": "Product Information",
+    "subjectQuote": "Price Quote",
+    "subjectOther": "Other",
+    "reachUsDesc": "Contact us for wholesale orders and custom production inquiries.",
+    "officeHours": "We are available Monday–Friday, 09:00 – 18:00.",
+    "thankYou": "Thank You!"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "q": "What is the minimum order quantity for wholesale?",
+        "a": "Minimum order quantities for wholesale vary by product. Generally, wholesale pricing applies to orders of 20 units or more. For detailed information, please contact us through our Wholesale Orders page."
+      },
+      {
+        "q": "What is the fabric composition of your products?",
+        "a": "Our products are made from 100% natural cotton and muslin fibers. No chemical additives are used; they have a skin-friendly, breathable, and natural structure."
+      },
+      {
+        "q": "How much is the shipping fee?",
+        "a": "Shipping costs are entirely at the buyer's expense. For wholesale orders, shipping costs may vary depending on order volume and delivery address."
+      },
+      {
+        "q": "When will my order be shipped?",
+        "a": "Your order will be prepared and shipped within 2–6 business days. Orders placed on weekends are processed the next business day."
+      },
+      {
+        "q": "Can I get special pricing as a wholesale customer?",
+        "a": "Yes, we offer special pricing and payment terms to wholesale customers who place regular and high-volume orders. For detailed information, please speak with our sales team."
+      },
+      {
+        "q": "Do you ship internationally?",
+        "a": "Yes, we offer international shipping for wholesale orders. Shipping costs and delivery times vary by destination country. Please contact us for detailed information."
+      },
+      {
+        "q": "What are the care instructions for the products?",
+        "a": "Our products should be washed at 30°C on a delicate cycle. Do not use bleach or fabric softeners with harsh chemicals. Dry in the shade, away from direct sunlight. Can be ironed at low heat. See the 'Washing Instructions' button at the bottom of the page for full care details."
+      },
+      {
+        "q": "Do you issue invoices?",
+        "a": "Yes, we issue e-invoices for all orders. We handle all necessary documentation for our corporate customers."
+      },
+      {
+        "q": "Do you offer custom designs or logo printing?",
+        "a": "Yes, we offer custom design, color, and logo printing services for wholesale orders. Please contact our sales team for minimum order quantities."
+      }
+    ],
+    "notAnswered": "Didn't find your answer?",
+    "happyToHelp": "Our customer service team is happy to assist you."
+  },
+  "footer": {
+    "description": "From Denizli to the world — kimonos, pestemals and handcrafted pieces made from natural fibers, bringing nature and elegance to your life.",
+    "followInstagram": "Follow us on Instagram",
+    "contact": "Contact",
+    "customerSupport": "Customer Support",
+    "faq": "Frequently Asked Questions",
+    "shippingDelivery": "Shipping & Delivery",
+    "returnsExchange": "Returns & Exchange",
+    "wholesale": "Wholesale Orders",
+    "contactLink": "Contact",
+    "corporate": "Corporate",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "copyright": "© 2025 Ripe Home. All rights reserved.",
+    "washingInstructions": "Washing Instructions (PDF)"
+  },
+  "product": {
+    "notFound": "Product Not Found",
+    "notFoundText": "The product you are looking for does not exist or may have been removed.",
+    "featured": "Featured Product",
+    "description": "Product Description",
+    "features": "Features",
+    "tags": "Tags",
+    "productCode": "Product Code",
+    "minOrder": "Minimum Order",
+    "productionTime": "Production Time",
+    "capacity": "Capacity",
+    "inStock": "In stock",
+    "inProduction": "In production",
+    "getQuote": "Get a Wholesale Quote",
+    "quoteNote": "We will send you a custom quote within 24 hours",
+    "relatedProducts": "Related Products",
+    "defaultProductionTime": "1 week",
+    "orderNow": "PLACE ORDER"
+  },
+  "category": {
+    "notFound": "Category Not Found",
+    "noProducts": "No Products Found",
+    "noProductsText": "There are no products in this category yet.",
+    "material": "Material",
+    "size": "Size",
+    "sortPopular": "Most Popular",
+    "sortNewest": "Newest",
+    "sortRating": "Highest Rated",
+    "sortName": "A-Z"
+  },
+  "wholesale": {
+    "title": "Wholesale Order",
+    "subtitle": "Select your products, specify quantities, and request a quote",
+    "step1": "1. Product Selection",
+    "step2": "2. Details & Submit",
+    "cartProducts": "Products in Your Cart",
+    "cartSummary": "{{count}} products, {{total}} pieces total",
+    "addNote": "Add a note (optional)",
+    "companyInfo": "Your Company Information",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Your company name",
+    "contactPerson": "Contact Person",
+    "contactPersonPlaceholder": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "city": "City",
+    "address": "Address",
+    "taxOffice": "Tax Office",
+    "taxNumber": "Tax Number",
+    "additionalNotes": "Additional Notes",
+    "additionalNotesPlaceholder": "Special requests, color/size preferences, etc...",
+    "requestQuote": "Request a Quote",
+    "orderSummary": "Order Summary",
+    "addProduct": "Add Product",
+    "noProductsSelected": "No products selected yet",
+    "startSelectingProducts": "Start selecting products",
+    "selectAtLeastOne": "Please select at least one product",
+    "orderFailed": "Order could not be sent, please try again",
+    "success": "Your Request Has Been Received!",
+    "successText": "Your wholesale order request has been successfully submitted. We will get back to you with a custom price quote as soon as possible.",
+    "newOrder": "Create a New Order"
+  },
+  "shipping": {
+    "title": "Shipping & Delivery",
+    "subtitle": "Your orders are prepared within 2–6 business days. Shipping costs are at the buyer's expense.",
+    "wholesaleOrders": "For Wholesale Orders",
+    "freeShipping": "Shipping costs are at the buyer's expense",
+    "freeShippingNote": "Shipping costs are entirely at the buyer's expense and may vary depending on order volume and delivery address.",
+    "fastPreparation": "Fast Preparation",
+    "fastPreparationTime": "Shipped within 2–6 business days",
+    "fastPreparationNote": "Your order is carefully prepared and handed over to the courier as soon as possible.",
+    "stepByStep": "Step by Step",
+    "orderProcess": "Order Process",
+    "steps": {
+      "orderConfirmation": "Order Confirmation",
+      "orderConfirmationDesc": "A confirmation notification is sent once your order is received.",
+      "preparation": "Preparation",
+      "preparationDesc": "Your products are carefully packaged and undergo quality control.",
+      "shipped": "Shipped",
+      "shippedDesc": "Your package is handed over to the contracted courier company.",
+      "delivery": "Delivery",
+      "deliveryDesc": "You can track your order in real time with your tracking number."
+    },
+    "byRegion": "By Region",
+    "deliveryTimes": "Delivery Times",
+    "estimatedDelivery": "Estimated delivery time",
+    "deliveryDisclaimer": "* Delivery times are estimates and may vary depending on the courier company's workload.",
+    "zones": {
+      "marmaraEge": "Marmara & Aegean",
+      "marmaraEgeTime": "1-2 business days",
+      "icAnadolu": "Central Anatolia & Mediterranean",
+      "icAnadoluTime": "2-3 business days",
+      "karadeniz": "Black Sea & Eastern",
+      "karadenizTime": "3-4 business days",
+      "international": "International (Europe)",
+      "internationalTime": "5-10 business days"
+    },
+    "shippingCompanies": "Shipping Companies",
+    "shippingCompaniesDesc": "Orders are shipped via Aras Kargo, Yurtici Kargo, and MNG Kargo. The carrier is automatically selected based on your location.",
+    "shippingCompaniesItems": [
+      "Tracking number is sent via SMS and email",
+      "All shipments are insured",
+      "Damaged deliveries are replaced free of charge"
+    ],
+    "wholesaleDelivery": "Wholesale Order Delivery",
+    "wholesaleDeliveryDesc": "Your wholesale orders are professionally palletized and transported securely. Special freight arrangements are made for large-volume shipments.",
+    "wholesaleDeliveryItems": [
+      "2–6 business days preparation for in-stock items",
+      "2-3 weeks for made-to-order products",
+      "Palletized and stretch-wrapped packaging",
+      "Door delivery or warehouse pickup options"
+    ],
+    "internationalShipping": "International Shipping",
+    "internationalShippingDesc": "With export experience to over 50 countries, we manage your international shipments seamlessly.",
+    "internationalShippingItems": [
+      "FOB, CIF, and DDP delivery options",
+      "Preparation of customs documentation",
+      "Full container and partial loading",
+      "Export invoice and certificate of origin"
+    ],
+    "packaging": "Packaging",
+    "packagingDesc": "Your products are specially packaged to prevent damage during transit. Branded packaging is also available upon request.",
+    "packagingItems": [
+      "Individual polybag + collective carton packaging",
+      "Optional branded labeling",
+      "Barcode and product information card insertion",
+      "Moisture and dust-proof packaging"
+    ],
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "How can I track my order?",
+        "a": "Once your order is shipped, a tracking number will be sent to you via SMS and email. You can track your shipment in real time on the courier company's website using this number."
+      },
+      {
+        "q": "Can I change my delivery address?",
+        "a": "You can change your delivery address before your order is handed over to the courier. Simply contact our customer service team to make the change."
+      },
+      {
+        "q": "What should I do if I receive a damaged product?",
+        "a": "If you receive a damaged package during delivery, accept it with a damage report and contact us within 24 hours. Your damaged product will be replaced free of charge."
+      },
+      {
+        "q": "What is the minimum order amount for wholesale?",
+        "a": "The minimum order amount for wholesale varies by product category. For detailed information, you can visit our wholesale order page or contact us directly."
+      }
+    ],
+    "importantNotice": "Important Notice",
+    "importantNoticeText": "Weather conditions, natural disasters, public holidays, and courier company workload may affect delivery times. The courier company is responsible for delays caused by such force majeure events.",
+    "shippingQuestion": "Have a Question About Shipping?",
+    "shippingQuestionText": "Contact us for detailed information about delivery processes or special shipping requests."
+  },
+  "returns": {
+    "label": "Return Policy",
+    "title": "Returns & Exchange",
+    "conditions": "Return Conditions",
+    "conditionsIntro": "You may return your products within <strong>14 days</strong> of the delivery date.",
+    "conditionsRequired": "Requirements for returns:",
+    "conditionItems": [
+      "The product must be unused and unwashed",
+      "It must be in its original packaging with all tags attached",
+      "A copy of the invoice must be included",
+      "Due to hygiene regulations, disposable and personal items cannot be returned"
+    ],
+    "process": "Return Process",
+    "processSteps": [
+      {
+        "title": "Return Request",
+        "text": "Submit your return request through our Contact page or at info@ripehome.com.tr. Please include your order number and reason for return."
+      },
+      {
+        "title": "Approval & Shipping",
+        "text": "Once your return request is approved, you will receive a prepaid return shipping code. You can ship the product free of charge via our contracted courier."
+      },
+      {
+        "title": "Inspection",
+        "text": "The returned product will be inspected and approved within 2-3 business days after it reaches us."
+      },
+      {
+        "title": "Refund",
+        "text": "After the return is approved, your payment will be refunded to your credit card or bank account within 5-7 business days."
+      }
+    ],
+    "exchange": "Product Exchange",
+    "exchangeP1": "If you wish to change the color, size, or model of a purchased product, you need to initiate a return first and then place a new order.",
+    "exchangeP2": "In the case of defective or damaged product delivery, a replacement will be shipped at no charge with shipping costs covered by us.",
+    "wholesaleReturns": "Wholesale Order Returns",
+    "wholesaleReturnsIntro": "Return conditions for wholesale orders may differ. For wholesale orders:",
+    "wholesaleReturnItems": [
+      "Full refunds are issued for manufacturing defects or damage",
+      "Special terms apply for customer-initiated returns",
+      "Please contact our sales team for detailed information"
+    ],
+    "needHelp": "Need help with a return?",
+    "happyToHelp": "Our customer service team is happy to assist you."
+  },
+  "privacy": {
+    "label": "Privacy",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: November 23, 2025",
+    "dataProtection": "Protection of Personal Data",
+    "dataProtectionText": "At Ripe Home, we are committed to protecting the privacy and security of your personal data in accordance with the Personal Data Protection Law No. 6698 (\"KVKK\").",
+    "collectedInfo": "Information Collected",
+    "collectedInfoText": "The following information may be collected when you use our website:",
+    "collectedItems": [
+      "Name, surname, email address, phone number",
+      "Delivery and billing address information",
+      "Order history and payment details",
+      "IP address, browser type, and cookies"
+    ],
+    "dataUsage": "Purposes of Data Usage",
+    "dataUsageText": "Your collected personal data is used for the following purposes:",
+    "dataUsageItems": [
+      "Processing and delivering your orders",
+      "Providing customer service support",
+      "Informing you about campaigns and promotions",
+      "Improving the website experience",
+      "Fulfilling legal obligations"
+    ],
+    "dataSecurity": "Data Security",
+    "dataSecurityText": "Your personal data is protected with SSL encryption technology. Your payment information is processed through secure payment systems and is not stored by our company.",
+    "cookies": "Cookies",
+    "cookiesText": "Our website uses cookies to improve the user experience. You can disable cookies through your browser settings; however, some features may not function properly.",
+    "rights": "Your Rights",
+    "rightsText": "Under the KVKK, you have the following rights:",
+    "rightsItems": [
+      "Learning whether your personal data is being processed",
+      "Requesting information if it has been processed",
+      "Requesting correction or deletion of your data",
+      "Learning about third parties to whom your data has been transferred"
+    ],
+    "contactTitle": "Contact",
+    "contactText": "For questions about our privacy policy, please contact us:"
+  },
+  "terms": {
+    "label": "Terms & Conditions",
+    "title": "Terms of Use",
+    "lastUpdated": "Last Updated: November 23, 2025",
+    "general": "General Terms",
+    "generalText": "By using this website, you agree to the following terms of use. If you do not accept these terms, please do not use the website.",
+    "orderSales": "Orders and Sales",
+    "orderSalesText": "Orders placed through our website are subject to the following conditions:",
+    "orderSalesItems": [
+      "All prices are denominated in USD",
+      "Prices do not include VAT",
+      "Prices cannot be changed after order confirmation",
+      "Stock availability may change; out-of-stock items will be cancelled",
+      "Orders may be cancelled in case of pricing errors"
+    ],
+    "payment": "Payment Terms",
+    "paymentText": "You can make payments using the following methods:",
+    "paymentItems": [
+      "Credit Card (Visa, Mastercard, American Express)",
+      "Bank Transfer / Wire Transfer (for wholesale orders)",
+      "Installment options vary by bank and card type"
+    ],
+    "paymentSecurity": "Your payment information is protected with SSL encryption and is processed through secure payment systems.",
+    "deliveryShipping": "Delivery and Shipping",
+    "deliveryShippingText": "For detailed information about delivery conditions, please visit our",
+    "deliveryShippingLink": "Shipping & Delivery",
+    "deliveryShippingAfter": "page. Delivery times are estimates and may vary due to weather conditions and force majeure events.",
+    "cancelReturn": "Cancellation and Returns",
+    "cancelReturnText": "For detailed information about cancellation and return conditions, please visit our",
+    "cancelReturnLink": "Returns & Exchange",
+    "cancelReturnAfter": "page. You have a legal right of withdrawal under consumer protection laws.",
+    "intellectualProperty": "Intellectual Property Rights",
+    "intellectualPropertyText": "All content on this website (text, images, logos, designs, etc.) belongs to Ripe Home and is protected by copyright. Unauthorized use, reproduction, or distribution is prohibited.",
+    "disclaimer": "Disclaimer",
+    "disclaimerText": "Our company is not responsible for the following:",
+    "disclaimerItems": [
+      "The website operating without interruption or errors",
+      "Color differences in product photographs (which may result from screen variations)",
+      "Delays caused by force majeure events",
+      "Links provided to third-party websites"
+    ],
+    "disputes": "Dispute Resolution",
+    "disputesText": "The laws of the Republic of Turkey shall apply to any disputes arising from this agreement. The courts and enforcement offices of Denizli shall have jurisdiction over the resolution of disputes.",
+    "changes": "Changes",
+    "changesText": "Our company reserves the right to modify the terms of use. Changes take effect on the date they are published on the website.",
+    "contactTitle": "Contact",
+    "contactText": "For questions about the terms of use:"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "text": "The page you are looking for does not exist or may have been moved.",
+    "redirect": "You will be redirected to the home page in {{count}} seconds."
+  },
+  "sticky": {
+    "whatsapp": "Message us on WhatsApp",
+    "whatsappMessage": "Hello, I would like to get information about your products.",
+    "call": "Call now"
+  },
+  "testimonials": [
+    {
+      "name": "Ayse Demir",
+      "text": "The cotton bedding set is truly wonderful! Both the quality and the texture are outstanding. It has improved my sleep quality."
+    },
+    {
+      "name": "Mehmet Yilmaz",
+      "text": "I purchased a waffle bathrobe, and the quality and comfort exceeded my expectations. I highly recommend it."
+    },
+    {
+      "name": "Zeynep Kaya",
+      "text": "I found everything I was looking for in organic muslin products. Both eco-friendly and luxurious."
+    }
+  ],
+  "video": {
+    "title": "Our Production Process",
+    "subtitle": "From Denizli to the world, kimonos crafted with care"
+  },
+  "blog": {
+    "label": "Blog",
+    "latestPosts": "Latest Posts",
+    "featured": "Featured",
+    "moreStories": "More Stories",
+    "subtitle": "News, tips and inspiration",
+    "heading": "Life & Inspiration"
+  },
+  "member": {
+    "title": "Member Panel",
+    "welcome": "Welcome",
+    "wholesaleMember": "Wholesale Member",
+    "activeMembership": "Active Membership",
+    "memberInfo": "Member Info",
+    "fullName": "Full Name",
+    "country": "Country",
+    "company": "Company",
+    "privileges": "Membership Privileges",
+    "priv1": "Wholesale prices on all products",
+    "priv2": "Early access to exclusive collections",
+    "priv3": "Denizli production guarantee",
+    "browseProducts": "Browse All Products",
+    "createOrder": "Create Wholesale Order",
+    "browseCategories": "Browse Categories",
+    "logout": "Log Out",
+    "loginTitle": "Sign In",
+    "loginDesc": "Sign in with your phone number\nto access your member panel.",
+    "loginBtn": "Sign In"
+  },
+  "auth": {
+    "chooseTitle": "Ripe Home Membership",
+    "subtitle": "Exclusive for wholesale buyers",
+    "chooseDesc": "You need to be a member to view wholesale prices and place orders.",
+    "loginBtn": "Log In",
+    "loginSub": "I already have an account",
+    "signupBtn": "Sign Up",
+    "signupSub": "First time applying",
+    "otpNote": "In both cases, a verification code will be sent to your email.",
+    "emailTitleLogin": "Log In",
+    "emailTitleSignup": "Sign Up",
+    "emailDescLogin": "We'll send a verification code to your registered email.",
+    "emailDescSignup": "We'll send a verification code to your email for registration.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "example@company.com",
+    "sendCode": "Send Code",
+    "sending": "Sending...",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already a member?",
+    "switchSignup": "Sign up",
+    "switchLogin": "Log in",
+    "otpTitle": "Verification Code",
+    "otpDesc": "Enter the 6-digit code sent to",
+    "verifying": "Verifying...",
+    "attemptsLeft": "attempts remaining",
+    "lockedHint": "Use the button below to send a new code.",
+    "resendLocked": "Send new code (reset lock)",
+    "resendTimer": "seconds to resend",
+    "resend": "Resend code",
+    "spamHint": "Don't forget to check your spam/junk folder.",
+    "registerTitle": "Complete Your Account",
+    "registerDesc": "First time here! Please complete your details.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "phonePlaceholder": "5xxxxxxxxx",
+    "phoneHint": "For contact purposes (order notifications)",
+    "company": "Company Name",
+    "companyPlaceholder": "ABC Textiles Ltd.",
+    "country": "Country",
+    "register": "Sign Up",
+    "registering": "Registering...",
+    "successTitle": "Welcome!",
+    "successDesc": "Your membership is active. You can now view all wholesale prices and place orders.",
+    "goOrder": "Place Order",
+    "browseProducts": "Browse Products",
+    "backToLogin": "Back to login →"
+  }
+}

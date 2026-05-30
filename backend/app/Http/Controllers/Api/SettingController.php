@@ -42,6 +42,12 @@ class SettingController extends Controller
                     'button_text' => $setting->brand_button_text,
                     'button_link' => $setting->brand_button_link,
                 ],
+                'video' => [
+                    'url'      => $setting->video_url,
+                    'file'     => $setting->video_file ? ImageHelper::getStorageUrl($setting->video_file) : null,
+                    'title'    => $setting->video_title,
+                    'subtitle' => $setting->video_subtitle,
+                ],
             ];
 
             return response()->json([

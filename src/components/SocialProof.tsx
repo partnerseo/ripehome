@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Instagram, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { getFeaturedProducts } from '../lib/api';
 import type { FeaturedProduct } from '../types/api';
 
 const SocialProof = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState<FeaturedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,11 +52,11 @@ const SocialProof = () => {
               <Instagram className="w-6 h-6 text-white" strokeWidth={2} />
             </div>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-800 font-light">
-              Bizi Instagram'da Keşfedin
+              {t('home.instagramTitle')}
             </h2>
           </div>
           <p className="text-gray-600 text-lg">
-            Ürünlerimiz ve güncel paylaşımlarımız için takipte kalın
+            {t('home.instagramSubtitle')}
           </p>
         </div>
 
@@ -95,11 +97,11 @@ const SocialProof = () => {
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-xl font-medium hover:shadow-2xl hover:scale-105 transition-all duration-300"
           >
             <Instagram className="w-5 h-5" strokeWidth={2} />
-            <span>@ripe_home hesabını takip et</span>
+            <span>{t('home.instagramHandle')}</span>
             <ExternalLink className="w-4 h-4" />
           </button>
           <p className="text-gray-600 text-sm mt-4">
-            Güncel ürünlerimiz ve kampanyalarımız için bizi Instagram'da takip edin
+            {t('home.instagramCta')}
           </p>
         </div>
       </div>

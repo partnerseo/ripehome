@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import { getHomeSliders } from '../lib/api';
+import { useLangNavigate } from '../hooks/useLang';
 import type { HomeSlider } from '../types/api';
 
 interface HeroProps {
@@ -9,7 +10,8 @@ interface HeroProps {
 }
 
 const Hero = ({ scrollY }: HeroProps) => {
-  const navigate = useNavigate();
+  const navigate = useLangNavigate();
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [sliders, setSliders] = useState<HomeSlider[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,8 +21,6 @@ const Hero = ({ scrollY }: HeroProps) => {
     async function fetchSliders() {
       try {
         const data = await getHomeSliders();
-        console.log('HERO DEBUG - Sliders:', data);
-        console.log('HERO DEBUG - First image:', data[0]?.image);
         setSliders(data);
       } catch (error) {
         console.error('HERO ERROR:', error);
@@ -42,8 +42,8 @@ const Hero = ({ scrollY }: HeroProps) => {
   const defaultSliders = [{
     id: 1,
     title: 'Ripe Home',
-    subtitle: 'Premium Ev Tekstili',
-    button_text: 'Keşfet',
+    subtitle: t('home.defaultSubtitle'),
+    button_text: t('home.defaultButton'),
     button_link: '/products',
     image: '/pexels-cottonbro-4327012.jpg',
   }];
@@ -57,55 +57,48 @@ const Hero = ({ scrollY }: HeroProps) => {
 
   return (
     <section className="relative h-screen overflow-hidden">
+      {/* Desktop: 2 panel */}
       <div className="hidden md:grid md:grid-cols-2 h-full">
-        <div className="relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300">
-            <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg1}} />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-16 left-12 right-12 z-10">
-            <h2 className="font-serif text-5xl text-white mb-4 font-light leading-tight">{firstSlider.title}<br />{firstSlider.subtitle}</h2>
-            <button onClick={() => navigate(firstSlider.button_link)} className="flex items-center gap-2 bg-white text-gray-800 px-8 py-4 hover:bg-gray-100 transition-all">
-              <span className="text-sm tracking-wide">{firstSlider.button_text}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg1}} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute bottom-28 left-12 right-6 z-10">
+            <h2 className="font-serif text-5xl text-white font-light leading-tight">{firstSlider.title}<br />{firstSlider.subtitle}</h2>
           </div>
         </div>
-
-        <div className="relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400">
-            <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg2}} />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-16 left-12 right-12 z-10">
-            <h2 className="font-serif text-5xl text-white mb-4 font-light leading-tight">{secondSlider.title}<br />{secondSlider.subtitle}</h2>
-            <button onClick={() => navigate(secondSlider.button_link)} className="flex items-center gap-2 bg-white text-gray-800 px-8 py-4 hover:bg-gray-100 transition-all">
-              <span className="text-sm tracking-wide">{secondSlider.button_text}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg2}} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute bottom-28 left-6 right-12 z-10">
+            <h2 className="font-serif text-5xl text-white font-light leading-tight">{secondSlider.title}<br />{secondSlider.subtitle}</h2>
           </div>
         </div>
       </div>
 
+      {/* Single centered button spanning both panels */}
+      <div className="hidden md:flex absolute bottom-12 left-0 right-0 justify-center z-20">
+        <button
+          onClick={() => navigate(firstSlider.button_link)}
+          className="flex items-center gap-3 bg-white text-gray-900 px-10 py-4 hover:bg-gray-100 transition-all duration-300 shadow-2xl text-sm tracking-widest uppercase font-medium"
+        >
+          <span>{firstSlider.button_text}</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Mobile: single panel */}
       <div className="md:hidden relative h-full">
-        <div className="relative h-full overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300">
-            <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg1}} />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 z-10">
-            <h1 className="font-serif text-4xl sm:text-5xl text-white mb-4 font-light leading-tight">{firstSlider.title}<br />{firstSlider.subtitle}</h1>
-            <p className="text-white/90 text-lg mb-8 max-w-sm mx-auto">Doğal liflerden üretilen premium ev tekstil ürünleri</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => navigate(firstSlider.button_link)} className="flex items-center justify-center gap-2 bg-white text-gray-800 px-6 py-3 hover:bg-gray-100 transition-all rounded-lg">
-                <span className="text-sm tracking-wide">{firstSlider.button_text}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button onClick={() => navigate(secondSlider.button_link)} className="flex items-center justify-center gap-2 border-2 border-white text-white px-6 py-3 hover:bg-white hover:text-gray-800 transition-all rounded-lg">
-  <span className="text-sm tracking-wide">{secondSlider.button_text}</span>
-</button>
-            </div>
-          </div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: bg1}} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-0 flex flex-col justify-end items-center text-center px-6 pb-16 z-10">
+          <h1 className="font-serif text-4xl text-white mb-8 font-light leading-tight">{firstSlider.title}<br />{firstSlider.subtitle}</h1>
+          <button
+            onClick={() => navigate(firstSlider.button_link)}
+            className="flex items-center justify-center gap-2 bg-white text-gray-800 px-8 py-4 hover:bg-gray-100 transition-all text-sm tracking-widest uppercase font-medium"
+          >
+            <span>{firstSlider.button_text}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </section>

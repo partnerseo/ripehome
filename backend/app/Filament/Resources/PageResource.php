@@ -31,41 +31,110 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('İçerik')
+                Forms\Components\Section::make('Sayfa Bilgileri')
                     ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->label('Sayfa Başlığı')
-                            ->required()
-                            ->maxLength(255)
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => 
-                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                            ),
-
                         Forms\Components\TextInput::make('slug')
                             ->label('Slug (URL)')
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
-                            ->readOnly(),
-
-                        Forms\Components\RichEditor::make('content')
-                            ->label('İçerik')
-                            ->columnSpanFull(),
+                            ->readOnly()
+                            ->helperText('Türkçe başlıktan otomatik oluşturulur'),
                     ])
-                    ->columns(2),
+                    ->columns(1),
+
+                Forms\Components\Section::make('İçerik (Diller)')
+                    ->icon('heroicon-o-language')
+                    ->description('Her dil için sayfa başlığı ve içeriğini girin')
+                    ->schema([
+                        Forms\Components\Tabs::make('İçerik Dilleri')
+                            ->tabs([
+                                Forms\Components\Tabs\Tab::make('🇹🇷 Türkçe')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_tr')
+                                            ->label('Sayfa Başlığı')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
+                                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                                            ),
+                                        Forms\Components\RichEditor::make('content_tr')
+                                            ->label('İçerik')
+                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇬🇧 English')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_en')
+                                            ->label('Page Title')
+                                            ->maxLength(255),
+                                        Forms\Components\RichEditor::make('content_en')
+                                            ->label('Content')
+                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇸🇦 العربية')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_ar')
+                                            ->label('عنوان الصفحة')
+                                            ->maxLength(255),
+                                        Forms\Components\RichEditor::make('content_ar')
+                                            ->label('المحتوى')
+                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇷🇺 Русский')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_ru')
+                                            ->label('Заголовок страницы')
+                                            ->maxLength(255),
+                                        Forms\Components\RichEditor::make('content_ru')
+                                            ->label('Содержание')
+                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇩🇪 Deutsch')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_de')
+                                            ->label('Seitentitel')
+                                            ->maxLength(255),
+                                        Forms\Components\RichEditor::make('content_de')
+                                            ->label('Inhalt')
+                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                    ]),
+                            ])
+                            ->columnSpanFull(),
+                    ]),
 
                 Forms\Components\Section::make('SEO')
                     ->schema([
-                        Forms\Components\TextInput::make('meta_title')
-                            ->label('Meta Başlık')
-                            ->maxLength(255),
-
-                        Forms\Components\Textarea::make('meta_description')
-                            ->label('Meta Açıklama')
-                            ->rows(3),
+                        Forms\Components\Tabs::make('SEO Dilleri')
+                            ->tabs([
+                                Forms\Components\Tabs\Tab::make('🇹🇷 Türkçe')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('meta_title_tr')->label('Meta Başlık')->maxLength(255),
+                                        Forms\Components\Textarea::make('meta_description_tr')->label('Meta Açıklama')->rows(3),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇬🇧 English')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('meta_title_en')->label('Meta Title')->maxLength(255),
+                                        Forms\Components\Textarea::make('meta_description_en')->label('Meta Description')->rows(3),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇸🇦 العربية')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('meta_title_ar')->label('عنوان ميتا')->maxLength(255),
+                                        Forms\Components\Textarea::make('meta_description_ar')->label('وصف ميتا')->rows(3),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇷🇺 Русский')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('meta_title_ru')->label('Мета-заголовок')->maxLength(255),
+                                        Forms\Components\Textarea::make('meta_description_ru')->label('Мета-описание')->rows(3),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('🇩🇪 Deutsch')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('meta_title_de')->label('Meta-Titel')->maxLength(255),
+                                        Forms\Components\Textarea::make('meta_description_de')->label('Meta-Beschreibung')->rows(3),
+                                    ]),
+                            ])
+                            ->columnSpanFull(),
                     ])
-                    ->columns(1)
                     ->collapsed(),
 
                 Forms\Components\Section::make('Ayarlar')

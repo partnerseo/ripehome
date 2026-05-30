@@ -5,10 +5,14 @@ namespace App\Models;
 use App\Traits\OptimizesImages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
     use OptimizesImages;
+    use HasTranslations;
+
+    public array $translatable = ['name', 'description', 'short_description', 'meta_title', 'meta_description'];
 
     protected array $optimizableImages = [
         'images' => [
@@ -22,6 +26,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
+        'slug_en', 'slug_ar', 'slug_ru', 'slug_de',
         'sku',
         'description',
         'short_description',
@@ -68,5 +73,15 @@ class Product extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /** slug | slug_en/ar/ru/de herhangi biriyle çöz (eski TR linkler çalışır). */
+    public function scopeSlug($query, string $slug)
+    {
+        return $query->where(function ($w) use ($slug) {
+            $w->where('slug', $slug)
+              ->orWhere('slug_en', $slug)->orWhere('slug_ar', $slug)
+              ->orWhere('slug_ru', $slug)->orWhere('slug_de', $slug);
+        });
     }
 }

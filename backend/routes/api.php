@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogPostController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\FeaturedProductController;
@@ -8,48 +10,15 @@ use App\Http\Controllers\Api\HomeSliderController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\TestimonialController;
 use App\Http\Controllers\Api\WholesaleOrderController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-// Ping test
+// Health check (sadece app durumu, DB bilgisi yok)
 Route::get('/ping', function () {
-    return response()->json([
-        'status' => 'API çalışıyor! ✅',
-        'message' => 'Backend çalışıyor!',
-        'time' => now()->toDateTimeString(),
-        'memory' => round(memory_get_usage(true) / 1024 / 1024, 2) . ' MB'
-    ]);
+    return response()->json(['status' => 'ok']);
 });
 
-// Database bağlantı testi
-Route::get('/test-db', function () {
-    try {
-        DB::connection()->getPdo();
-        $categoriesCount = DB::table('categories')->count();
-        $productsCount = DB::table('products')->count();
-
-        return response()->json([
-            'status' => 'Database bağlantısı OK ✅',
-            'categories_count' => $categoriesCount,
-            'products_count' => $productsCount,
-            'connection' => config('database.default')
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'Database hatası ❌',
-            'error' => $e->getMessage()
-        ], 500);
-    }
-});
-
-// Protected routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-});
 
 // Bilinmeyen rotalara 404 JSON döndür
 Route::fallback(function () {
@@ -64,32 +33,42 @@ Route::get('/health', function () {
     ]);
 });
 
-// Kategoriler
-Route::get('/kategoriler', [CategoryController::class, 'index']);
-Route::get('/kategoriler/{slug}', [CategoryController::class, 'show']);
+// ─── Public GET — okuma endpointleri (throttle: 120/dakika) ──────────────────
+Route::middleware('throttle:120,1')->group(function () {
+    Route::get('/kategoriler',                                [CategoryController::class,       'index']);
+    Route::get('/kategoriler/{slug}',                        [CategoryController::class,       'show']);
+    Route::get('/urunler',                                   [ProductController::class,        'index']);
+    Route::get('/urunler/{slug}',                            [ProductController::class,        'show']);
+    Route::get('/urunler/kategori/{category_slug}',          [ProductController::class,        'byCategory']);
+    Route::get('/sayfalar/{slug}',                           [PageController::class,           'show']);
+    Route::get('/anasayfa-slider',                           [HomeSliderController::class,     'index']);
+    Route::get('/one-cikan-bolumler',                        [FeaturedSectionController::class,'index']);
+    Route::get('/one-cikan-urunler',                         [FeaturedProductController::class,'index']);
+    Route::get('/ayarlar',                                   [SettingController::class,        'index']);
+    Route::get('/blog',                                      [BlogPostController::class,       'index']);
+    Route::get('/blog/{slug}',                               [BlogPostController::class,       'show']);
+    Route::get('/yorumlar',                                  [TestimonialController::class,    'index']);
+});
 
-// Ürünler
-Route::get('/urunler', [ProductController::class, 'index']);
-Route::get('/urunler/{slug}', [ProductController::class, 'show']);
-Route::get('/urunler/kategori/{category_slug}', [ProductController::class, 'byCategory']);
+// ─── İletişim formu (throttle: 10/saat — spam koruması) ──────────────────────
+Route::post('/iletisim', [ContactController::class, 'store'])->middleware('throttle:10,60');
 
-// Sayfalar
-Route::get('/sayfalar/{slug}', [PageController::class, 'show']);
+// ─── Toptan Sipariş (üye girişi zorunlu + throttle: 20/gün) ──────────────────
+Route::post('/toptan-siparisler', [WholesaleOrderController::class, 'store'])
+    ->middleware(['auth.member', 'throttle:10,60']);
 
-// Anasayfa Slider
-Route::get('/anasayfa-slider', [HomeSliderController::class, 'index']);
+// ─── Üye siparişleri ──────────────────────────────────────────────────────────
+Route::get('/uye/siparislerim', [WholesaleOrderController::class, 'myOrders'])
+    ->middleware('auth.member');
 
-// Öne Çıkan Bölümler
-Route::get('/one-cikan-bolumler', [FeaturedSectionController::class, 'index']);
+// ─── Üye Auth ─────────────────────────────────────────────────────────────────
+Route::prefix('auth')->group(function () {
+    Route::post('send-otp',   [AuthController::class, 'sendOtp']);
+    Route::post('verify-otp', [AuthController::class, 'verifyOtp']);
+    Route::post('register',   [AuthController::class, 'register']);
 
-// Öne Çıkan Ürünler
-Route::get('/one-cikan-urunler', [FeaturedProductController::class, 'index']);
-
-// Ayarlar
-Route::get('/ayarlar', [SettingController::class, 'index']);
-
-// İletişim Formu
-Route::post('/iletisim', [ContactController::class, 'store']);
-
-// Toptan Siparişler
-Route::post('/toptan-siparisler', [WholesaleOrderController::class, 'store']);
+    Route::middleware('auth.member')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('me',      [AuthController::class, 'me']);
+    });
+});

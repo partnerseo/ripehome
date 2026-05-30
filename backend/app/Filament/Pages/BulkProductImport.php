@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\BulkImportDraft;
 use Filament\Pages\Page;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ class BulkProductImport extends Page
     public ?string $categoryId = null;
     public bool $autoPublish = true;
 
-    // Products array: each item has name, description, sku, featured, images (stored paths)
+    // Products array
     public array $products = [];
 
     // Temporary file uploads keyed by product index
@@ -34,6 +35,12 @@ class BulkProductImport extends Page
 
     // Upload loading states
     public array $uploading = [];
+
+    // Draft
+    public ?int $activeDraftId = null;
+    public string $draftName = '';
+    public bool $showDraftModal = false;
+    public bool $showLoadModal = false;
 
     public function mount(): void
     {
@@ -60,7 +67,6 @@ class BulkProductImport extends Page
 
     public function removeProduct(int $index): void
     {
-        // Delete any uploaded images for this product
         if (!empty($this->products[$index]['images'])) {
             foreach ($this->products[$index]['images'] as $path) {
                 \Storage::disk('public')->delete($path);
@@ -71,7 +77,6 @@ class BulkProductImport extends Page
         unset($this->fileUploads[$index]);
         unset($this->uploading[$index]);
 
-        // Reindex
         $this->products = array_values($this->products);
         $this->fileUploads = [];
         $this->uploading = [];
@@ -89,9 +94,7 @@ class BulkProductImport extends Page
 
     public function updatedFileUploads($value, string $key): void
     {
-        // key format: "0", "1", etc. (the product index)
         $index = (int) explode('.', $key)[0];
-
         $this->uploading[$index] = true;
 
         $files = $this->fileUploads[$index] ?? [];
@@ -112,10 +115,136 @@ class BulkProductImport extends Page
             }
         }
 
-        // Clear the temp upload slot
         $this->fileUploads[$index] = null;
         $this->uploading[$index] = false;
     }
+
+    // ==================== TASLAK İŞLEMLERİ ====================
+
+    public function openSaveDraftModal(): void
+    {
+        if ($this->activeDraftId) {
+            $draft = BulkImportDraft::find($this->activeDraftId);
+            $this->draftName = $draft?->name ?? '';
+        } else {
+            $category = Category::find($this->categoryId);
+            $this->draftName = ($category ? $category->name . ' - ' : '') . 'Taslak ' . now()->format('d.m H:i');
+        }
+        $this->showDraftModal = true;
+    }
+
+    public function saveDraft(): void
+    {
+        $name = trim($this->draftName);
+        if (empty($name)) {
+            $name = 'Taslak ' . now()->format('d.m.Y H:i');
+        }
+
+        $data = [
+            'user_id' => auth()->id(),
+            'name' => $name,
+            'category_id' => $this->categoryId,
+            'auto_publish' => $this->autoPublish,
+            'products' => $this->products,
+        ];
+
+        if ($this->activeDraftId) {
+            $draft = BulkImportDraft::find($this->activeDraftId);
+            if ($draft) {
+                $draft->update($data);
+            }
+        } else {
+            $draft = BulkImportDraft::create($data);
+            $this->activeDraftId = $draft->id;
+        }
+
+        $this->showDraftModal = false;
+
+        Notification::make()
+            ->title('Taslak kaydedildi')
+            ->body("\"{$name}\" başarıyla kaydedildi.")
+            ->success()
+            ->send();
+    }
+
+    public function quickSaveDraft(): void
+    {
+        if ($this->activeDraftId) {
+            $draft = BulkImportDraft::find($this->activeDraftId);
+            if ($draft) {
+                $draft->update([
+                    'category_id' => $this->categoryId,
+                    'auto_publish' => $this->autoPublish,
+                    'products' => $this->products,
+                ]);
+
+                Notification::make()
+                    ->title('Taslak güncellendi')
+                    ->success()
+                    ->duration(2000)
+                    ->send();
+                return;
+            }
+        }
+
+        $this->openSaveDraftModal();
+    }
+
+    public function openLoadModal(): void
+    {
+        $this->showLoadModal = true;
+    }
+
+    public function loadDraft(int $draftId): void
+    {
+        $draft = BulkImportDraft::where('user_id', auth()->id())->find($draftId);
+        if (!$draft) {
+            Notification::make()->title('Taslak bulunamadı')->danger()->send();
+            return;
+        }
+
+        $this->categoryId = $draft->category_id;
+        $this->autoPublish = $draft->auto_publish;
+        $this->products = $draft->products;
+        $this->activeDraftId = $draft->id;
+        $this->fileUploads = [];
+        $this->uploading = [];
+        $this->showLoadModal = false;
+
+        Notification::make()
+            ->title('Taslak yüklendi')
+            ->body("\"{$draft->name}\" yüklendi. {$this->filledCount} ürün, {$this->totalImages} görsel.")
+            ->success()
+            ->send();
+    }
+
+    public function deleteDraft(int $draftId): void
+    {
+        $draft = BulkImportDraft::where('user_id', auth()->id())->find($draftId);
+        if ($draft) {
+            $name = $draft->name;
+            $draft->delete();
+
+            if ($this->activeDraftId === $draftId) {
+                $this->activeDraftId = null;
+            }
+
+            Notification::make()
+                ->title('Taslak silindi')
+                ->body("\"{$name}\" silindi.")
+                ->success()
+                ->send();
+        }
+    }
+
+    public function getDraftsProperty(): \Illuminate\Database\Eloquent\Collection
+    {
+        return BulkImportDraft::where('user_id', auth()->id())
+            ->orderByDesc('updated_at')
+            ->get();
+    }
+
+    // ==================== KAYDETME ====================
 
     public function save(): void
     {
@@ -130,10 +259,7 @@ class BulkProductImport extends Page
 
         $category = Category::find($this->categoryId);
         if (!$category) {
-            Notification::make()
-                ->title('Kategori bulunamadı')
-                ->danger()
-                ->send();
+            Notification::make()->title('Kategori bulunamadı')->danger()->send();
             return;
         }
 
@@ -142,15 +268,12 @@ class BulkProductImport extends Page
 
         foreach ($this->products as $productData) {
             $name = trim($productData['name'] ?? '');
-
-            // Skip empty named products
             if (empty($name)) {
                 $skipped++;
                 continue;
             }
 
             try {
-                // Generate unique slug
                 $baseSlug = Str::slug($name);
                 if (empty($baseSlug)) {
                     $baseSlug = 'urun-' . Str::random(6);
@@ -162,7 +285,6 @@ class BulkProductImport extends Page
                     $counter++;
                 }
 
-                // Handle SKU uniqueness
                 $sku = trim($productData['sku'] ?? '');
                 if (!empty($sku) && Product::where('sku', $sku)->exists()) {
                     $sku = $sku . '-' . Str::random(3);
@@ -192,6 +314,11 @@ class BulkProductImport extends Page
         }
 
         if ($created > 0) {
+            if ($this->activeDraftId) {
+                BulkImportDraft::where('id', $this->activeDraftId)->delete();
+                $this->activeDraftId = null;
+            }
+
             Notification::make()
                 ->title('Toplu yükleme tamamlandı')
                 ->body("{$created} ürün başarıyla oluşturuldu." . ($skipped > 0 ? " {$skipped} boş kart atlandı." : ''))
@@ -199,7 +326,6 @@ class BulkProductImport extends Page
                 ->duration(8000)
                 ->send();
 
-            // Reset form
             $this->products = [];
             $this->fileUploads = [];
             $this->uploading = [];

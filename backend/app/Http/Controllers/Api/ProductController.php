@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         try {
             $product = Product::with(['category'])
-                ->where('slug', $slug)
+                ->slug($slug)
                 ->where('is_active', true)
                 ->firstOrFail();
 
@@ -69,9 +69,12 @@ class ProductController extends Controller
     {
         try {
             // Kategori bilgisini al
-            $category = \App\Models\Category::where('slug', $categorySlug)
+            $category = \App\Models\Category::slug($categorySlug)
                 ->where('is_active', true)
                 ->firstOrFail();
+            $catLoc = app()->getLocale();
+            $catSlug = ($catLoc !== 'tr' && !empty($category->{'slug_' . $catLoc}))
+                ? $category->{'slug_' . $catLoc} : $category->slug;
 
             // Per page parametresi (default 100, max 1000)
             $perPage = min((int) request()->get('per_page', 100), 1000);
@@ -96,7 +99,7 @@ class ProductController extends Controller
                 'category' => [
                     'id' => $category->id,
                     'name' => $category->name,
-                    'slug' => $category->slug,
+                    'slug' => $catSlug,
                     'description' => $category->description,
                     'image' => ImageHelper::getStorageUrl($category->image),
                 ],

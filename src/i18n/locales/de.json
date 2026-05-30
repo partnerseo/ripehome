@@ -1,0 +1,633 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "products": "Unsere Produkte",
+    "contact": "Kontakt",
+    "wholesale": "Großhandelsbestellung",
+    "categories": "Unsere Kategorien",
+    "productCount": "{{count}} Produkte",
+    "blog": "Blog",
+    "login": "Anmelden"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "back": "Zurück",
+    "goHome": "Zur Startseite",
+    "homePage": "Startseite",
+    "send": "Senden",
+    "search": "Suchen",
+    "share": "Teilen",
+    "copied": "Kopiert!",
+    "details": "Details",
+    "viewDetails": "Details anzeigen",
+    "seeAll": "Alle anzeigen",
+    "explore": "Entdecken",
+    "continue": "Weiter",
+    "addMore": "Weitere Produkte hinzufügen",
+    "filter": "Filtern",
+    "piece": "Stück",
+    "product": "Produkt",
+    "products": "Produkte",
+    "productsFound": "Produkte gefunden",
+    "showingFirst": "Erste {{count}} werden angezeigt",
+    "previous": "Vorherige",
+    "next": "Nächste",
+    "noImage": "Kein Bild",
+    "image": "Bild",
+    "contactUs": "Kontaktieren Sie uns",
+    "getInTouch": "Kontakt aufnehmen",
+    "submitting": "Wird gesendet...",
+    "error": "Ein Fehler ist aufgetreten",
+    "tryAgain": "Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut",
+    "note": "Hinweis",
+    "total": "Gesamt",
+    "addToCart": "In den Warenkorb",
+    "returnToCart": "Zum Warenkorb ({{count}} Produkte)",
+    "searchProductCategory": "Produkt oder Kategorie suchen...",
+    "productNotFound": "Produkt nicht gefunden.",
+    "stepLabel": "{{n}}. Schritt"
+  },
+  "home": {
+    "defaultSubtitle": "Premium-Heimtextilien",
+    "defaultButton": "Entdecken",
+    "mobileSubtitle": "Premium-Heimtextilien aus natürlichen Fasern",
+    "premiumCollection": "Premium-Kollektion",
+    "featuredProducts": "Unsere Highlights",
+    "featuredSubtitle": "Entdecken Sie unsere sorgfältig ausgewählten Produkte in höchster Qualität",
+    "collections": "Unsere Kollektionen",
+    "collectionsSubtitle": "Entdecken Sie unsere sorgfältig zusammengestellten Produktkollektionen für Ihre Bedürfnisse",
+    "categoryNotFound": "Kategorie nicht gefunden",
+    "productCount": "{{count}} Produkte",
+    "testimonials": "Kundenbewertungen",
+    "testimonialsSubtitle": "Von zufriedenen Kunden wie Ihnen",
+    "newsletter": "Erfahren Sie als Erste von neuen Kollektionen\nund exklusiven Angeboten",
+    "newsletterSubtitle": "Erhalten Sie exklusiven Zugang zur Welt natürlicher Stoffe",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "subscribe": "Abonnieren",
+    "subscribeSuccess": "Erfolgreich!",
+    "subscribeThank": "Vielen Dank! Sie wurden zu unserer E-Mail-Liste hinzugefügt.",
+    "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+    "whyRipeHome": "Warum Ripe Home?",
+    "advantages": "Unsere Vorteile",
+    "advantagesSubtitle": "Die Adresse für Qualität, Natürlichkeit und Vertrauen",
+    "premiumQuality": "Premium-Qualität",
+    "premiumQualityDesc": "Oeko-Tex-zertifizierte Produkte aus 100 % natürlicher Baumwolle und Bambusfasern",
+    "naturalEcological": "Natürlich & Ökologisch",
+    "naturalEcologicalDesc": "Umweltfreundliche und nachhaltige Produktion ohne schädliche Chemikalien",
+    "fastShipping": "Schneller Versand",
+    "fastShippingDesc": "Schnelle Lieferung in die gesamte Türkei, kostenloser Versand ab 500 TL",
+    "wholesaleAdvantages": "Großhandelsvorteile",
+    "wholesaleAdvantagesDesc": "Sonderpreise für Unternehmen und komfortable Großbestellungen",
+    "questionsHelp": "Haben Sie Fragen? Wir helfen Ihnen gerne weiter.",
+    "brandDefaultTitle": "Natürlichkeit, Qualität und Eleganz\nvereinigt in Heimtextilien",
+    "brandDefaultSubtitle": "Die zeitlose Textur von Baumwolle, Leinen und Musselin in Ihrem Zuhause.",
+    "brandDefaultDesc": "Jedes Produkt vereint die einzigartige Textur natürlicher Fasern mit der Finesse meisterhafter Handwerkskunst. Wir definieren Luxus neu mit unseren Kollektionen, die Ihrem Zuhause Wärme verleihen und dabei die Natur respektieren.",
+    "brandDefaultButton": "Unsere Markengeschichte entdecken",
+    "carefullySelected": "Sorgfältig ausgewählte {{name}}-Produkte"
+  },
+  "about": {
+    "fromDenizli": "Von Denizli in die Welt",
+    "heroTitle": "Natürlichkeit und Qualität\nim Einklang",
+    "heroSubtitle": "Mit über 15 Jahren Erfahrung bieten wir weltweit Premium-Heimtextilien aus natürlichen Fasern an.",
+    "stats": {
+      "experience": "Jahre Erfahrung",
+      "wholesale": "Großhandelskunden",
+      "export": "Exportländer",
+      "variety": "Produktvielfalt"
+    },
+    "ourStory": "Unsere Geschichte",
+    "storyTitle": "Eine Reise von den fruchtbaren Böden\nDenizlis bis in Ihr Zuhause",
+    "storyP1": "<strong>Ripe Home</strong> wurde in Denizli, der Textilhauptstadt der Türkei, gegründet. Seit unserer Gründung verbinden wir die einzigartige Textur natürlicher Fasern mit modernem Design und bringen Komfort und Eleganz in Ihr Zuhause.",
+    "storyP2": "Unsere Bettwäsche-Sets, Bademäntel, Handtücher und Tagesdecken werden aus natürlichen Rohstoffen wie Baumwolle, Leinen, Bambus und Musselin gefertigt und vereinen Ästhetik mit Funktionalität. Jedes unserer Produkte durchläuft die Hände unserer Meister, bevor es zu Ihnen gelangt.",
+    "storyP3": "Unser starker Ruf im Großhandel gründet auf unserer Fähigkeit, wettbewerbsfähige Preise anzubieten, ohne bei der Qualität Kompromisse einzugehen. Wir betreuen Hunderte von Geschäftspartnern, darunter Hotelketten, Einzelhandelsgeschäfte und Boutique-Marken.",
+    "since": "seit dem Jahr",
+    "mission": "Unsere Mission",
+    "missionText": "Mit unseren hochwertigen Heimtextilien aus natürlichen und nachhaltigen Rohstoffen machen wir Lebensräume komfortabler und ästhetischer. Wir schaffen langfristigen Mehrwert, indem wir unseren Geschäftspartnern zuverlässige Lieferung, wettbewerbsfähige Preise und einwandfreien Service bieten.",
+    "vision": "Unsere Vision",
+    "visionText": "Eine Marke zu sein, die im türkischen Heimtextilsektor auf internationaler Ebene maßgeblich ist. Mit unseren nachhaltigen Produktionspraktiken und unserem innovativen Designverständnis eine weltweit bevorzugte Premium-Heimtextilmarke zu werden.",
+    "whyUs": "Warum wir?",
+    "valuesTitle": "Unsere Werte und was uns unterscheidet",
+    "values": {
+      "naturalRaw": "Natürliche Rohstoffe",
+      "naturalRawDesc": "In all unseren Produkten verwenden wir 100 % natürliche Baumwoll-, Bambus- und Leinenfasern. Wir machen niemals Kompromisse bei unserer naturfreundlichen Produktionsphilosophie.",
+      "certifiedQuality": "Zertifizierte Qualität",
+      "certifiedQualityDesc": "Unsere nach Oeko-Tex Standard 100 zertifizierten Produkte enthalten keine für die menschliche Gesundheit schädlichen Chemikalien.",
+      "reliableSupply": "Zuverlässige Lieferung",
+      "reliableSupplyDesc": "Durch pünktliche Lieferung und gleichbleibende Qualität sind wir für unsere Geschäftspartner stets ein zuverlässiger Lieferant.",
+      "customerFocused": "Kundenorientiert",
+      "customerFocusedDesc": "Wir bieten jedem Kunden individuelle Lösungen und einen auf seine Bedürfnisse zugeschnittenen Service.",
+      "ownProduction": "Eigene Produktion",
+      "ownProductionDesc": "In unseren modernen Produktionsstätten in Denizli fertigen wir mit hochmodernen Maschinen qualitativ hochwertige Produkte.",
+      "globalVision": "Globale Vision",
+      "globalVisionDesc": "Wir exportieren in über 50 Länder und machen türkische Heimtextilien weltweit bekannt."
+    },
+    "milestones": "Meilensteine",
+    "journey": "Unsere Reise",
+    "timeline": {
+      "founding": "Gründung",
+      "foundingDesc": "In einer kleinen Werkstatt in Denizli begannen wir mit der Heimtextilproduktion.",
+      "firstExport": "Erster Export",
+      "firstExportDesc": "Wir realisierten unseren ersten Export auf den europäischen Markt.",
+      "factoryInvestment": "Fabrikinvestition",
+      "factoryInvestmentDesc": "Mit der Errichtung unserer modernen Produktionsstätte verfünffachten wir unsere Kapazität.",
+      "certification": "Zertifizierung",
+      "certificationDesc": "Wir erhielten die Zertifizierungen Oeko-Tex Standard 100 und ISO 9001.",
+      "brandTransformation": "Markentransformation",
+      "brandTransformationDesc": "Mit der Marke Ripe Home positionierten wir uns im Premium-Segment.",
+      "digitalTransformation": "Digitale Transformation",
+      "digitalTransformationDesc": "Wir haben unsere Online-Großhandelsplattform ins Leben gerufen."
+    },
+    "wholesaleServices": "Unsere Großhandelsservices",
+    "wholesaleTitle": "Maßgeschneiderte Lösungen\nfür Ihr Unternehmen",
+    "wholesaleItems": {
+      "delivery": "Schnelle Lieferung in die gesamte Türkei und in über 50 Länder",
+      "pricing": "Individuelle Preisangebote und persönlicher Service",
+      "production": "Auftragsproduktion und Private-Label-Möglichkeiten",
+      "certified": "Zertifizierte Produkte und Qualitätsgarantie"
+    },
+    "placeWholesaleOrder": "Großhandelsbestellung aufgeben",
+    "workTogether": "Lassen Sie uns zusammenarbeiten",
+    "workTogetherText": "Kontaktieren Sie uns, um ein individuelles Angebot für Ihr Unternehmen zu erhalten oder sich über unsere Produkte zu informieren.",
+    "ourAddress": "Unsere Adresse",
+    "email": "E-Mail",
+    "phone": "Telefon"
+  },
+  "contact": {
+    "getInTouch": "Get in Touch",
+    "title": "Kontakt",
+    "reachUs": "Kontaktieren Sie uns",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "address": "Adresse",
+    "addressText": "Sevindik Mahallesi, 2291 Sokak, No: 7\nMerkezefendi, Denizli, Türkei",
+    "sendMessage": "Nachricht senden",
+    "namePlaceholder": "Ihr Name",
+    "phonePlaceholder": "Telefonnummer",
+    "emailPlaceholder": "E-Mail",
+    "companyPlaceholder": "Firmenname",
+    "subjectPlaceholder": "Betreff",
+    "messagePlaceholder": "Ihre Nachricht",
+    "send": "Senden",
+    "successMessage": "Ihre Nachricht wurde empfangen, wir werden uns so schnell wie möglich bei Ihnen melden.",
+    "subjectWholesale": "Großhandelsbestellung",
+    "subjectCustom": "Sonderproduktion",
+    "subjectProduct": "Produktinformation",
+    "subjectQuote": "Preisangebot",
+    "subjectOther": "Sonstiges",
+    "reachUsDesc": "Kontaktieren Sie uns für Großhandelsbestellungen und Sonderproduktionen.",
+    "officeHours": "Wir sind Mo–Fr von 09:00 – 18:00 Uhr für Sie da.",
+    "thankYou": "Danke!"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Häufig gestellte Fragen",
+    "questions": [
+      {
+        "q": "Was ist die Mindestbestellmenge für Großhandelsbestellungen?",
+        "a": "Die Mindestbestellmenge variiert je nach Produkt. In der Regel gelten ab 50 Stück Großhandelspreise. Für weitere Informationen kontaktieren Sie uns bitte über unsere Großhandelsbestellseite."
+      },
+      {
+        "q": "Welche Stoffzusammensetzung haben Ihre Produkte?",
+        "a": "Unsere Produkte werden aus 100 % natürlichen Baumwoll- und Bambusfasern hergestellt. Alle unsere Produkte sind nach Oeko-Tex Standard 100 zertifiziert und enthalten keine gesundheitsschädlichen Chemikalien."
+      },
+      {
+        "q": "Wie hoch sind die Versandkosten?",
+        "a": "Ab einem Bestellwert von 500 TL ist der Versand kostenlos. Bei Bestellungen unter 500 TL betragen die Versandkosten 50 TL. Bei Großhandelsbestellungen können die Versandkosten je nach Bestellmenge variieren."
+      },
+      {
+        "q": "Wann wird meine Bestellung versandt?",
+        "a": "Lagerware wird noch am selben Tag versandt. Bestellungen am Wochenende werden am nächsten Werktag versendet. Bei Großhandelsbestellungen beträgt die Lieferzeit 3-5 Werktage."
+      },
+      {
+        "q": "Wie kann ich Produkte zurücksenden?",
+        "a": "Sie können Ihre Produkte innerhalb von 14 Tagen nach Erhalt zurücksenden. Das Produkt muss unbenutzt, ungewaschen und in der Originalverpackung sein. Für den Rückgabeprozess kontaktieren Sie uns bitte über unsere Kontaktseite."
+      },
+      {
+        "q": "Kann ich als Großhandelskunde Sonderpreise erhalten?",
+        "a": "Ja, für Großhandelskunden mit regelmäßigen und großvolumigen Bestellungen bieten wir Sonderpreise und individuelle Zahlungsbedingungen an. Für weitere Informationen wenden Sie sich bitte an unser Vertriebsteam."
+      },
+      {
+        "q": "Liefern Sie auch ins Ausland?",
+        "a": "Ja, für Großhandelsbestellungen bieten wir internationalen Versand an. Versandkosten und Lieferzeiten variieren je nach Zielland. Für weitere Informationen kontaktieren Sie uns bitte."
+      },
+      {
+        "q": "Wie lauten die Pflegehinweise für die Produkte?",
+        "a": "Unsere Produkte sind bei 40 Grad waschbar. Verwenden Sie kein Bleichmittel. Bei mittlerer Temperatur bügelbar. Bei der ersten Wäsche nicht mit weißen Textilien waschen, da leichtes Ausfärben möglich ist."
+      },
+      {
+        "q": "Stellen Sie Rechnungen aus?",
+        "a": "Ja, für alle Bestellungen stellen wir elektronische Rechnungen aus. Für Geschäftskunden übernehmen wir die gesamte erforderliche Dokumentation."
+      },
+      {
+        "q": "Bieten Sie individuelles Design oder Logodruck an?",
+        "a": "Ja, bei Großhandelsbestellungen bieten wir individuelles Design, Farbgestaltung und Logodruck an. Für die Mindestbestellmenge wenden Sie sich bitte an unser Vertriebsteam."
+      }
+    ],
+    "notAnswered": "Wurde Ihre Frage nicht beantwortet?",
+    "happyToHelp": "Unser Kundenservice hilft Ihnen gerne weiter."
+  },
+  "footer": {
+    "description": "Wir bringen Natürlichkeit und Eleganz in Ihr Zuhause mit Premium-Heimtextilien aus natürlichen Fasern aus Denizli.",
+    "followInstagram": "Folgen Sie uns auf Instagram",
+    "contact": "Kontakt",
+    "customerSupport": "Kundenservice",
+    "faq": "Häufig gestellte Fragen",
+    "shippingDelivery": "Versand & Lieferung",
+    "returnsExchange": "Rückgabe & Umtausch",
+    "wholesale": "Großhandelsbestellung",
+    "contactLink": "Kontakt",
+    "corporate": "Unternehmen",
+    "aboutUs": "Über uns",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfUse": "Nutzungsbedingungen",
+    "copyright": "© 2025 Ripe Home. Alle Rechte vorbehalten.",
+    "washingInstructions": "Waschanleitung (PDF)"
+  },
+  "product": {
+    "notFound": "Produkt nicht gefunden",
+    "notFoundText": "Das gesuchte Produkt ist nicht verfügbar oder wurde entfernt.",
+    "featured": "Hervorgehobenes Produkt",
+    "description": "Produktbeschreibung",
+    "features": "Eigenschaften",
+    "tags": "Schlagwörter",
+    "productCode": "Produktcode",
+    "minOrder": "Mindestbestellung",
+    "productionTime": "Produktionszeit",
+    "capacity": "Kapazität",
+    "inStock": "Auf Lager",
+    "inProduction": "In Produktion",
+    "getQuote": "Großhandelsangebot anfordern",
+    "quoteNote": "Wir senden Ihnen innerhalb von 24 Stunden ein individuelles Angebot",
+    "relatedProducts": "Ähnliche Produkte",
+    "defaultProductionTime": "2-3 Wochen"
+  },
+  "category": {
+    "notFound": "Kategorie nicht gefunden",
+    "noProducts": "Keine Produkte gefunden",
+    "noProductsText": "In dieser Kategorie sind noch keine Produkte vorhanden.",
+    "material": "Material",
+    "size": "Größe",
+    "sortPopular": "Beliebteste",
+    "sortNewest": "Neueste",
+    "sortRating": "Höchste Bewertung",
+    "sortName": "A-Z"
+  },
+  "wholesale": {
+    "title": "Großhandelsbestellung",
+    "subtitle": "Wählen Sie Ihre Produkte aus, legen Sie die Mengen fest und fordern Sie ein Angebot an",
+    "step1": "1. Produktauswahl",
+    "step2": "2. Informationen & Absenden",
+    "cartProducts": "Produkte in Ihrem Warenkorb",
+    "cartSummary": "{{count}} Produkte, insgesamt {{total}} Stück",
+    "addNote": "Notiz hinzufügen (optional)",
+    "companyInfo": "Ihre Firmendaten",
+    "companyName": "Firmenname",
+    "companyNamePlaceholder": "Ihr Firmenname",
+    "contactPerson": "Ansprechpartner",
+    "contactPersonPlaceholder": "Vor- und Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "city": "Stadt",
+    "address": "Adresse",
+    "taxOffice": "Finanzamt",
+    "taxNumber": "Steuernummer",
+    "additionalNotes": "Zusätzliche Anmerkungen",
+    "additionalNotesPlaceholder": "Besondere Wünsche, Farb-/Größenpräferenzen usw...",
+    "requestQuote": "Angebot anfordern",
+    "orderSummary": "Bestellübersicht",
+    "addProduct": "Produkt hinzufügen",
+    "noProductsSelected": "Noch keine Produkte ausgewählt",
+    "startSelectingProducts": "Beginnen Sie mit der Produktauswahl",
+    "selectAtLeastOne": "Bitte wählen Sie mindestens ein Produkt aus",
+    "orderFailed": "Bestellung konnte nicht gesendet werden, bitte versuchen Sie es erneut",
+    "success": "Ihre Anfrage wurde erhalten!",
+    "successText": "Ihre Großhandelsbestellung wurde erfolgreich erfasst. Wir werden Ihnen schnellstmöglich ein individuelles Angebot zukommen lassen.",
+    "newOrder": "Neue Bestellung erstellen"
+  },
+  "shipping": {
+    "title": "Versand & Lieferung",
+    "subtitle": "Ihre Bestellungen werden sorgfältig verpackt und schnellstmöglich zu Ihnen geliefert.",
+    "wholesaleOrders": "Bei Großhandelsbestellungen",
+    "freeShipping": "Versand völlig kostenlos",
+    "freeShippingNote": "Gilt für alle Großhandelsbestellungen, die den Mindestbestellwert erreichen.",
+    "fastPreparation": "Schnelle Vorbereitung",
+    "fastPreparationTime": "Versand innerhalb von 1-3 Werktagen",
+    "fastPreparationNote": "Lagerware wird noch am selben Tag versendet.",
+    "stepByStep": "Schritt für Schritt",
+    "orderProcess": "Bestellvorgang",
+    "steps": {
+      "orderConfirmation": "Bestellbestätigung",
+      "orderConfirmationDesc": "Nach Eingang Ihrer Bestellung erhalten Sie eine Bestätigung.",
+      "preparation": "Vorbereitung",
+      "preparationDesc": "Ihre Produkte werden sorgfältig verpackt und einer Qualitätskontrolle unterzogen.",
+      "shipped": "Versandübergabe",
+      "shippedDesc": "Ihr Paket wird an den Versanddienstleister übergeben.",
+      "delivery": "Lieferung",
+      "deliveryDesc": "Mit Ihrer Sendungsverfolgungsnummer können Sie Ihre Bestellung in Echtzeit verfolgen."
+    },
+    "byRegion": "Nach Region",
+    "deliveryTimes": "Lieferzeiten",
+    "estimatedDelivery": "Voraussichtliche Lieferzeit",
+    "deliveryDisclaimer": "* Lieferzeiten sind Schätzungen und können je nach Auslastung des Versanddienstleisters variieren.",
+    "zones": {
+      "marmaraEge": "Marmara & Ägäis",
+      "marmaraEgeTime": "1-2 Werktage",
+      "icAnadolu": "Zentralanatolien & Mittelmeerregion",
+      "icAnadoluTime": "2-3 Werktage",
+      "karadeniz": "Schwarzmeerregion & Osten",
+      "karadenizTime": "3-4 Werktage",
+      "international": "International (Europa)",
+      "internationalTime": "5-10 Werktage"
+    },
+    "shippingCompanies": "Versandunternehmen",
+    "shippingCompaniesDesc": "Ihre Bestellungen werden über Aras Kargo, Yurtiçi Kargo und MNG Kargo versendet. Die Auswahl des Unternehmens erfolgt automatisch basierend auf Ihrem Standort.",
+    "shippingCompaniesItems": [
+      "Die Sendungsverfolgungsnummer wird per SMS und E-Mail mitgeteilt",
+      "Alle Sendungen sind versichert",
+      "Bei beschädigter Lieferung wird kostenlos Ersatz gesendet"
+    ],
+    "wholesaleDelivery": "Großhandelslieferung",
+    "wholesaleDeliveryDesc": "Ihre Großhandelsbestellungen werden professionell palettiert und sicher transportiert. Für großvolumige Sendungen wird ein spezieller Transport organisiert.",
+    "wholesaleDeliveryItems": [
+      "1-3 Werktage Vorbereitung bei Lagerware",
+      "2-3 Wochen bei Sonderanfertigungen",
+      "Palettierung und Stretchfolienverpackung",
+      "Lieferung frei Haus oder Abholung ab Lager"
+    ],
+    "internationalShipping": "Internationaler Versand",
+    "internationalShippingDesc": "Mit unserer Exporterfahrung in über 50 Länder managen wir Ihre internationalen Sendungen reibungslos.",
+    "internationalShippingItems": [
+      "FOB-, CIF- und DDP-Lieferoptionen",
+      "Erstellung der Zolldokumente",
+      "Container- und Teilladungsversand",
+      "Exportrechnung und Ursprungszeugnis"
+    ],
+    "packaging": "Verpackung",
+    "packagingDesc": "Ihre Produkte werden speziell verpackt, um Transportschäden zu vermeiden. Auf Wunsch bieten wir auch Markenverpackungen an.",
+    "packagingItems": [
+      "Einzelverpackung + Sammelkartonverpackung",
+      "Optionale Markenetikettierung",
+      "Barcode und Produktinformationskarte beiliegend",
+      "Feuchtigkeits- und staubdichte Verpackung"
+    ],
+    "faqTitle": "Häufig gestellte Fragen",
+    "faqs": [
+      {
+        "q": "Wie kann ich meine Bestellung verfolgen?",
+        "a": "Sobald Ihre Bestellung versandt wurde, erhalten Sie die Sendungsverfolgungsnummer per SMS und E-Mail. Mit dieser Nummer können Sie Ihre Sendung in Echtzeit auf der Website des Versanddienstleisters verfolgen."
+      },
+      {
+        "q": "Kann ich meine Lieferadresse ändern?",
+        "a": "Sie können die Adresse ändern, bevor Ihre Bestellung an den Versanddienstleister übergeben wurde. Kontaktieren Sie hierzu einfach unseren Kundenservice."
+      },
+      {
+        "q": "Was soll ich tun, wenn ich ein beschädigtes Produkt erhalte?",
+        "a": "Sollten Sie ein beschädigtes Paket erhalten, nehmen Sie es unter Vorbehalt an und lassen Sie ein Schadensprotokoll erstellen. Kontaktieren Sie uns innerhalb von 24 Stunden. Das beschädigte Produkt wird kostenlos ersetzt."
+      },
+      {
+        "q": "Gibt es einen Mindestbestellwert für Großhandelsbestellungen?",
+        "a": "Der Mindestbestellwert für Großhandelsbestellungen variiert je nach Produktkategorie. Für weitere Informationen besuchen Sie bitte unsere Großhandelsbestellseite oder kontaktieren Sie uns."
+      }
+    ],
+    "importantNotice": "Wichtiger Hinweis",
+    "importantNoticeText": "Wetterbedingungen, Naturkatastrophen, Feiertage und die Auslastung des Versanddienstleisters können die Lieferzeiten beeinflussen. Für Verzögerungen aufgrund höherer Gewalt liegt die Verantwortung beim Versanddienstleister.",
+    "shippingQuestion": "Haben Sie Fragen zum Versand?",
+    "shippingQuestionText": "Kontaktieren Sie uns für detaillierte Informationen zu Lieferprozessen oder speziellen Versandwünschen."
+  },
+  "returns": {
+    "label": "Return Policy",
+    "title": "Rückgabe & Umtausch",
+    "conditions": "Rückgabebedingungen",
+    "conditionsIntro": "Sie können Ihre Produkte innerhalb von <strong>14 Tagen</strong> nach Erhalt zurückgeben.",
+    "conditionsRequired": "Voraussetzungen für eine Rückgabe:",
+    "conditionItems": [
+      "Das Produkt darf nicht benutzt oder gewaschen worden sein",
+      "Es muss sich in der Originalverpackung mit allen Etiketten befinden",
+      "Eine Kopie der Rechnung muss beiliegen",
+      "Aus Hygienegründen können Einweg- und persönliche Produkte nicht zurückgegeben werden"
+    ],
+    "process": "Rückgabeprozess",
+    "processSteps": [
+      {
+        "title": "Rückgabeanfrage",
+        "text": "Reichen Sie Ihre Rückgabeanfrage über unsere Kontaktseite oder an info@ripehome.com.tr ein. Geben Sie Ihre Bestellnummer und den Rückgabegrund an."
+      },
+      {
+        "title": "Bestätigung & Versand",
+        "text": "Nach Genehmigung Ihrer Rückgabeanfrage erhalten Sie einen Rücksendeversandcode. Sie können das Produkt kostenlos über unseren Vertragsversanddienstleister zurücksenden."
+      },
+      {
+        "title": "Prüfung",
+        "text": "Das zurückgesandte Produkt wird nach Eingang bei uns innerhalb von 2-3 Werktagen geprüft und freigegeben."
+      },
+      {
+        "title": "Rückerstattung",
+        "text": "Nach Genehmigung der Rückgabe wird Ihre Zahlung innerhalb von 5-7 Werktagen auf Ihre Kreditkarte oder Ihr Bankkonto zurückerstattet."
+      }
+    ],
+    "exchange": "Produktumtausch",
+    "exchangeP1": "Wenn Sie eine Farb-, Größen- oder Modelländerung des gekauften Produkts wünschen, müssen Sie zunächst den Rückgabeprozess einleiten und anschließend eine neue Bestellung aufgeben.",
+    "exchangeP2": "Bei fehlerhafter oder beschädigter Produktlieferung übernehmen wir die Versandkosten und senden Ihnen ein neues Produkt zu.",
+    "wholesaleReturns": "Rückgabe bei Großhandelsbestellungen",
+    "wholesaleReturnsIntro": "Bei Großhandelsbestellungen können abweichende Rückgabebedingungen gelten. Für Großhandelsbestellungen gilt:",
+    "wholesaleReturnItems": [
+      "Bei Produktionsfehlern oder Beschädigungen erfolgt eine vollständige Rückerstattung",
+      "Für kundenbedingte Rücksendungen gelten besondere Bedingungen",
+      "Für detaillierte Informationen wenden Sie sich bitte an unser Vertriebsteam"
+    ],
+    "needHelp": "Benötigen Sie Hilfe bei einer Rückgabe?",
+    "happyToHelp": "Unser Kundenservice hilft Ihnen gerne weiter."
+  },
+  "privacy": {
+    "label": "Privacy",
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Letzte Aktualisierung: 23. November 2025",
+    "dataProtection": "Schutz personenbezogener Daten",
+    "dataProtectionText": "Als Ripe Home verpflichten wir uns, die Vertraulichkeit und Sicherheit Ihrer personenbezogenen Daten im Rahmen des türkischen Datenschutzgesetzes Nr. 6698 (\"KVKK\") zu schützen.",
+    "collectedInfo": "Erhobene Daten",
+    "collectedInfoText": "Bei der Nutzung unserer Website können folgende Daten erhoben werden:",
+    "collectedItems": [
+      "Vorname, Nachname, E-Mail-Adresse, Telefonnummer",
+      "Liefer- und Rechnungsadresse",
+      "Bestellhistorie und Zahlungsdaten",
+      "IP-Adresse, Browsertyp und Cookies"
+    ],
+    "dataUsage": "Verwendungszwecke der Daten",
+    "dataUsageText": "Ihre erhobenen personenbezogenen Daten werden für folgende Zwecke verwendet:",
+    "dataUsageItems": [
+      "Bearbeitung und Lieferung Ihrer Bestellungen",
+      "Bereitstellung des Kundenservice",
+      "Information über Kampagnen und Werbeaktionen",
+      "Verbesserung des Website-Erlebnisses",
+      "Erfüllung gesetzlicher Verpflichtungen"
+    ],
+    "dataSecurity": "Datensicherheit",
+    "dataSecurityText": "Ihre personenbezogenen Daten werden durch SSL-Verschlüsselungstechnologie geschützt. Ihre Zahlungsdaten werden über sichere Zahlungssysteme verarbeitet und nicht von unserem Unternehmen gespeichert.",
+    "cookies": "Cookies",
+    "cookiesText": "Unsere Website verwendet Cookies zur Verbesserung der Benutzererfahrung. Sie können Cookies in Ihren Browsereinstellungen deaktivieren, allerdings funktionieren dann möglicherweise einige Funktionen nicht.",
+    "rights": "Ihre Rechte",
+    "rightsText": "Im Rahmen des KVKK haben Sie folgende Rechte:",
+    "rightsItems": [
+      "Zu erfahren, ob Ihre personenbezogenen Daten verarbeitet werden",
+      "Auskunft über die Verarbeitung zu verlangen",
+      "Berichtigung oder Löschung der Daten zu verlangen",
+      "Zu erfahren, an welche Dritte Ihre Daten weitergegeben wurden"
+    ],
+    "contactTitle": "Kontakt",
+    "contactText": "Bei Fragen zu unserer Datenschutzrichtlinie können Sie uns kontaktieren:"
+  },
+  "terms": {
+    "label": "Terms & Conditions",
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Letzte Aktualisierung: 23. November 2025",
+    "general": "Allgemeine Bedingungen",
+    "generalText": "Durch die Nutzung dieser Website akzeptieren Sie die folgenden Nutzungsbedingungen. Wenn Sie die Bedingungen nicht akzeptieren, nutzen Sie die Website bitte nicht.",
+    "orderSales": "Bestellung und Verkauf",
+    "orderSalesText": "Über unsere Website aufgegebene Bestellungen unterliegen folgenden Bedingungen:",
+    "orderSalesItems": [
+      "Alle Preise sind in Türkischen Lira (TL) angegeben",
+      "Die Preise verstehen sich inklusive Mehrwertsteuer",
+      "Nach Bestellbestätigung werden keine Preisänderungen vorgenommen",
+      "Die Verfügbarkeit kann sich ändern; nicht vorrätige Artikel werden storniert",
+      "Bei fehlerhafter Preisangabe kann die Bestellung storniert werden"
+    ],
+    "payment": "Zahlungsbedingungen",
+    "paymentText": "Sie können Ihre Zahlungen mit folgenden Methoden vornehmen:",
+    "paymentItems": [
+      "Kreditkarte (Visa, Mastercard, American Express)",
+      "Banküberweisung (für Großhandelsbestellungen)",
+      "Ratenzahlungsoptionen variieren je nach Bank und Kartentyp"
+    ],
+    "paymentSecurity": "Ihre Zahlungsdaten werden durch SSL-Verschlüsselung geschützt und über sichere Zahlungssysteme verarbeitet.",
+    "deliveryShipping": "Lieferung und Versand",
+    "deliveryShippingText": "Für detaillierte Informationen zu den Lieferbedingungen besuchen Sie bitte unsere Seite",
+    "deliveryShippingLink": "Versand & Lieferung",
+    "deliveryShippingAfter": ". Lieferzeiten sind Schätzungen und können aufgrund von Wetterbedingungen und höherer Gewalt variieren.",
+    "cancelReturn": "Stornierung und Rückgabe",
+    "cancelReturnText": "Für detaillierte Informationen zu Stornierungs- und Rückgabebedingungen besuchen Sie bitte unsere Seite",
+    "cancelReturnLink": "Rückgabe & Umtausch",
+    "cancelReturnAfter": ". Im Rahmen der Verbraucherrechte steht Ihnen ein gesetzliches Widerrufsrecht zu.",
+    "intellectualProperty": "Geistiges Eigentum",
+    "intellectualPropertyText": "Alle Inhalte dieser Website (Texte, Bilder, Logos, Design usw.) sind Eigentum von Ripe Home und urheberrechtlich geschützt. Unbefugte Nutzung, Vervielfältigung oder Verbreitung ist untersagt.",
+    "disclaimer": "Haftungsausschluss",
+    "disclaimerText": "Unser Unternehmen übernimmt keine Haftung für folgende Umstände:",
+    "disclaimerItems": [
+      "Dass die Website unterbrechungs- oder fehlerfrei funktioniert",
+      "Farbabweichungen bei Produktfotos (können durch Bildschirmunterschiede entstehen)",
+      "Verzögerungen aufgrund höherer Gewalt",
+      "Links zu Websites Dritter"
+    ],
+    "disputes": "Streitbeilegung",
+    "disputesText": "Für Streitigkeiten aus diesem Vertrag gelten die Gesetze der Republik Türkei. Für die Beilegung von Streitigkeiten sind die Gerichte und Vollstreckungsbehörden in Denizli zuständig.",
+    "changes": "Änderungen",
+    "changesText": "Unser Unternehmen behält sich das Recht vor, die Nutzungsbedingungen zu ändern. Änderungen treten mit der Veröffentlichung auf der Website in Kraft.",
+    "contactTitle": "Kontakt",
+    "contactText": "Bei Fragen zu den Nutzungsbedingungen:"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Die gesuchte Seite ist nicht verfügbar oder wurde verschoben.",
+    "redirect": "Sie werden in {{count}} Sekunden zur Startseite weitergeleitet."
+  },
+  "sticky": {
+    "whatsapp": "Per WhatsApp schreiben",
+    "whatsappMessage": "Hallo, ich möchte mich über Ihre Produkte informieren.",
+    "call": "Jetzt anrufen"
+  },
+  "testimonials": [
+    {
+      "name": "Ayşe Demir",
+      "text": "Das Baumwoll-Bettwäsche-Set ist wirklich wunderbar! Sowohl die Qualität als auch die Textur sind hervorragend. Es verbessert die Schlafqualität spürbar."
+    },
+    {
+      "name": "Mehmet Yılmaz",
+      "text": "Ich habe den Waffelpiqué-Bademantel gekauft – die Qualität und der Komfort haben meine Erwartungen bei Weitem übertroffen. Absolut empfehlenswert."
+    },
+    {
+      "name": "Zeynep Kaya",
+      "text": "Für die Bio-Musselinprodukte habe ich alle gewünschten Eigenschaften gefunden. Sowohl umweltfreundlich als auch luxuriös."
+    }
+  ],
+  "video": {
+    "title": "Unser Produktionsprozess",
+    "subtitle": "Von Denizli in die Welt – handgefertigte Kimonos"
+  },
+  "blog": {
+    "label": "Blog",
+    "latestPosts": "Neueste Beiträge",
+    "featured": "Empfohlen",
+    "moreStories": "Weitere Beiträge",
+    "subtitle": "Neuigkeiten, Tipps und Inspiration",
+    "heading": "Leben & Inspiration"
+  },
+  "member": {
+    "title": "Mitgliederbereich",
+    "welcome": "Willkommen",
+    "wholesaleMember": "Großhandelsmitglied",
+    "activeMembership": "Aktive Mitgliedschaft",
+    "memberInfo": "Mitgliederdaten",
+    "fullName": "Vor- und Nachname",
+    "country": "Land",
+    "company": "Unternehmen",
+    "privileges": "Mitgliedsvorteile",
+    "priv1": "Großhandelspreise für alle Produkte",
+    "priv2": "Frühzeitiger Zugang zu exklusiven Kollektionen",
+    "priv3": "Produktionsgarantie aus Denizli",
+    "browseProducts": "Alle Produkte ansehen",
+    "createOrder": "Großbestellung aufgeben",
+    "browseCategories": "Kategorien durchsuchen",
+    "logout": "Abmelden",
+    "loginTitle": "Anmelden",
+    "loginDesc": "Melden Sie sich mit Ihrer Telefonnummer\nan, um auf Ihr Mitgliederkonto zuzugreifen.",
+    "loginBtn": "Anmelden"
+  },
+  "auth": {
+    "chooseTitle": "Ripe Home Mitgliedschaft",
+    "subtitle": "Exklusiv für Großhändler",
+    "chooseDesc": "Sie müssen Mitglied sein, um Großhandelspreise zu sehen und Bestellungen aufzugeben.",
+    "loginBtn": "Anmelden",
+    "loginSub": "Ich habe bereits ein Konto",
+    "signupBtn": "Registrieren",
+    "signupSub": "Ich bewerbe mich zum ersten Mal",
+    "otpNote": "In beiden Fällen wird ein Bestätigungscode an Ihre E-Mail gesendet.",
+    "emailTitleLogin": "Anmelden",
+    "emailTitleSignup": "Registrieren",
+    "emailDescLogin": "Wir senden einen Bestätigungscode an Ihre registrierte E-Mail.",
+    "emailDescSignup": "Wir senden einen Bestätigungscode an Ihre E-Mail zur Registrierung.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "beispiel@firma.de",
+    "sendCode": "Code senden",
+    "sending": "Wird gesendet...",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits Mitglied?",
+    "switchSignup": "Registrieren",
+    "switchLogin": "Anmelden",
+    "otpTitle": "Bestätigungscode",
+    "otpDesc": "Geben Sie den 6-stelligen Code ein, der gesendet wurde an",
+    "verifying": "Wird überprüft...",
+    "attemptsLeft": "Versuche verbleibend",
+    "lockedHint": "Verwenden Sie die Schaltfläche unten, um einen neuen Code zu senden.",
+    "resendLocked": "Neuen Code senden (Sperre zurücksetzen)",
+    "resendTimer": "Sekunden bis zur erneuten Sendung",
+    "resend": "Code erneut senden",
+    "spamHint": "Vergessen Sie nicht, Ihren Spam-Ordner zu überprüfen.",
+    "registerTitle": "Konto vervollständigen",
+    "registerDesc": "Erster Besuch! Bitte vervollständigen Sie Ihre Daten.",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefon",
+    "phonePlaceholder": "5xxxxxxxxx",
+    "phoneHint": "Für Kontaktzwecke (Bestellbenachrichtigungen)",
+    "company": "Firmenname",
+    "companyPlaceholder": "ABC Textilien GmbH",
+    "country": "Land",
+    "register": "Registrieren",
+    "registering": "Wird registriert...",
+    "successTitle": "Willkommen!",
+    "successDesc": "Ihre Mitgliedschaft ist aktiv. Sie können jetzt alle Großhandelspreise sehen und Bestellungen aufgeben.",
+    "goOrder": "Bestellung aufgeben",
+    "browseProducts": "Produkte entdecken",
+    "backToLogin": "Zurück zur Anmeldung →"
+  }
+}

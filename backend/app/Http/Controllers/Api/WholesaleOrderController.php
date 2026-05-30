@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\Validator;
 
 class WholesaleOrderController extends Controller
 {
+    public function myOrders(Request $request)
+    {
+        $member = $request->attributes->get('member');
+
+        $orders = \App\Models\WholesaleOrder::where('member_id', $member->id)
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn ($o) => [
+                'id'         => $o->id,
+                'status'     => $o->status,
+                'status_label' => $o->status_label,
+                'items_count'  => $o->total_items,
+                'total_quantity' => $o->total_quantity,
+                'items'      => $o->items,
+                'created_at' => $o->created_at->toIso8601String(),
+                'admin_notes'=> $o->admin_notes,
+            ]);
+
+        return response()->json(['success' => true, 'data' => $orders]);
+    }
+
     public function store(Request $request)
     {
         try {
@@ -76,7 +97,10 @@ class WholesaleOrderController extends Controller
                 ];
             })->toArray();
 
+            $member = $request->attributes->get('member');
+
             $order = WholesaleOrder::create([
+                'member_id'    => $member->id,
                 'company_name' => $request->company_name,
                 'contact_person' => $request->contact_person,
                 'email' => $request->email,
@@ -113,8 +137,6 @@ class WholesaleOrderController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Wholesale order error: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString());
-            
             return response()->json([
                 'success' => false,
                 'message' => 'Sipariş oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.',

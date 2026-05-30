@@ -4,6 +4,7 @@ namespace App\Filament\Resources\HomeSliderResource\Pages;
 
 use App\Filament\Resources\HomeSliderResource;
 use Filament\Actions;
+use Filament\Actions\LocaleSwitcher;
 use Filament\Resources\Pages\ListRecords;
 
 class ListHomeSliders extends ListRecords
@@ -13,6 +14,7 @@ class ListHomeSliders extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             Actions\CreateAction::make(),
         ];
     }

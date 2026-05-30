@@ -4,10 +4,14 @@ namespace App\Models;
 
 use App\Traits\OptimizesImages;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class FeaturedProduct extends Model
 {
     use OptimizesImages;
+    use HasTranslations;
+
+    public array $translatable = ['category_label', 'title', 'description', 'button_text'];
 
     protected array $optimizableImages = [
         'image' => [

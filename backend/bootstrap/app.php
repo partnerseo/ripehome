@@ -15,8 +15,19 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Cloudflare proxy arkasında HTTPS ve gerçek IP algılaması
+        $middleware->trustProxies(at: '*', headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR |
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST |
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT |
+            \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
+
         $middleware->api(prepend: [
             \App\Http\Middleware\ForceJsonResponse::class,
+            \App\Http\Middleware\SetLocale::class,
+        ]);
+        $middleware->alias([
+            'auth.member'          => \App\Http\Middleware\AuthMember::class,
+            'auth.member.optional' => \App\Http\Middleware\AuthMemberOptional::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

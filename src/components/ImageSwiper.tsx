@@ -15,7 +15,7 @@ interface ImageSwiperProps {
 export default function ImageSwiper({
   images,
   alt,
-  aspectRatio = 'aspect-square',
+  aspectRatio = 'aspect-[3/4]',
   showArrows = true,
   showDots = true,
   showThumbnails = true,

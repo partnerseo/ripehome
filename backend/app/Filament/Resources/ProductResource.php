@@ -44,18 +44,6 @@ class ProductResource extends Resource
                                             ->schema([
                                                 Forms\Components\Section::make()
                                                     ->schema([
-                                                        Forms\Components\TextInput::make('name')
-                                                            ->label('Ürün Adı')
-                                                            ->placeholder('Örn: Premium Pamuk Nevresim Takımı')
-                                                            ->required()
-                                                            ->maxLength(255)
-                                                            ->live(onBlur: true)
-                                                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
-                                                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                                                            )
-                                                            ->prefixIcon('heroicon-o-pencil')
-                                                            ->columnSpanFull(),
-
                                                         Forms\Components\TextInput::make('slug')
                                                             ->label('URL Slug')
                                                             ->placeholder('otomatik-olusturulur')
@@ -75,7 +63,7 @@ class ProductResource extends Resource
                                                             ->prefixIcon('heroicon-o-folder')
                                                             ->createOptionForm([
                                                                 Forms\Components\TextInput::make('name')
-                                                                    ->label('Kategori Adı')
+                                                                    ->label('Kategori Adı (TR)')
                                                                     ->required()
                                                                     ->live(onBlur: true)
                                                                     ->afterStateUpdated(fn ($state, Forms\Set $set) =>
@@ -93,17 +81,87 @@ class ProductResource extends Resource
                                                             ->prefixIcon('heroicon-o-hashtag'),
                                                     ])->columns(2),
 
-                                                Forms\Components\Section::make('Açıklama')
-                                                    ->icon('heroicon-o-document-text')
+                                                // Dil sekmeleri - Ad ve Açıklamalar
+                                                Forms\Components\Section::make('İçerik (Diller)')
+                                                    ->icon('heroicon-o-language')
+                                                    ->description('Her dil için ürün adı ve açıklamasını girin')
                                                     ->schema([
-                                                        Forms\Components\RichEditor::make('description')
-                                                            ->label('Ürün Açıklaması')
-                                                            ->placeholder('Ürünün tüm özelliklerini, kumaş bilgisini ve bakım talimatlarını buraya yazın...')
-                                                            ->toolbarButtons([
-                                                                'bold', 'italic', 'underline', 'strike',
-                                                                'bulletList', 'orderedList',
-                                                                'h2', 'h3', 'link', 'blockquote',
-                                                                'undo', 'redo',
+                                                        Forms\Components\Tabs::make('İçerik Dilleri')
+                                                            ->tabs([
+                                                                Forms\Components\Tabs\Tab::make('🇹🇷 Türkçe')
+                                                                    ->schema([
+                                                                        Forms\Components\TextInput::make('name_tr')
+                                                                            ->label('Ürün Adı')
+                                                                            ->required()
+                                                                            ->maxLength(255)
+                                                                            ->live(onBlur: true)
+                                                                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
+                                                                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                                                                            )
+                                                                            ->placeholder('Örn: Premium Pamuk Nevresim Takımı'),
+                                                                        Forms\Components\Textarea::make('short_description_tr')
+                                                                            ->label('Kısa Açıklama')
+                                                                            ->rows(2)
+                                                                            ->maxLength(300)
+                                                                            ->placeholder('Ürün listelerinde görünecek kısa özet...'),
+                                                                        Forms\Components\RichEditor::make('description_tr')
+                                                                            ->label('Detaylı Açıklama')
+                                                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo'])
+                                                                            ->placeholder('Ürünün tüm özelliklerini, kumaş bilgisini ve bakım talimatlarını buraya yazın...'),
+                                                                    ]),
+                                                                Forms\Components\Tabs\Tab::make('🇬🇧 English')
+                                                                    ->schema([
+                                                                        Forms\Components\TextInput::make('name_en')
+                                                                            ->label('Product Name')
+                                                                            ->maxLength(255)
+                                                                            ->placeholder('e.g. Premium Cotton Duvet Set'),
+                                                                        Forms\Components\Textarea::make('short_description_en')
+                                                                            ->label('Short Description')
+                                                                            ->rows(2)
+                                                                            ->maxLength(300),
+                                                                        Forms\Components\RichEditor::make('description_en')
+                                                                            ->label('Full Description')
+                                                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                                                    ]),
+                                                                Forms\Components\Tabs\Tab::make('🇸🇦 العربية')
+                                                                    ->schema([
+                                                                        Forms\Components\TextInput::make('name_ar')
+                                                                            ->label('اسم المنتج')
+                                                                            ->maxLength(255),
+                                                                        Forms\Components\Textarea::make('short_description_ar')
+                                                                            ->label('وصف قصير')
+                                                                            ->rows(2)
+                                                                            ->maxLength(300),
+                                                                        Forms\Components\RichEditor::make('description_ar')
+                                                                            ->label('الوصف الكامل')
+                                                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                                                    ]),
+                                                                Forms\Components\Tabs\Tab::make('🇷🇺 Русский')
+                                                                    ->schema([
+                                                                        Forms\Components\TextInput::make('name_ru')
+                                                                            ->label('Название продукта')
+                                                                            ->maxLength(255),
+                                                                        Forms\Components\Textarea::make('short_description_ru')
+                                                                            ->label('Краткое описание')
+                                                                            ->rows(2)
+                                                                            ->maxLength(300),
+                                                                        Forms\Components\RichEditor::make('description_ru')
+                                                                            ->label('Полное описание')
+                                                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                                                    ]),
+                                                                Forms\Components\Tabs\Tab::make('🇩🇪 Deutsch')
+                                                                    ->schema([
+                                                                        Forms\Components\TextInput::make('name_de')
+                                                                            ->label('Produktname')
+                                                                            ->maxLength(255),
+                                                                        Forms\Components\Textarea::make('short_description_de')
+                                                                            ->label('Kurzbeschreibung')
+                                                                            ->rows(2)
+                                                                            ->maxLength(300),
+                                                                        Forms\Components\RichEditor::make('description_de')
+                                                                            ->label('Vollständige Beschreibung')
+                                                                            ->toolbarButtons(['bold', 'italic', 'underline', 'strike', 'bulletList', 'orderedList', 'h2', 'h3', 'link', 'blockquote', 'undo', 'redo']),
+                                                                    ]),
                                                             ])
                                                             ->columnSpanFull(),
                                                     ]),
@@ -116,10 +174,14 @@ class ProductResource extends Resource
                                                     ->icon('heroicon-o-cube')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('price')
-                                                            ->label('Fiyat')
+                                                            ->label('Birim Fiyat (USD)')
                                                             ->numeric()
-                                                            ->prefix('₺')
-                                                            ->placeholder('0.00'),
+                                                            ->prefix('$')
+                                                            ->placeholder('Boş = kategori fiyatı')
+                                                            ->helperText(fn ($record) => $record?->category?->price
+                                                                ? 'Kategori fiyatı: $' . number_format($record->category->price, 2)
+                                                                : 'Kategori fiyatı tanımlı değil'
+                                                            ),
 
                                                         Forms\Components\TextInput::make('stock')
                                                             ->label('Stok Adedi')
@@ -266,20 +328,61 @@ class ProductResource extends Resource
                                     ->description('Google ve diğer arama motorlarında nasıl görüneceğini ayarlayın')
                                     ->icon('heroicon-o-magnifying-glass')
                                     ->schema([
-                                        Forms\Components\TextInput::make('meta_title')
-                                            ->label('Sayfa Başlığı')
-                                            ->placeholder('Arama sonuçlarında görünecek başlık')
-                                            ->maxLength(70)
-                                            ->prefixIcon('heroicon-o-document-text')
-                                            ->helperText(fn (?string $state): string => ($state ? strlen($state) : 0) . '/70 karakter')
-                                            ->columnSpanFull(),
-
-                                        Forms\Components\Textarea::make('meta_description')
-                                            ->label('Sayfa Açıklaması')
-                                            ->placeholder('Arama sonuçlarında başlığın altında görünecek kısa açıklama...')
-                                            ->maxLength(160)
-                                            ->rows(3)
-                                            ->helperText(fn (?string $state): string => ($state ? strlen($state) : 0) . '/160 karakter')
+                                        Forms\Components\Tabs::make('SEO Dilleri')
+                                            ->tabs([
+                                                Forms\Components\Tabs\Tab::make('🇹🇷 Türkçe')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('meta_title_tr')
+                                                            ->label('Sayfa Başlığı')
+                                                            ->maxLength(70)
+                                                            ->helperText(fn (?string $state): string => ($state ? strlen($state) : 0) . '/70 karakter'),
+                                                        Forms\Components\Textarea::make('meta_description_tr')
+                                                            ->label('Sayfa Açıklaması')
+                                                            ->maxLength(160)
+                                                            ->rows(3)
+                                                            ->helperText(fn (?string $state): string => ($state ? strlen($state) : 0) . '/160 karakter'),
+                                                    ]),
+                                                Forms\Components\Tabs\Tab::make('🇬🇧 English')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('meta_title_en')
+                                                            ->label('Page Title')
+                                                            ->maxLength(70),
+                                                        Forms\Components\Textarea::make('meta_description_en')
+                                                            ->label('Page Description')
+                                                            ->maxLength(160)
+                                                            ->rows(3),
+                                                    ]),
+                                                Forms\Components\Tabs\Tab::make('🇸🇦 العربية')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('meta_title_ar')
+                                                            ->label('عنوان الصفحة')
+                                                            ->maxLength(70),
+                                                        Forms\Components\Textarea::make('meta_description_ar')
+                                                            ->label('وصف الصفحة')
+                                                            ->maxLength(160)
+                                                            ->rows(3),
+                                                    ]),
+                                                Forms\Components\Tabs\Tab::make('🇷🇺 Русский')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('meta_title_ru')
+                                                            ->label('Заголовок страницы')
+                                                            ->maxLength(70),
+                                                        Forms\Components\Textarea::make('meta_description_ru')
+                                                            ->label('Описание страницы')
+                                                            ->maxLength(160)
+                                                            ->rows(3),
+                                                    ]),
+                                                Forms\Components\Tabs\Tab::make('🇩🇪 Deutsch')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('meta_title_de')
+                                                            ->label('Seitentitel')
+                                                            ->maxLength(70),
+                                                        Forms\Components\Textarea::make('meta_description_de')
+                                                            ->label('Seitenbeschreibung')
+                                                            ->maxLength(160)
+                                                            ->rows(3),
+                                                    ]),
+                                            ])
                                             ->columnSpanFull(),
                                     ]),
                             ]),
@@ -296,6 +399,7 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('images')
                     ->label('')
+                    ->disk('public')
                     ->circular()
                     ->size(45)
                     ->stacked()
@@ -316,6 +420,17 @@ class ProductResource extends Resource
                     ->searchable()
                     ->badge()
                     ->color('gray'),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Fiyat')
+                    ->getStateUsing(fn ($record) => $record->price ?? $record->category?->price)
+                    ->formatStateUsing(fn ($state, $record) => $state
+                        ? ('$' . number_format((float)$state, 2) . ($record->price ? '' : ' *'))
+                        : '—')
+                    ->tooltip(fn ($record) => !$record->price && $record->category?->price
+                        ? '* Kategori fiyatından alınıyor'
+                        : null)
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('stock')
                     ->label('Stok')

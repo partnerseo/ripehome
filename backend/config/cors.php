@@ -17,17 +17,22 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'storage/*'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    'allowed_origins' => ['*'], // Allow all origins for development
+    'allowed_origins' => array_filter(array_unique([
+        env('FRONTEND_URL', 'http://localhost:5173'),
+        env('APP_URL',      'http://localhost:8000'),
+        'https://ripehome.com.tr',
+        'https://www.ripehome.com.tr',
+    ])),
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'],
 
     'exposed_headers' => [],
 
-    'max_age' => 0,
+    'max_age' => 86400,
 
     'supports_credentials' => true,
 

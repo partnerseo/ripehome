@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,3 +15,7 @@ Route::get('/test', function () {
         'php_version' => PHP_VERSION
     ]);
 });
+
+// SEO: kök seviyede sitemap & robots (nginx exact-match → backend)
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+Route::get('/robots.txt', [SitemapController::class, 'robots']);

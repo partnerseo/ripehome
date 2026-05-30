@@ -52,7 +52,7 @@ class CategoryController extends Controller
     public function show($slug)
     {
         try {
-            $category = Category::where('slug', $slug)
+            $category = Category::slug($slug)
                 ->where('is_active', true)
                 ->withCount('products')
                 ->firstOrFail();

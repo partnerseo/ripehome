@@ -7,10 +7,12 @@ use App\Models\Setting;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 
 class SettingResource extends Resource
 {
+    use Translatable;
     protected static ?string $model = Setting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
@@ -146,6 +148,39 @@ class SettingResource extends Resource
                                     ->searchable()
                                     ->placeholder('Sayfa veya kategori seçin')
                                     ->helperText('Butonun tıklandığında gideceği sayfayı seçin'),
+                            ])
+                            ->columns(2),
+
+                        Forms\Components\Tabs\Tab::make('Video')
+                            ->icon('heroicon-o-play-circle')
+                            ->schema([
+                                Forms\Components\FileUpload::make('video_file')
+                                    ->label('MP4 Video Dosyası')
+                                    ->disk('public')
+                                    ->directory('videos')
+                                    ->visibility('public')
+                                    ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg'])
+                                    ->maxSize(204800)
+                                    ->helperText('MP4 formatı önerilir. Maks 200MB.')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('video_url')
+                                    ->label('YouTube / Video URL (Alternatif)')
+                                    ->url()
+                                    ->placeholder('https://youtube.com/watch?v=...')
+                                    ->helperText('Dosya yüklenmemişse URL kullanılır.')
+                                    ->maxLength(500)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('video_title')
+                                    ->label('Video Başlığı')
+                                    ->placeholder('Marka Hikayemiz')
+                                    ->maxLength(255),
+
+                                Forms\Components\TextInput::make('video_subtitle')
+                                    ->label('Video Alt Başlığı')
+                                    ->placeholder('Doğallık, kalite ve şıklık...')
+                                    ->maxLength(255),
                             ])
                             ->columns(2),
 

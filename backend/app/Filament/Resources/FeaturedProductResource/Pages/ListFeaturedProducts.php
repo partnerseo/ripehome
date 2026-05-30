@@ -4,6 +4,7 @@ namespace App\Filament\Resources\FeaturedProductResource\Pages;
 
 use App\Filament\Resources\FeaturedProductResource;
 use Filament\Actions;
+use Filament\Actions\LocaleSwitcher;
 use Filament\Resources\Pages\ListRecords;
 
 class ListFeaturedProducts extends ListRecords
@@ -13,6 +14,7 @@ class ListFeaturedProducts extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             Actions\CreateAction::make(),
         ];
     }

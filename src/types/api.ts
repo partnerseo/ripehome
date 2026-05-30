@@ -108,6 +108,13 @@ export interface Settings {
     button_text?: string;
     button_link?: string;
   };
+  about_hero_image?: string;
+  video?: {
+    url?: string;
+    file?: string;
+    title?: string;
+    subtitle?: string;
+  };
 }
 
 export interface PaginationMeta {

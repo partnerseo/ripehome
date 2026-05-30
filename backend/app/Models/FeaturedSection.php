@@ -4,10 +4,14 @@ namespace App\Models;
 
 use App\Traits\OptimizesImages;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class FeaturedSection extends Model
 {
     use OptimizesImages;
+    use HasTranslations;
+
+    public array $translatable = ['title', 'description', 'button_text'];
 
     protected array $optimizableImages = [
         'image' => [

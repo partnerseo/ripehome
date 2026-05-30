@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
+    use HasTranslations;
+
+    public array $translatable = ['title', 'content', 'meta_title', 'meta_description'];
     protected $fillable = [
         'title',
         'slug',

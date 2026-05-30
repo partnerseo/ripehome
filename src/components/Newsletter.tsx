@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mail, Check } from 'lucide-react';
 import { submitContact } from '../lib/api';
 
 const Newsletter = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -12,7 +14,7 @@ const Newsletter = () => {
     e.preventDefault();
     
     if (!email) {
-      setError('Lütfen e-posta adresinizi girin');
+      setError(t('home.emailRequired'));
       return;
     }
 
@@ -32,10 +34,10 @@ const Newsletter = () => {
         setEmail('');
         setTimeout(() => setSuccess(false), 5000);
       } else {
-        setError(result.message || 'Bir hata oluştu');
+        setError(result.message || t('common.error'));
       }
     } catch (err) {
-      setError('Bir hata oluştu, lütfen tekrar deneyin');
+      setError(t('common.tryAgain'));
     } finally {
       setLoading(false);
     }
@@ -49,11 +51,11 @@ const Newsletter = () => {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <Mail className="w-12 h-12 text-[#8B7355] mx-auto mb-6" strokeWidth={1.5} />
-        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-800 mb-4 font-light">
-          Yeni Koleksiyonlardan ve Özel Fırsatlardan<br />İlk Siz Haberdar Olun
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-800 mb-4 font-light whitespace-pre-line">
+          {t('home.newsletter')}
         </h2>
         <p className="font-sans text-neutral-600 text-lg mb-8">
-          Doğal dokuların dünyasına özel erişim kazanın
+          {t('home.newsletterSubtitle')}
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
@@ -61,7 +63,7 @@ const Newsletter = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-posta adresiniz"
+            placeholder={t('home.emailPlaceholder')}
             disabled={loading || success}
             className="flex-1 px-4 md:px-6 py-3 md:py-4 bg-white border-2 border-[#E5DDD1] focus:border-[#C9B7A1] focus:outline-none font-sans text-neutral-800 transition-colors duration-300 text-sm md:text-base disabled:opacity-50"
           />
@@ -70,12 +72,12 @@ const Newsletter = () => {
             disabled={loading || success}
             className="px-6 md:px-8 py-3 md:py-4 bg-[#8B7355] text-white hover:bg-[#6F5C46] transition-colors duration-300 font-sans tracking-wide text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {loading ? 'Gönderiliyor...' : success ? (
+            {loading ? t('common.submitting') : success ? (
               <>
                 <Check className="w-4 h-4" />
-                Başarılı!
+                {t('home.subscribeSuccess')}
               </>
-            ) : 'Abone Ol'}
+            ) : t('home.subscribe')}
           </button>
         </form>
 
@@ -84,7 +86,7 @@ const Newsletter = () => {
         )}
         {success && (
           <p className="mt-4 text-green-600 font-sans text-sm">
-            Teşekkürler! E-posta listemize eklendiniz.
+            {t('home.subscribeThank')}
           </p>
         )}
       </div>

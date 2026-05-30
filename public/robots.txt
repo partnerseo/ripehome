@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ripehome.com.tr/sitemap.xml

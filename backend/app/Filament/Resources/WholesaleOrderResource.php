@@ -31,6 +31,17 @@ class WholesaleOrderResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('Üye Bilgisi')
+                    ->schema([
+                        Forms\Components\Placeholder::make('member_info')
+                            ->label('Kayıtlı Üye')
+                            ->content(fn ($record) => $record?->member
+                                ? "{$record->member->ad} {$record->member->soyad}" . ($record->member->firma ? " — {$record->member->firma}" : '') . " ({$record->member->ulke})"
+                                : 'Üye girişi yapılmadan gönderildi'),
+                    ])
+                    ->collapsed(false)
+                    ->collapsible(),
+
                 Forms\Components\Section::make('Şirket Bilgileri')
                     ->schema([
                         Forms\Components\TextInput::make('company_name')
@@ -149,6 +160,15 @@ class WholesaleOrderResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('member.ad')
+                    ->label('Üye')
+                    ->getStateUsing(fn ($record) => $record->member
+                        ? "{$record->member->ad} {$record->member->soyad}"
+                        : '—')
+                    ->badge()
+                    ->color(fn ($record) => $record->member ? 'success' : 'gray')
+                    ->searchable(false),
 
                 Tables\Columns\TextColumn::make('company_name')
                     ->label('Şirket Adı')

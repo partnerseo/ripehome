@@ -74,7 +74,8 @@ class ImageOptimizer
         try {
             $imagick = new \Imagick($fullPath);
 
-            // Profil bilgilerini temizle (EXIF vb.)
+            // EXIF orientation'a göre pikselleri döndür, sonra EXIF'i temizle
+            $imagick->autoOrientImage();
             $imagick->stripImage();
 
             // Boyut küçültme
@@ -122,7 +123,7 @@ class ImageOptimizer
             $dimensions = "{$maxWidth}x{$maxHeight}>";
             $escapedPath = escapeshellarg($fullPath);
 
-            $command = "{$convertBin} {$escapedPath} -resize " . escapeshellarg($dimensions) .
+            $command = "{$convertBin} {$escapedPath} -auto-orient -resize " . escapeshellarg($dimensions) .
                 " -strip -quality {$quality} -interlace Plane {$escapedPath}";
 
             exec($command, $output, $returnCode);

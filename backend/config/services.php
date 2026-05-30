@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'netgsm' => [
+        'username' => env('NETGSM_USERNAME', ''),
+        'password' => env('NETGSM_PASSWORD', ''),
+        'header'   => env('NETGSM_HEADER', 'RIPEHOME'),
+    ],
+
 ];

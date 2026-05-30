@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface BrandProps {
   brand?: {
@@ -14,11 +15,12 @@ interface BrandProps {
 
 const BrandPhilosophy = ({ brand }: BrandProps) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  const title = brand?.title || 'Doğallık, Kalite ve Şıklık\nEv Tekstilinde Buluşuyor';
-  const subtitle = brand?.subtitle || 'Pamuk, keten ve muslinin zamansız dokusu evinizde.';
-  const description = brand?.description || 'Her ürün, doğal liflerin benzersiz dokusunu ve zanaatkarlığın inceliğini bir araya getiriyor. Evinize sıcaklık katarken, doğaya saygı duyarak üretilen koleksiyonlarımızla lüksü yeniden tanımlıyoruz.';
-  const buttonText = brand?.button_text || 'Marka Hikayemizi Keşfet';
+  const title = brand?.title || t('home.brandDefaultTitle');
+  const subtitle = brand?.subtitle || t('home.brandDefaultSubtitle');
+  const description = brand?.description || t('home.brandDefaultDesc');
+  const buttonText = brand?.button_text || t('home.brandDefaultButton');
   const buttonLink = brand?.button_link || '/hakkimizda';
   const bgImage = brand?.image || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&auto=format&fit=crop';
 

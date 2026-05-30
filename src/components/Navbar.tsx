@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Menu, X, ShoppingBag, User, LogOut } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { getCategories } from '../lib/api';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { useLang, useLangNavigate } from '../hooks/useLang';
+import LanguageSwitcher from './LanguageSwitcher';
 import type { Category } from '../types/api';
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const navigate = useLangNavigate();
+  const lang = useLang();
+  const { t } = useTranslation();
   const { cartCount } = useCart();
+  const { member, isAuthenticated, isLoading: authLoading, openAuthModal } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
@@ -37,60 +43,73 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <div className="relative flex items-center justify-between">
+          {/* Logo + Made in Turkey (desktop) */}
+          <div className="flex items-center gap-3">
             <button onClick={() => navigate('/')} className="flex items-center">
-              <img 
-                src="/ripehomelogo.jpg" 
-                alt="Ripe Home Logo" 
+              <img
+                src="/ripehomelogo.jpg"
+                alt="Ripe Home Logo"
                 className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 hover:opacity-80"
               />
             </button>
+            <div className="flex flex-col items-center gap-px pl-3 border-l-2 border-[#C9B7A1]">
+              <span className="font-sans text-[7px] tracking-[0.25em] uppercase text-neutral-400 leading-none">MADE IN</span>
+              <div className="flex items-center gap-1 mt-[2px]">
+                <svg width="10" height="10" viewBox="0 0 20 20" className="flex-shrink-0">
+                  <circle cx="10" cy="10" r="9" fill="#E30A17"/>
+                  <circle cx="8.5" cy="10" r="5.5" fill="white"/>
+                  <circle cx="10" cy="10" r="4" fill="#E30A17"/>
+                  <polygon points="14,10 15.5,8 15.5,12" fill="white"/>
+                </svg>
+                <span className="font-serif text-[13px] tracking-[0.12em] text-neutral-800 leading-none font-medium">TURKEY</span>
+              </div>
+            </div>
+          </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-10">
-            <button 
+          <nav className="hidden xl:flex items-center gap-6">
+            <button
               onClick={() => navigate('/')}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group whitespace-nowrap"
             >
-              Anasayfa
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+              {t('nav.home')}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
             </button>
 
-            <button 
+            <button
               onClick={() => navigate('/hakkimizda')}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group whitespace-nowrap"
             >
-              Hakkımızda
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+              {t('nav.about')}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
             </button>
 
             {/* Ürünlerimiz Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setIsProductsOpen(true)}
               onMouseLeave={() => setIsProductsOpen(false)}
             >
-              <button className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide flex items-center gap-2 group">
-                Ürünlerimiz
-                <svg 
-                  className={`w-4 h-4 transition-transform duration-300 ${isProductsOpen ? 'rotate-180' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
+              <button className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide flex items-center gap-1.5 group whitespace-nowrap">
+                {t('nav.products')}
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-300 ${isProductsOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-                <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
               </button>
 
               {/* Dropdown Menu */}
               {isProductsOpen && categories.length > 0 && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
-                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-80 py-4 max-h-[32rem] overflow-y-auto">
-                    <div className="px-6 pb-3 border-b border-gray-100">
+                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-72 py-3 max-h-[32rem] overflow-y-auto">
+                    <div className="px-5 pb-2 border-b border-gray-100">
                       <p className="text-xs uppercase tracking-wider text-gray-500 font-medium">
-                        Kategorilerimiz
+                        {t('nav.categories')}
                       </p>
                     </div>
                     {categories.map(cat => (
@@ -100,23 +119,23 @@ const Navbar = () => {
                           navigate(`/kategori/${cat.slug}`);
                           setIsProductsOpen(false);
                         }}
-                        className="block w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors group/item"
+                        className="block w-full text-left px-5 py-3 hover:bg-gray-50 transition-colors group/item"
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <div className="font-medium text-gray-900 group-hover/item:text-gray-900">
+                            <div className="font-medium text-gray-900 text-sm">
                               {cat.name}
                             </div>
                             {cat.products_count > 0 && (
-                              <div className="text-xs text-gray-500 mt-1">
-                                {cat.products_count} ürün
+                              <div className="text-xs text-gray-500 mt-0.5">
+                                {t('nav.productCount', { count: cat.products_count })}
                               </div>
                             )}
                           </div>
-                          <svg 
-                            className="w-4 h-4 text-gray-400 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all" 
-                            fill="none" 
-                            stroke="currentColor" 
+                          <svg
+                            className="w-4 h-4 text-gray-400 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -129,88 +148,136 @@ const Navbar = () => {
               )}
             </div>
 
-            <button 
-              onClick={() => navigate('/iletisim')}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group"
+            <button
+              onClick={() => navigate('/blog')}
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group whitespace-nowrap"
             >
-              İletişim
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+              {t('nav.blog')}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
             </button>
 
-            {/* Sepet + Toptan Sipariş */}
+            <button
+              onClick={() => navigate('/sss')}
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group whitespace-nowrap"
+            >
+              {t('faq.label')}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+
+            <button
+              onClick={() => navigate('/iletisim')}
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 tracking-wide relative group whitespace-nowrap"
+            >
+              {t('nav.contact')}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+
+            {/* Ayırıcı */}
+            <div className="h-5 w-px bg-gray-200"></div>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
+            {/* Üye Giriş / Profil */}
+            {authLoading ? (
+              /* Auth yüklenirken iskelet — "Giriş" gösterme */
+              <div className="w-16 h-6 bg-gray-100 rounded-full animate-pulse" />
+            ) : isAuthenticated ? (
+              <button
+                onClick={() => navigate('/uye-paneli')}
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-gray-900 transition whitespace-nowrap"
+              >
+                <div className="w-7 h-7 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-[11px] font-bold">{member?.ad?.[0]?.toUpperCase()}</span>
+                </div>
+                <span>{member?.ad}</span>
+              </button>
+            ) : (
+              <button
+                onClick={openAuthModal}
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-gray-900 transition whitespace-nowrap"
+              >
+                <User className="w-4 h-4" />
+                <span>{t('nav.login')}</span>
+              </button>
+            )}
+
+            {/* Toptan Sipariş */}
             <button
               onClick={() => navigate('/toptan-siparis')}
-              className="group relative inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              className={`group relative inline-flex items-center gap-2 px-4 py-2.5 text-white rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                cartCount > 0
+                  ? 'bg-[#8B7355] hover:bg-[#6F5C46] shadow-lg shadow-[#8B7355]/40 animate-pulse-slow'
+                  : 'bg-gray-900 hover:bg-gray-700'
+              }`}
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative z-10">
+              <span className="relative">
                 <ShoppingBag className="w-4 h-4" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-white text-[#8B7355] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
               </span>
-              <span className="relative z-10 tracking-wide text-sm">Toptan Sipariş</span>
-              <svg className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <span>{cartCount > 0 ? `${cartCount} ürün — Sipariş Ver` : t('nav.wholesale')}</span>
             </button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-neutral-800" />
-            ) : (
-              <Menu className="w-6 h-6 text-neutral-800" />
-            )}
-          </button>
+          {/* Mobile: Language + Menu Button */}
+          <div className="xl:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-neutral-800" />
+              ) : (
+                <Menu className="w-6 h-6 text-neutral-800" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-4 bg-white mt-4">
+          <div className="xl:hidden border-t border-gray-100 py-4 bg-white mt-4">
             <nav className="flex flex-col space-y-2">
-              <button 
+              <button
                 onClick={() => {
                   navigate('/');
                   setIsMobileMenuOpen(false);
                 }}
                 className="px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition text-left"
               >
-                Anasayfa
+                {t('nav.home')}
               </button>
-              
-              <button 
+
+              <button
                 onClick={() => {
                   navigate('/hakkimizda');
                   setIsMobileMenuOpen(false);
                 }}
                 className="px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition text-left"
               >
-                Hakkımızda
+                {t('nav.about')}
               </button>
-              
+
               <div>
                 <button
                   onClick={() => setIsProductsOpen(!isProductsOpen)}
                   className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg flex justify-between items-center transition"
                 >
-                  Ürünlerimiz
-                  <svg 
-                    className={`w-4 h-4 transition ${isProductsOpen ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
+                  {t('nav.products')}
+                  <svg
+                    className={`w-4 h-4 transition ${isProductsOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                
+
                 {isProductsOpen && (
                   <div className="pl-6 pr-4 py-2 space-y-1">
                     {categories.map(cat => (
@@ -230,16 +297,36 @@ const Navbar = () => {
                 )}
               </div>
 
-              <button 
+              <button
+                onClick={() => {
+                  navigate('/blog');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition text-left"
+              >
+                {t('nav.blog')}
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/sss');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition text-left"
+              >
+                {t('faq.label')}
+              </button>
+
+              <button
                 onClick={() => {
                   navigate('/iletisim');
                   setIsMobileMenuOpen(false);
                 }}
                 className="px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition text-left"
               >
-                İletişim
+                {t('nav.contact')}
               </button>
-              
+
               <button
                 onClick={() => {
                   navigate('/toptan-siparis');
@@ -255,7 +342,7 @@ const Navbar = () => {
                     </span>
                   )}
                 </span>
-                Toptan Sipariş
+                {t('nav.wholesale')}
               </button>
             </nav>
           </div>

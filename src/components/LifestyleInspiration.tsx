@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getFeaturedProducts } from '../lib/api';
 import type { FeaturedProduct } from '../types/api';
 
 const LifestyleInspiration = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [products, setProducts] = useState<FeaturedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,10 +50,10 @@ const LifestyleInspiration = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-neutral-800 mb-4 font-light">
-            Yaşam Tarzı İlhamı
+            {t('home.lifestyleTitle')}
           </h2>
           <p className="font-sans text-neutral-600 text-lg">
-            Ürünlerimizle hayatınıza dokunun
+            {t('home.lifestyleSubtitle')}
           </p>
         </div>
 

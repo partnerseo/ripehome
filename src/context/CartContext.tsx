@@ -28,7 +28,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<WholesaleOrderItem[]>(loadCart);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch {
+      // localStorage erişimi kısıtlı (iOS özel mod vb.) — sessizce geç
+    }
   }, [cart]);
 
   const addToCart = (item: WholesaleOrderItem) => {

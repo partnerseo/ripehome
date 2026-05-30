@@ -30,10 +30,41 @@ class TagResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Etiket Adı')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Tabs::make('Diller')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('🇹🇷 Türkçe')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_tr')
+                                    ->label('Etiket Adı')
+                                    ->required()
+                                    ->maxLength(255),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('🇬🇧 English')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_en')
+                                    ->label('Tag Name')
+                                    ->maxLength(255),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('🇸🇦 العربية')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_ar')
+                                    ->label('اسم العلامة')
+                                    ->maxLength(255),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('🇷🇺 Русский')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_ru')
+                                    ->label('Название тега')
+                                    ->maxLength(255),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('🇩🇪 Deutsch')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_de')
+                                    ->label('Tag-Name')
+                                    ->maxLength(255),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
 
                 Forms\Components\ColorPicker::make('color')
                     ->label('Renk')

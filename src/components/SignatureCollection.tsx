@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getFeaturedProducts } from '../lib/api';
 import type { FeaturedProduct } from '../types/api';
 
 export default function SignatureCollection() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState<FeaturedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getFeaturedProducts()
       .then(data => {
-        console.log('✅ Featured products loaded:', data);
         setProducts(data || []);
       })
       .catch(error => {
@@ -57,15 +58,15 @@ export default function SignatureCollection() {
         <div className="text-center mb-16">
           <div className="inline-block">
             <span className="text-sm uppercase tracking-[0.3em] text-gray-500 font-medium">
-              Premium Koleksiyon
+              {t('home.premiumCollection')}
             </span>
             <h2 className="text-5xl font-light tracking-tight text-gray-900 mt-4 mb-6">
-              Öne Çıkan Ürünlerimiz
+              {t('home.featuredProducts')}
             </h2>
             <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gray-900 to-transparent mx-auto"></div>
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
-            Özenle seçilmiş, en kaliteli ürünlerimizi keşfedin
+            {t('home.featuredSubtitle')}
           </p>
         </div>
 
@@ -89,7 +90,7 @@ export default function SignatureCollection() {
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                      <span className="text-gray-400">Görsel Yok</span>
+                      <span className="text-gray-400">{t('common.noImage')}</span>
                     </div>
                   )}
                   
@@ -139,7 +140,7 @@ export default function SignatureCollection() {
                   >
                     <span className="absolute inset-0 w-full h-full bg-gray-800 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
                     <span className="relative z-10">
-                      Detayları Gör
+                      {t('common.viewDetails')}
                     </span>
                     <svg className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

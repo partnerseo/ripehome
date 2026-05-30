@@ -1,35 +1,37 @@
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLangNavigate } from '../hooks/useLang';
 import { Award, Leaf, Truck, Shield, Star, Package } from 'lucide-react';
 
 const WhyChooseUs = () => {
-  const navigate = useNavigate();
+  const navigate = useLangNavigate();
+  const { t } = useTranslation();
 
   const features = [
     {
       icon: 'star',
-      title: 'Premium Kalite',
-      description: '%100 doğal pamuk ve bambu liflerinden üretilmiş Oeko-Tex sertifikalı ürünler',
+      title: t('home.premiumQuality'),
+      description: t('home.premiumQualityDesc'),
       link: '/hakkimizda',
       color: 'from-amber-500 to-yellow-600'
     },
     {
       icon: 'leaf',
-      title: 'Doğal & Ekolojik',
-      description: 'Zararlı kimyasal içermeyen, çevre dostu ve sürdürülebilir üretim',
+      title: t('home.naturalEcological'),
+      description: t('home.naturalEcologicalDesc'),
       link: '/hakkimizda',
       color: 'from-green-500 to-emerald-600'
     },
     {
       icon: 'truck',
-      title: 'Hızlı Kargo',
-      description: 'Türkiye geneline hızlı teslimat, 500 TL üzeri ücretsiz kargo',
+      title: t('home.fastShipping'),
+      description: t('home.fastShippingDesc'),
       link: '/kargo-teslimat',
       color: 'from-blue-500 to-indigo-600'
     },
     {
       icon: 'package',
-      title: 'Toptan Avantajları',
-      description: 'İşletmelere özel fiyatlar ve toplu sipariş kolaylığı',
+      title: t('home.wholesaleAdvantages'),
+      description: t('home.wholesaleAdvantagesDesc'),
       link: '/toptan-siparis',
       color: 'from-purple-500 to-pink-600'
     },
@@ -54,15 +56,15 @@ const WhyChooseUs = () => {
         <div className="text-center mb-12 md:mb-20">
           <div className="inline-block">
             <span className="text-sm uppercase tracking-[0.3em] text-gray-500 font-medium">
-              Avantajlarımız
+              {t('home.advantages')}
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-gray-900 mt-4 mb-6">
-              Neden Ripe Home?
+              {t('home.whyRipeHome')}
             </h2>
             <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gray-900 to-transparent mx-auto"></div>
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
-            Kalite, doğallık ve güvenin adresi
+            {t('home.advantagesSubtitle')}
           </p>
         </div>
 
@@ -97,7 +99,7 @@ const WhyChooseUs = () => {
                   
                   {/* Detay Butonu */}
                   <div className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>Detaylar</span>
+                    <span>{t('common.details')}</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -118,7 +120,7 @@ const WhyChooseUs = () => {
         {/* Alt Bilgi */}
         <div className="mt-16 text-center">
           <p className="text-gray-600 text-lg mb-6">
-            Sorularınız mı var? Size yardımcı olmaktan mutluluk duyarız.
+            {t('home.questionsHelp')}
           </p>
           <button
             onClick={() => navigate('/iletisim')}
@@ -127,7 +129,7 @@ const WhyChooseUs = () => {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <span>Bize Ulaşın</span>
+            <span>{t('common.contactUs')}</span>
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

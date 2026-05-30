@@ -2,10 +2,42 @@ import type { Category, Product, HomeSlider, FeaturedSection, FeaturedProduct, P
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
+function getCurrentLocale(): string {
+  const match = window.location.pathname.match(/^\/([a-z]{2})(\/|$)/);
+  return match ? match[1] : (localStorage.getItem('ripehome-lang') || 'tr');
+}
+
+function withLocale(url: string): string {
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}locale=${getCurrentLocale()}`;
+}
+
 // Kategorileri çek
+export async function getSiteSeo(): Promise<{ title?: string; description?: string }> {
+  try {
+    const response = await fetch(withLocale(`${API_URL}/ayarlar`));
+    const data = await response.json();
+    const seo = data?.data?.seo || {};
+    return { title: seo.site_title || undefined, description: seo.site_description || undefined };
+  } catch {
+    return {};
+  }
+}
+
+export async function getFaq(): Promise<Array<{ q: string; a: string }>> {
+  try {
+    const response = await fetch(withLocale(`${API_URL}/faq`));
+    const data = await response.json();
+    return Array.isArray(data?.data) ? data.data : [];
+  } catch (error) {
+    console.error('SSS yüklenemedi:', error);
+    return [];
+  }
+}
+
 export async function getCategories(): Promise<Category[]> {
   try {
-    const response = await fetch(`${API_URL}/kategoriler`);
+    const response = await fetch(withLocale(`${API_URL}/kategoriler`));
     const data: ApiResponse<Category[]> = await response.json();
     if (data.success && data.data) {
       return data.data;
@@ -20,7 +52,7 @@ export async function getCategories(): Promise<Category[]> {
 // Tekil kategori
 export async function getCategory(slug: string): Promise<Category | null> {
   try {
-    const response = await fetch(`${API_URL}/kategoriler/${slug}`);
+    const response = await fetch(withLocale(`${API_URL}/kategoriler/${slug}`));
     const data: ApiResponse<Category> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -32,7 +64,7 @@ export async function getCategory(slug: string): Promise<Category | null> {
 // Ürünleri çek
 export async function getProducts(page = 1, perPage = 12) {
   try {
-    const response = await fetch(`${API_URL}/urunler?page=${page}&per_page=${perPage}`);
+    const response = await fetch(withLocale(`${API_URL}/urunler?page=${page}&per_page=${perPage}`));
     const data = await response.json();
     return data;
   } catch (error) {
@@ -45,7 +77,7 @@ export async function getProducts(page = 1, perPage = 12) {
 export async function getProductsByCategory(categorySlug: string, page = 1, perPage = 100) {
   try {
     const response = await fetch(
-      `${API_URL}/urunler/kategori/${categorySlug}?page=${page}&per_page=${perPage}`
+      withLocale(`${API_URL}/urunler/kategori/${categorySlug}?page=${page}&per_page=${perPage}`)
     );
     const data = await response.json();
     if (data.success) {
@@ -65,7 +97,7 @@ export async function getProductsByCategory(categorySlug: string, page = 1, perP
 // Tekil ürün
 export async function getProduct(slug: string): Promise<Product | null> {
   try {
-    const response = await fetch(`${API_URL}/urunler/${slug}`);
+    const response = await fetch(withLocale(`${API_URL}/urunler/${slug}`));
     const data: ApiResponse<Product> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -77,7 +109,7 @@ export async function getProduct(slug: string): Promise<Product | null> {
 // Anasayfa slider
 export async function getHomeSliders(): Promise<HomeSlider[]> {
   try {
-    const response = await fetch(`${API_URL}/anasayfa-slider`);
+    const response = await fetch(withLocale(`${API_URL}/anasayfa-slider`));
     const data: ApiResponse<HomeSlider[]> = await response.json();
     return data.success ? data.data : [];
   } catch (error) {
@@ -89,7 +121,7 @@ export async function getHomeSliders(): Promise<HomeSlider[]> {
 // Öne çıkan bölümler
 export async function getFeaturedSections(): Promise<FeaturedSection[]> {
   try {
-    const response = await fetch(`${API_URL}/one-cikan-bolumler`);
+    const response = await fetch(withLocale(`${API_URL}/one-cikan-bolumler`));
     const data: ApiResponse<FeaturedSection[]> = await response.json();
     return data.success ? data.data : [];
   } catch (error) {
@@ -101,7 +133,7 @@ export async function getFeaturedSections(): Promise<FeaturedSection[]> {
 // Öne çıkan ürünler
 export async function getFeaturedProducts(): Promise<FeaturedProduct[]> {
   try {
-    const response = await fetch(`${API_URL}/one-cikan-urunler`);
+    const response = await fetch(withLocale(`${API_URL}/one-cikan-urunler`));
     const data: ApiResponse<FeaturedProduct[]> = await response.json();
     return data.success ? data.data : [];
   } catch (error) {
@@ -113,7 +145,7 @@ export async function getFeaturedProducts(): Promise<FeaturedProduct[]> {
 // Sayfa içeriği
 export async function getPage(slug: string): Promise<Page | null> {
   try {
-    const response = await fetch(`${API_URL}/sayfalar/${slug}`);
+    const response = await fetch(withLocale(`${API_URL}/sayfalar/${slug}`));
     const data: ApiResponse<Page> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -125,7 +157,7 @@ export async function getPage(slug: string): Promise<Page | null> {
 // Site ayarları
 export async function getSettings(): Promise<Settings | null> {
   try {
-    const response = await fetch(`${API_URL}/ayarlar`);
+    const response = await fetch(withLocale(`${API_URL}/ayarlar`));
     const data: ApiResponse<Settings> = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
@@ -154,12 +186,48 @@ export async function submitContact(formData: {
   }
 }
 
+// Blog yazıları
+export async function getBlogPosts() {
+  try {
+    const response = await fetch(withLocale(`${API_URL}/blog`));
+    return await response.json();
+  } catch (error) {
+    console.error('Blog yazıları yüklenemedi:', error);
+    return [];
+  }
+}
+
+export async function getBlogPost(slug: string) {
+  try {
+    const response = await fetch(withLocale(`${API_URL}/blog/${slug}`));
+    return await response.json();
+  } catch (error) {
+    console.error('Blog yazısı yüklenemedi:', error);
+    return null;
+  }
+}
+
+// Müşteri yorumları
+export async function getTestimonials() {
+  try {
+    const response = await fetch(withLocale(`${API_URL}/yorumlar`));
+    return await response.json();
+  } catch (error) {
+    console.error('Yorumlar yüklenemedi:', error);
+    return [];
+  }
+}
+
 // Toptan sipariş oluştur
 export async function createWholesaleOrder(data: WholesaleOrderForm) {
   try {
+    const token = localStorage.getItem('ripehome_member_token');
+    const headers: HeadersInit = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     const response = await fetch(`${API_URL}/toptan-siparisler`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(data),
     });
     return response.json();

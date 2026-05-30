@@ -8,12 +8,21 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
 {
+    private function localizedSlug(): string
+    {
+        $loc = app()->getLocale();
+        if ($loc !== 'tr' && !empty($this->{'slug_' . $loc})) {
+            return $this->{'slug_' . $loc};
+        }
+        return $this->slug;
+    }
+
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
+            'slug' => $this->localizedSlug(),
             'description' => $this->description,
             'image' => ImageHelper::getStorageUrl($this->image),
             'order' => $this->order,
