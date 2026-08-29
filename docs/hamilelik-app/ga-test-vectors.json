@@ -1,0 +1,294 @@
+{
+    "_note": "Gebelik yasi motoru ortak test vektorleri. PHP ve TypeScript uygulamalari bu dosyayi okuyup ayni sonucu uretmelidir. Tum tarihler kullanicinin yerel takvim gunudur (saat degil).",
+    "vectors": [
+        {
+            "name": "SAT, standart 28 gunluk dongu",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "SAT, uzun dongu (35 gun) - TDT 7 gun ileri",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 35,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-12",
+                "due_date": "2026-10-19",
+                "ga_days": 161,
+                "week": 23,
+                "day": 0,
+                "display": "23h 0g",
+                "trimester": 2,
+                "days_left": 119
+            }
+        },
+        {
+            "name": "SAT, kisa dongu (21 gun) - TDT 7 gun geri",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 21,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2025-12-29",
+                "due_date": "2026-10-05",
+                "ga_days": 175,
+                "week": 25,
+                "day": 0,
+                "display": "25h 0g",
+                "trimester": 2,
+                "days_left": 105
+            }
+        },
+        {
+            "name": "Doktorun verdigi TDT girildi",
+            "method": "due_date",
+            "input_date": "2026-10-12",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "Gebe kalma tarihi biliniyor",
+            "method": "conception",
+            "input_date": "2026-01-19",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "IVF 5. gun blastosist transferi",
+            "method": "ivf_d5",
+            "input_date": "2026-01-24",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "IVF 3. gun embriyo transferi",
+            "method": "ivf_d3",
+            "input_date": "2026-01-22",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "Ilk gun - GA sifir",
+            "method": "lmp",
+            "input_date": "2026-06-22",
+            "cycle_length": 28,
+            "today": "2026-06-22",
+            "expected": {
+                "lmp_date": "2026-06-22",
+                "due_date": "2027-03-29",
+                "ga_days": 0,
+                "week": 0,
+                "day": 0,
+                "display": "0h 0g",
+                "trimester": 1,
+                "days_left": 280
+            }
+        },
+        {
+            "name": "Trimester siniri: 13h6g (son 1. trimester gunu)",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-04-12",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 97,
+                "week": 13,
+                "day": 6,
+                "display": "13h 6g",
+                "trimester": 1,
+                "days_left": 183
+            }
+        },
+        {
+            "name": "Trimester siniri: 14h0g (2. trimester basi)",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-04-13",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 98,
+                "week": 14,
+                "day": 0,
+                "display": "14h 0g",
+                "trimester": 2,
+                "days_left": 182
+            }
+        },
+        {
+            "name": "Trimester siniri: 27h6g (son 2. trimester gunu)",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-07-19",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 195,
+                "week": 27,
+                "day": 6,
+                "display": "27h 6g",
+                "trimester": 2,
+                "days_left": 85
+            }
+        },
+        {
+            "name": "Trimester siniri: 28h0g (3. trimester basi)",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-07-20",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 196,
+                "week": 28,
+                "day": 0,
+                "display": "28h 0g",
+                "trimester": 3,
+                "days_left": 84
+            }
+        },
+        {
+            "name": "Tam terminde: 40h0g",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-10-12",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 280,
+                "week": 40,
+                "day": 0,
+                "display": "40h 0g",
+                "trimester": 3,
+                "days_left": 0
+            }
+        },
+        {
+            "name": "Termin asimi: 41h3g - ilerleme %100de kilitlenir",
+            "method": "lmp",
+            "input_date": "2026-01-05",
+            "cycle_length": 28,
+            "today": "2026-10-22",
+            "expected": {
+                "lmp_date": "2026-01-05",
+                "due_date": "2026-10-12",
+                "ga_days": 290,
+                "week": 41,
+                "day": 3,
+                "display": "41h 3g",
+                "trimester": 3,
+                "days_left": -10
+            }
+        },
+        {
+            "name": "Artik yil: 29 Subat SAT",
+            "method": "lmp",
+            "input_date": "2024-02-29",
+            "cycle_length": 28,
+            "today": "2024-08-15",
+            "expected": {
+                "lmp_date": "2024-02-29",
+                "due_date": "2024-12-05",
+                "ga_days": 168,
+                "week": 24,
+                "day": 0,
+                "display": "24h 0g",
+                "trimester": 2,
+                "days_left": 112
+            }
+        },
+        {
+            "name": "Artik yili asan gebelik",
+            "method": "lmp",
+            "input_date": "2023-08-01",
+            "cycle_length": 28,
+            "today": "2024-03-01",
+            "expected": {
+                "lmp_date": "2023-08-01",
+                "due_date": "2024-05-07",
+                "ga_days": 213,
+                "week": 30,
+                "day": 3,
+                "display": "30h 3g",
+                "trimester": 3,
+                "days_left": 67
+            }
+        },
+        {
+            "name": "Yaz saati gecisi araligi (Mart)",
+            "method": "lmp",
+            "input_date": "2026-02-20",
+            "cycle_length": 28,
+            "today": "2026-04-05",
+            "expected": {
+                "lmp_date": "2026-02-20",
+                "due_date": "2026-11-27",
+                "ga_days": 44,
+                "week": 6,
+                "day": 2,
+                "display": "6h 2g",
+                "trimester": 1,
+                "days_left": 236
+            }
+        }
+    ]
+}
