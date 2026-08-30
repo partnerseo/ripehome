@@ -4,6 +4,7 @@ Gebelik haftası takibi, tetkik takvimi ve takip araçları. Türkiye pazarı, T
 
 - **[PLAN.md](PLAN.md)** — ürün ve teknik plan (kapsam, veri modeli, API, yol haritası)
 - **engine/** — gebelik yaşı motoru, PHP ve TypeScript olarak
+- **api/** — Laravel 11 API (kimlik + gebelik uçları)
 
 > Bu klasör ileride kendi deposuna taşınacak; ripehome ile kod paylaşımı yok.
 
@@ -70,3 +71,57 @@ Yeni bir senaryo eklerken betikteki `$cases` dizisine ekleyip yeniden üretin, s
 Plandaki tetkik haftaları ve tıbbi eşikler yaygın obstetrik pratiğe dayanır ve **yayına
 çıkmadan önce bir kadın doğum uzmanı tarafından gözden geçirilmelidir**. Uygulama teşhis
 koymaz, doz önermez — yönlendirir.
+
+
+## API
+
+Laravel 11 + Sanctum. Motor `api/composer.json` içinden `../engine/php` dizinine
+bağlanır — API kendi kopyasını tutmaz, iki taraf bu yüzden ayrışamaz.
+
+### Kurulum
+
+```bash
+cd api
+composer install
+cp .env.example .env && php artisan key:generate
+touch database/database.sqlite      # veya .env icinde MySQL ayarla
+php artisan migrate
+php artisan serve
+```
+
+### Uçlar
+
+| Yöntem | Yol | Not |
+|---|---|---|
+| POST | `/api/v1/auth/otp/request` | Kod ister. Yanıt her durumda 202 — e-posta varlığı sızdırılmaz |
+| POST | `/api/v1/auth/otp/verify` | Kodu doğrular, jeton döndürür. Kullanıcı yoksa oluşturulur |
+| GET | `/api/v1/me` | |
+| POST | `/api/v1/auth/logout` | Yalnızca o cihazın jetonunu iptal eder |
+| POST | `/api/v1/pregnancies` | Gebelik oluşturur; ikinci aktif kayıt 409 döner |
+| GET | `/api/v1/pregnancies/current` | Aktif gebelik + bugünkü hafta durumu |
+| POST | `/api/v1/pregnancies/{id}/redate` | USG düzeltmesi; en son ölçüm geçerli |
+| POST | `/api/v1/pregnancies/{id}/end` | Gebeliği kapatır (`birth` / `loss` / `other`) |
+
+### Kararlar
+
+**Giriş kodu hiçbir koşulda API yanıtında dönmez.** Hata ayıklama kolaylığı için
+bile: `APP_DEBUG` açıkken kodu yanıta koymak, üretimde debug açık unutulduğu anda
+herkesin herkesin hesabına girmesi demektir. Yerel geliştirmede kod log dosyasında.
+
+**Sınırlama gerçekten sayar.** E-posta ve IP sınırları `RateLimiter::hit` ile
+işler; sayacı her istekte yeniden yazan bir kurgu (örneğin `updateOrCreate`)
+sınırı hiç devreye sokmaz. Ayrıca rota seviyesinde `throttle:6,1` var.
+
+**Hafta kullanıcının saat dilimine göre hesaplanır.** Sunucu UTC'dedir; bu dönüşüm
+atlanırsa kullanıcı günün bir kısmında yanlış haftayı görür. Test bunu İstanbul ve
+Los Angeles kullanıcılarıyla aynı anda doğruluyor.
+
+**Kapanmış gebelikte hafta ve geri sayım dönmez.** `PregnancyResource` bu alanları
+yalnızca aktif gebelikte ekler.
+
+### Testler
+
+```bash
+cd api && php artisan test      # 50 test, 237 iddia
+./vendor/bin/pint --test        # kod stili
+```
