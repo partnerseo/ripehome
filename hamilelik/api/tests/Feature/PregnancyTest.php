@@ -98,13 +98,14 @@ class PregnancyTest extends TestCase
     }
 
     #[Test]
-    public function current_returns_404_when_there_is_no_active_pregnancy(): void
+    public function current_returns_null_when_there_is_no_active_pregnancy(): void
     {
         $this->actingAsUser();
 
+        // Hata değil, durum: istemci bunu kuruluma yönlendirme olarak okur.
         $this->getJson('/api/v1/pregnancies/current')
-            ->assertStatus(404)
-            ->assertJsonPath('code', 'no_active_pregnancy');
+            ->assertOk()
+            ->assertJsonPath('data', null);
     }
 
     #[Test]
@@ -121,7 +122,7 @@ class PregnancyTest extends TestCase
             ->assertJsonPath('data.ended_reason', 'loss')
             ->assertJsonMissingPath('data.gestational_age');
 
-        $this->getJson('/api/v1/pregnancies/current')->assertStatus(404);
+        $this->getJson('/api/v1/pregnancies/current')->assertOk()->assertJsonPath('data', null);
     }
 
     #[Test]

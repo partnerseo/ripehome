@@ -1,0 +1,24 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@engine": [
+        "../engine/ts/gestationalAge.ts"
+      ]
+    },
+    "types": [
+      "jest"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../engine/ts/gestationalAge.ts",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
+}

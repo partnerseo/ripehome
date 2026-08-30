@@ -5,6 +5,8 @@ Gebelik haftası takibi, tetkik takvimi ve takip araçları. Türkiye pazarı, T
 - **[PLAN.md](PLAN.md)** — ürün ve teknik plan (kapsam, veri modeli, API, yol haritası)
 - **engine/** — gebelik yaşı motoru, PHP ve TypeScript olarak
 - **api/** — Laravel 11 API (kimlik + gebelik uçları)
+- **app/** — Expo (React Native) mobil uygulama
+- **e2e/** — gerçek tarayıcıda uçtan uca akış testi
 
 > Bu klasör ileride kendi deposuna taşınacak; ripehome ile kod paylaşımı yok.
 
@@ -125,3 +127,38 @@ yalnızca aktif gebelikte ekler.
 cd api && php artisan test      # 50 test, 237 iddia
 ./vendor/bin/pint --test        # kod stili
 ```
+
+
+## Mobil uygulama
+
+Expo SDK 57, React Native 0.86, expo-router. Motor kopyalanmaz: `metro.config.js`
+içindeki `watchFolders` ile `../engine/ts` izlenir ve `@engine` takma adıyla
+içe aktarılır. Jest tarafında aynı iş `moduleDirectories` ile yapılır.
+
+```bash
+cd app
+npm install
+npm start          # Expo geliştirme sunucusu
+npm test           # 25 test (17'si paylaşılan motor vektörü)
+npm run typecheck
+```
+
+### Ekranlar
+
+| Yol | İş |
+|---|---|
+| `/` | Açılış kapısı: jeton ve aktif gebelik durumuna göre yönlendirir |
+| `/sign-in` | E-posta → tek kullanımlık kod → jeton |
+| `/onboarding` | Yöntem seçimi, tarih girişi, döngü uzunluğu, **canlı önizleme** |
+| `/home` | Hafta halkası, tahmini doğum, geri sayım |
+| `/week/[week]` | Hafta detayı (içerik Sprint 3'te bağlanacak) |
+
+**Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
+haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
+olmasının ilk somut karşılığı bu — çevrimdışı ana ekran da aynı yoldan gelecek.
+
+### Doğrulama
+
+Uygulama gerçek API'ye karşı gerçek tarayıcıda uçtan uca çalıştırıldı:
+giriş → kod → kurulum → ana ekran → hafta detayı, sıfır konsol hatası.
+Ekran görüntüleri `app/screenshots/`, betik `e2e/flow.mjs`.

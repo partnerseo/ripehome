@@ -21,14 +21,12 @@ class PregnancyController extends Controller
     {
         $pregnancy = $request->user()->pregnancies()->active()->with('redatings')->first();
 
-        if ($pregnancy === null) {
-            return response()->json([
-                'message' => 'Aktif gebelik kaydı yok.',
-                'code' => 'no_active_pregnancy',
-            ], 404);
-        }
-
-        return response()->json(['data' => new PregnancyResource($pregnancy)]);
+        // Aktif gebelik yokluğu bir hata değil, normal bir durum: yeni kullanıcı
+        // henüz kurulumu yapmamıştır. 404 dönmek istemcide hata yolunu tetikler,
+        // konsolu kirletir ve hata izleme araçlarında yanlış alarm üretir.
+        return response()->json([
+            'data' => $pregnancy === null ? null : new PregnancyResource($pregnancy),
+        ]);
     }
 
     public function store(StorePregnancyRequest $request): JsonResponse
