@@ -84,6 +84,20 @@ if (babySection === 0 || reviewed === 0) throw new Error('Yayindaki hafta icerig
 
 await step('06-hafta-detayi');
 
+// Takvim: onaylanmis tetkiklerden uretilen randevu pencereleri.
+// expo-router onceki ekrani DOM'da tutar; gorunur olani hedeflemek gerekiyor.
+await page.getByRole('button', { name: 'Ana ekrana dön' }).click();
+const takvim = page.getByRole('button', { name: 'Takvim', exact: true });
+await takvim.waitFor({ state: 'visible', timeout: 15000 });
+await takvim.click();
+await page.waitForSelector('text=Tetkikler ve randevular', { timeout: 15000 });
+await page.getByText('Şeker yükleme testi').first().waitFor({ timeout: 15000 });
+await step('07-takvim');
+
+const rows = await page.getByText(/\d+–\d+\. hafta|\d+\. hafta$/).count();
+console.log(`  · takvimde tetkik penceresi: ${rows}`);
+if (rows === 0) throw new Error('Takvimde randevu penceresi gorunmedi');
+
 await browser.close();
 
 console.log(`\nKonsol hatasi: ${errors.length}`);

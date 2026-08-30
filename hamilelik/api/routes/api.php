@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\PregnancyController;
 use App\Http\Controllers\Api\ScreeningTemplateController;
 use App\Http\Controllers\Api\WeekContentController;
@@ -27,5 +29,13 @@ Route::prefix('v1')->group(function () {
         Route::get('weeks', [WeekContentController::class, 'index']);
         Route::get('weeks/{week}', [WeekContentController::class, 'show'])->whereNumber('week');
         Route::get('screenings', [ScreeningTemplateController::class, 'index']);
+
+        Route::get('appointments', [AppointmentController::class, 'index']);
+        Route::post('appointments', [AppointmentController::class, 'store']);
+        Route::patch('appointments/{appointment}', [AppointmentController::class, 'update']);
+        Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy']);
+
+        Route::post('devices', [DeviceController::class, 'store']);
+        Route::delete('devices', [DeviceController::class, 'destroy']);
     });
 });

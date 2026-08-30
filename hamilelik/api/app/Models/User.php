@@ -28,6 +28,12 @@ class User extends Authenticatable
         return $this->hasMany(Pregnancy::class);
     }
 
+    /** @return HasMany<Device, $this> */
+    public function devices(): HasMany
+    {
+        return $this->hasMany(Device::class);
+    }
+
     /** @return HasMany<Pregnancy, $this> */
     public function activePregnancy(): HasMany
     {

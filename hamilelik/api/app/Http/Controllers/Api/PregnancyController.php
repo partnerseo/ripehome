@@ -9,6 +9,7 @@ use App\Http\Requests\StorePregnancyRequest;
 use App\Http\Requests\StoreRedatingRequest;
 use App\Http\Resources\PregnancyResource;
 use App\Models\Pregnancy;
+use App\Services\AppointmentPlanner;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,6 +17,8 @@ use InvalidArgumentException;
 
 class PregnancyController extends Controller
 {
+    public function __construct(private readonly AppointmentPlanner $planner) {}
+
     /** Aktif gebeliği ve bugünkü hafta durumunu döndürür. */
     public function current(Request $request): JsonResponse
     {
@@ -46,6 +49,8 @@ class PregnancyController extends Controller
             return $this->engineError($e);
         }
 
+        $this->planner->plan($pregnancy);
+
         return response()->json(['data' => new PregnancyResource($pregnancy)], 201);
     }
 
@@ -61,6 +66,10 @@ class PregnancyController extends Controller
         } catch (InvalidArgumentException $e) {
             return $this->engineError($e);
         }
+
+        // SAT değişti: tetkik pencereleri de kaydı. Kullanıcının aldığı gerçek
+        // randevu tarihine dokunulmaz.
+        $this->planner->replan($pregnancy);
 
         return response()->json(['data' => new PregnancyResource($pregnancy->load('redatings'))]);
     }

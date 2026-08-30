@@ -74,6 +74,12 @@ class Pregnancy extends Model
         return $this->belongsTo(User::class);
     }
 
+    /** @return HasMany<Appointment, $this> */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     /** @return HasMany<PregnancyRedating, $this> */
     public function redatings(): HasMany
     {

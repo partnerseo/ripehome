@@ -1,9 +1,12 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
+import { useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 
+import { appointments } from '@/api/appointments';
 import { logout } from '@/api/auth';
 import { currentPregnancy } from '@/api/pregnancy';
+import { registerForPushNotifications } from '@/lib/push';
 import { Button } from '@/components/Button';
 import { ProgressRing } from '@/components/ProgressRing';
 import { Screen } from '@/components/Screen';
@@ -18,6 +21,17 @@ export default function Home() {
     queryKey: ['pregnancy', 'current'],
     queryFn: currentPregnancy,
   });
+
+  const { data: schedule } = useQuery({
+    queryKey: ['appointments'],
+    queryFn: appointments,
+  });
+
+  // Bildirim izni ana ekranda istenir, giriş anında değil: kullanıcı önce
+  // uygulamanın ne işe yaradığını görsün, sonra izin sorusuyla karşılaşsın.
+  useEffect(() => {
+    void registerForPushNotifications();
+  }, []);
 
   if (isPending) {
     return (
@@ -49,6 +63,7 @@ export default function Home() {
   }
 
   const ga = pregnancy.gestational_age;
+  const nextAppointment = schedule?.find((a) => a.completed_at === null);
 
   // Sunucu kapanmış gebelikte bu alanı hiç göndermez.
   if (ga === undefined) {
@@ -106,11 +121,36 @@ export default function Home() {
         </View>
       )}
 
+      {nextAppointment !== undefined && (
+        <View
+          style={{
+            backgroundColor: palette.surface,
+            borderWidth: 1,
+            borderColor: palette.line,
+            borderRadius: radius.md,
+            padding: spacing.md,
+            gap: 2,
+          }}
+        >
+          <Text style={{ ...type.label, color: palette.faint }}>Sıradaki</Text>
+          <Text style={{ ...type.heading, color: palette.ink }}>{nextAppointment.title}</Text>
+          <Text style={{ ...type.small, color: palette.muted }}>
+            {nextAppointment.scheduled_at !== null
+              ? `Randevu: ${formatDate(nextAppointment.scheduled_at.slice(0, 10))}`
+              : nextAppointment.window.start_on !== null
+                ? `${formatDate(nextAppointment.window.start_on)} tarihinden itibaren`
+                : ''}
+          </Text>
+        </View>
+      )}
+
       <Button
         label={`${ga.week}. hafta detayı`}
         variant="ghost"
         onPress={() => router.push(`/week/${ga.week}`)}
       />
+
+      <Button label="Takvim" variant="ghost" onPress={() => router.push('/calendar')} />
 
       <Button
         label="Çıkış yap"

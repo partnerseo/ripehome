@@ -106,6 +106,11 @@ php artisan serve
 | GET | `/api/v1/weeks/{week}` | Yayındaki hafta içeriği |
 | GET | `/api/v1/weeks` | Tüm yayındaki haftalar, ETag ile (çevrimdışı ön yükleme) |
 | GET | `/api/v1/screenings` | Yayındaki tetkik takvimi |
+| GET | `/api/v1/appointments` | Gebeliğin randevu ve tetkik pencereleri |
+| POST | `/api/v1/appointments` | Elle randevu ekler |
+| PATCH | `/api/v1/appointments/{id}` | Tarih, not, tamamlandı |
+| DELETE | `/api/v1/appointments/{id}` | Elle olanı siler, otomatik olanı tamamlar |
+| POST | `/api/v1/devices` | Bildirim jetonunu kaydeder |
 
 ### Kararlar
 
@@ -145,6 +150,44 @@ Her kayıt `source_refs` ile dayanağını taşır; uygulamada içeriğin altın
 9 kayıtla kurar, hepsi `draft` — hekim onayı verilene kadar hiçbiri kullanıcıya
 gitmez. Kaynak bağlantıları bilinçli olarak boş bırakıldı; doğrulanmamış bağlantı
 yazmak, olmayan bir dayanak iddia etmek olurdu.
+
+## Randevular ve bildirimler
+
+Gebelik oluşturulduğunda yayındaki tetkik şablonlarından randevu pencereleri
+üretilir (`AppointmentPlanner`). Pencereler **tarih olarak** yazılır — takvim
+ekranı her açılışta yeniden hesap yapmasın diye. Bunun bedeli, USG ile yeniden
+tarihleme sonrası pencerelerin yeniden hesaplanmasıdır; `replan()` bunu yapar
+ve **kullanıcının aldığı gerçek randevuya dokunmaz**: o tarih hastaneyle
+konuşulup alınmıştır, gebelik haftası düzeltildi diye kaymaz.
+
+Otomatik üretilen bir randevu silinmez, tamamlandı işaretlenir — silinse bir
+sonraki planlama turunda yeniden üretilir ve kullanıcı aynı kaydı tekrar tekrar
+silmek zorunda kalır.
+
+### Bildirimin susması
+
+Planın en başından beri merkezdeki kural: **kapanmış bir gebelik için hiçbir
+bildirim gitmez.** Kritik nokta, kontrolün nerede yapıldığı. Bir iş kuyruğa
+girdikten sonra kullanıcı gebeliği kapatabilir; o yüzden kontrol kuyruğa alma
+anında değil, **gönderim anında** yapılır:
+
+```php
+if ($pregnancy === null || ! $pregnancy->isActive()) {
+    return;
+}
+```
+
+`NotificationSilenceTest` tam olarak bu sırayı test eder: iş nesnesi oluşturulur,
+sonra gebelik kapatılır, sonra iş çalıştırılır — hiçbir şey gönderilmez.
+
+Haftalık bildirim yalnızca kullanıcının **kendi takvim gününde** tam hafta
+dönüşünde çıkar (`ga_days % 7 === 0`); sunucu gününe bakmak bildirimi saat
+dilimine göre bir gün kaydırır veya büsbütün atlar.
+
+```bash
+php artisan app:dispatch-appointment-reminders   # saat başı
+php artisan app:dispatch-weekly-milestones       # her gün 06:00
+```
 
 ### İçerik paneli
 
@@ -189,6 +232,7 @@ npm run typecheck
 | `/onboarding` | Yöntem seçimi, tarih girişi, döngü uzunluğu, **canlı önizleme** |
 | `/home` | Hafta halkası, tahmini doğum, geri sayım |
 | `/week/[week]` | Hafta detayı: içerik, ölçüler, gözden geçiren hekim |
+| `/calendar` | Tetkik pencereleri ve randevular |
 
 **Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
 haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
@@ -198,7 +242,7 @@ olmasının ilk somut karşılığı bu — çevrimdışı ana ekran da aynı yo
 
 Uygulama gerçek API'ye karşı gerçek tarayıcıda uçtan uca çalıştırıldı:
 giriş → kod → kurulum → ana ekran → hafta detayı (yayındaki içerik ve onay satırı
-dahil), sıfır konsol hatası. İçerik paneli de aynı şekilde doğrulandı.
+dahil) → takvim (9 tetkik penceresi), sıfır konsol hatası. İçerik paneli de aynı şekilde doğrulandı.
 Betikler `e2e/`, görüntüler `app/screenshots/` ve `api/screenshots/`.
 
 **Henüz yapılmadı:** içeriğin cihazda saklanması. `/weeks` ucu ETag ile hazır ama
