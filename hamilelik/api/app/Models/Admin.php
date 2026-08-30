@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\AdminFactory;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 /**
  * İçerik panelinin kullanıcısı: editör ve gözden geçiren hekim.
  * Uygulama kullanıcılarıyla (User) hiçbir bağı yoktur.
  */
-class Admin extends Authenticatable implements FilamentUser
+class Admin extends Authenticatable
 {
     /** @use HasFactory<AdminFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     protected $fillable = ['name', 'email', 'password'];
 
@@ -29,8 +26,13 @@ class Admin extends Authenticatable implements FilamentUser
         return ['password' => 'hashed'];
     }
 
-    public function canAccessPanel(Panel $panel): bool
+    /** Adın baş harfleri — panelde avatar yerine kullanılır. */
+    public function initials(): string
     {
-        return true;
+        return collect(explode(' ', $this->name))
+            ->filter()
+            ->take(2)
+            ->map(fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)))
+            ->implode('');
     }
 }

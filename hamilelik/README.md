@@ -191,15 +191,43 @@ php artisan app:dispatch-weekly-milestones       # her gün 06:00
 
 ### İçerik paneli
 
-Filament 3, `/admin`. Panel kullanıcıları **ayrı bir tabloda ve ayrı guard'da**:
-hamile kullanıcının hesabı hiçbir koşulda içerik paneline giremez.
+Kendi yazdığımız panel: Blade + tek bir elle yazılmış CSS dosyası
+(`public/css/admin.css`). **Derleme adımı yok** — dosyayı kopyalayıp çalıştırırsınız,
+cPanel'de npm gerekmez. Toplam yaklaşık 1.500 satır.
+
+Filament ile başlanmıştı, sonra çıkarıldı. Gerekçe: panelin işi düz CRUD değil —
+hekimin gözden geçirme akışı ayrı bir ekran istiyor ve panelin kendi kimliği
+olması isteniyordu. Bir çatının grain'ine uymak yerine altı ekranı doğrudan
+yazmak burada daha az kod ve daha az bağımlılık çıkardı.
 
 ```bash
 php artisan app:create-admin --name="Editör" --email="..." --password="..."
 ```
 
-Yan menüde her kaynağın yanında kaç kaydın hâlâ yayına hazır olmadığını gösteren
-sarı bir rozet durur.
+| Yol | Ekran |
+|---|---|
+| `/admin/giris` | Giriş. Hangi alanın yanlış olduğu söylenmez — e-posta varlığı sızdırılmaz |
+| `/admin` | Genel bakış: kaç hafta yayında, kaçı onay bekliyor, kaçı hiç yazılmamış |
+| `/admin/onay` | **Hekimin kuyruğu** |
+| `/admin/haftalar` | Hafta içerikleri, durum ve dile göre süzülür |
+| `/admin/tetkikler` | Tetkik takvimi |
+
+Panel kullanıcıları **ayrı bir tabloda ve ayrı guard'da**: hamile kullanıcının
+hesabı hiçbir koşulda içerik paneline giremez.
+
+#### Hekimin gözden geçirme ekranı
+
+Editörün formuyla hekimin ihtiyacı aynı şey değil. Editör 15 alan doldurur;
+hekim okur ve onaylar. `/admin/onay` bu ikinci işi ayrı bir akışa aldı:
+
+- Onay bekleyenler tek listede, tetkikler önce (yanlış bir hafta kaçırılmış
+  tarama demek, en kritik olan o)
+- Okuma ekranında yalnızca onayın kapsadığı alanlar ve dayanak kaynaklar
+- Altında tek bir onay kutusu: onaylayan, tarih, isteğe bağlı not
+- "Düzeltme gerekiyor" düğmesi editörün formuna götürür
+
+Onay verildiği anda kayıt yayına çıkar ve uygulamada içeriğin altında hekimin
+adı görünür.
 
 ### Testler
 
@@ -244,6 +272,10 @@ Uygulama gerçek API'ye karşı gerçek tarayıcıda uçtan uca çalıştırıld
 giriş → kod → kurulum → ana ekran → hafta detayı (yayındaki içerik ve onay satırı
 dahil) → takvim (9 tetkik penceresi), sıfır konsol hatası. İçerik paneli de aynı şekilde doğrulandı.
 Betikler `e2e/`, görüntüler `app/screenshots/` ve `api/screenshots/`.
+
+Panel de aynı şekilde: giriş, genel bakış, onay kuyruğu, gözden geçirme ekranı ve
+onay işlemi gerçek tarayıcıda çalıştırıldı — sıfır sayfa/istek hatası.
+Betik `e2e/panel.mjs`, görüntüler `api/screenshots/`.
 
 **Henüz yapılmadı:** içeriğin cihazda saklanması. `/weeks` ucu ETag ile hazır ama
 uygulama onu yerelde tutmuyor — çevrimdışı depolama Sprint 5'te SQLite ile
