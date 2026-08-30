@@ -12,7 +12,7 @@ teşhis aracı değildir; hiçbir ekranda doz, teşhis veya "bekleyin geçer" if
 
 | Konu | Karar | Gerekçe |
 |---|---|---|
-| İstemci | Expo (React Native), TypeScript | Push bildirim, çevrimdışı, mağaza dağıtımı; mevcut React bilgisi doğrudan kullanılır |
+| İstemci | Expo (React Native), TypeScript | EAS Update ile mağaza onayı beklemeden düzeltme (sağlık uygulamasında belirleyici); push bildirim, çevrimdışı çalışma; hafta motoru TypeScript olduğu için ileride web yüzeyinde tekrar kullanılabilir |
 | Backend | Laravel 11 + Sanctum 4 | Ekipte mevcut (ripehome ile aynı yığın), PHP 8.4 |
 | Admin / içerik | Filament 3 + spatie/laravel-translatable | Hafta içeriği ve tetkik şablonları koddan değil panelden yönetilir |
 | Veritabanı | MySQL 8 | Mevcut altyapı |
@@ -45,7 +45,7 @@ Laravel 11 API ────────────────┤
 **Kritik kural:** Gebelik haftası hesabı hem sunucuda (PHP) hem istemcide (TS) bulunur ve
 **aynı test vektörleriyle** doğrulanır. İstemci çevrimdışıyken hesabı kendisi yapar; sunucu
 bildirimleri planlarken aynı sonucu üretmek zorundadır. Ortak test verisi:
-`docs/hamilelik-app/ga-test-vectors.json`.
+`hamilelik/ga-test-vectors.json`.
 
 ---
 
