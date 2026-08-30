@@ -27,3 +27,16 @@ cd e2e && npm install playwright && node flow.mjs
 `CHROME_PATH` ile farklı bir Chromium ikilisi verebilirsiniz.
 
 Ekran görüntüleri `app/screenshots/` altına yazılır.
+
+## Panel testi
+
+`panel.mjs` içerik panelini doğrular: giriş, tetkik listesi, hafta listesi ve
+düzenleme formu. Taslak rozetlerinin göründüğünü kontrol eder.
+
+```bash
+cd api && php artisan app:create-admin --name="Editör" --email="editor@hamilelik.app" --password="gecici-uzun-parola"
+cd e2e && npm run panel
+```
+
+`ADMIN_EMAIL` ve `ADMIN_PASSWORD` ile farklı bir hesap verebilirsiniz.
+Görüntüler `api/screenshots/` altına yazılır.

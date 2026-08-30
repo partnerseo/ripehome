@@ -103,6 +103,9 @@ php artisan serve
 | GET | `/api/v1/pregnancies/current` | Aktif gebelik + bugünkü hafta durumu |
 | POST | `/api/v1/pregnancies/{id}/redate` | USG düzeltmesi; en son ölçüm geçerli |
 | POST | `/api/v1/pregnancies/{id}/end` | Gebeliği kapatır (`birth` / `loss` / `other`) |
+| GET | `/api/v1/weeks/{week}` | Yayındaki hafta içeriği |
+| GET | `/api/v1/weeks` | Tüm yayındaki haftalar, ETag ile (çevrimdışı ön yükleme) |
+| GET | `/api/v1/screenings` | Yayındaki tetkik takvimi |
 
 ### Kararlar
 
@@ -120,6 +123,40 @@ Los Angeles kullanıcılarıyla aynı anda doğruluyor.
 
 **Kapanmış gebelikte hafta ve geri sayım dönmez.** `PregnancyResource` bu alanları
 yalnızca aktif gebelikte ekler.
+
+## Tıbbi içerik ve gözden geçirme
+
+Hamilelik uygulamasında yanlış bir tetkik haftası kaçırılmış bir tarama, eksik bir
+belirti listesi de geç kalınmış bir başvuru demektir. Bu yüzden onay bir niyet değil,
+kaydın geçemeyeceği bir kapı olarak kuruldu (`app/Models/Concerns/MedicallyReviewed.php`):
+
+1. **Gözden geçiren kişi ve tarih olmadan hiçbir içerik yayına alınamaz.** Model
+   `MedicalReviewRequired` fırlatır; panelde de aynı kural form doğrulaması olarak var.
+2. **Yayındaki bir metin değiştirilirse önceki onay onu kapsamaz.** Kayıt otomatik
+   olarak taslağa döner, onay alanları temizlenir ve API'den anında düşer.
+3. **Değişikliğin tıbbi olup olmadığı modelde tanımlı.** `reviewableFields()` — hafta
+   içeriğinde metinler ve ölçüler, tetkikte ad, kategori ve hafta aralığı. Kaynak
+   listesini düzenlemek onayı bozmaz.
+
+Her kayıt `source_refs` ile dayanağını taşır; uygulamada içeriğin altında
+"Tıbbi gözden geçirme: Dr. X · tarih" satırı görünür.
+
+**Tetkik takvimi taslak olarak gelir.** `ScreeningTemplateSeeder` Türkiye takvimini
+9 kayıtla kurar, hepsi `draft` — hekim onayı verilene kadar hiçbiri kullanıcıya
+gitmez. Kaynak bağlantıları bilinçli olarak boş bırakıldı; doğrulanmamış bağlantı
+yazmak, olmayan bir dayanak iddia etmek olurdu.
+
+### İçerik paneli
+
+Filament 3, `/admin`. Panel kullanıcıları **ayrı bir tabloda ve ayrı guard'da**:
+hamile kullanıcının hesabı hiçbir koşulda içerik paneline giremez.
+
+```bash
+php artisan app:create-admin --name="Editör" --email="..." --password="..."
+```
+
+Yan menüde her kaynağın yanında kaç kaydın hâlâ yayına hazır olmadığını gösteren
+sarı bir rozet durur.
 
 ### Testler
 
@@ -151,7 +188,7 @@ npm run typecheck
 | `/sign-in` | E-posta → tek kullanımlık kod → jeton |
 | `/onboarding` | Yöntem seçimi, tarih girişi, döngü uzunluğu, **canlı önizleme** |
 | `/home` | Hafta halkası, tahmini doğum, geri sayım |
-| `/week/[week]` | Hafta detayı (içerik Sprint 3'te bağlanacak) |
+| `/week/[week]` | Hafta detayı: içerik, ölçüler, gözden geçiren hekim |
 
 **Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
 haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
@@ -160,5 +197,10 @@ olmasının ilk somut karşılığı bu — çevrimdışı ana ekran da aynı yo
 ### Doğrulama
 
 Uygulama gerçek API'ye karşı gerçek tarayıcıda uçtan uca çalıştırıldı:
-giriş → kod → kurulum → ana ekran → hafta detayı, sıfır konsol hatası.
-Ekran görüntüleri `app/screenshots/`, betik `e2e/flow.mjs`.
+giriş → kod → kurulum → ana ekran → hafta detayı (yayındaki içerik ve onay satırı
+dahil), sıfır konsol hatası. İçerik paneli de aynı şekilde doğrulandı.
+Betikler `e2e/`, görüntüler `app/screenshots/` ve `api/screenshots/`.
+
+**Henüz yapılmadı:** içeriğin cihazda saklanması. `/weeks` ucu ETag ile hazır ama
+uygulama onu yerelde tutmuyor — çevrimdışı depolama Sprint 5'te SQLite ile
+geliyor, o parçayı yarım kurmak yerine oraya bıraktım.

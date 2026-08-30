@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PregnancyController;
+use App\Http\Controllers\Api\ScreeningTemplateController;
+use App\Http\Controllers\Api\WeekContentController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -20,5 +22,10 @@ Route::prefix('v1')->group(function () {
         Route::post('pregnancies', [PregnancyController::class, 'store']);
         Route::post('pregnancies/{pregnancy}/redate', [PregnancyController::class, 'redate']);
         Route::post('pregnancies/{pregnancy}/end', [PregnancyController::class, 'end']);
+
+        // İçerik: tek hafta, ve çevrimdışı ön yükleme için tüm haftalar.
+        Route::get('weeks', [WeekContentController::class, 'index']);
+        Route::get('weeks/{week}', [WeekContentController::class, 'show'])->whereNumber('week');
+        Route::get('screenings', [ScreeningTemplateController::class, 'index']);
     });
 });

@@ -69,6 +69,19 @@ console.log(`  · ana ekran: ${week} · ${dueRow}`);
 // Hafta detayina git.
 await page.getByRole('button', { name: /hafta detayı/ }).click();
 await page.waitForSelector('text=Şu an buradasınız', { timeout: 15000 });
+
+// Icerik ayri bir sorgudan gelir; ekran acilir acilmaz hazir degil.
+await page
+  .getByText('Bebekte neler oluyor')
+  .or(page.getByText('henüz hazır değil'))
+  .first()
+  .waitFor({ timeout: 15000 });
+
+const reviewed = await page.getByText(/Tıbbi gözden geçirme:/).count();
+const babySection = await page.getByText('Bebekte neler oluyor').count();
+console.log(`  · hafta icerigi: ${babySection > 0 ? 'geldi' : 'YOK'} · onay satiri: ${reviewed > 0 ? 'var' : 'YOK'}`);
+if (babySection === 0 || reviewed === 0) throw new Error('Yayindaki hafta icerigi ekranda gorunmedi');
+
 await step('06-hafta-detayi');
 
 await browser.close();
