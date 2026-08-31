@@ -98,6 +98,21 @@ const rows = await page.getByText(/\d+–\d+\. hafta|\d+\. hafta$/).count();
 console.log(`  · takvimde tetkik penceresi: ${rows}`);
 if (rows === 0) throw new Error('Takvimde randevu penceresi gorunmedi');
 
+// Hareket sayaci: 10 dokunusta oturum kapanir ve kuyruk sunucuya gider.
+await page.getByRole('button', { name: 'Ana ekrana dön' }).click();
+const kick = page.getByRole('button', { name: 'Hareket sayacı', exact: true });
+await kick.waitFor({ state: 'visible', timeout: 15000 });
+await kick.click();
+await page.getByRole('button', { name: 'Saymaya başla' }).click();
+
+const tapTarget = page.getByRole('button', { name: 'Hareket kaydet' });
+await tapTarget.waitFor({ timeout: 10000 });
+for (let i = 0; i < 10; i++) await tapTarget.click();
+
+await page.getByText(/10 hareket .* tamamlandı/).waitFor({ timeout: 15000 });
+console.log('  · hareket sayaci: 10/10 tamamlandi');
+await step('08-hareket-sayaci');
+
 await browser.close();
 
 console.log(`\nKonsol hatasi: ${errors.length}`);

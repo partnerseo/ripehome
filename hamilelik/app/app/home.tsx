@@ -152,6 +152,21 @@ export default function Home() {
 
       <Button label="Takvim" variant="ghost" onPress={() => router.push('/calendar')} />
 
+      <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+        <Button
+          label="Hareket sayacı"
+          variant="ghost"
+          onPress={() => router.push('/kick')}
+          style={{ flex: 1 }}
+        />
+        <Button
+          label="Sancı sayacı"
+          variant="ghost"
+          onPress={() => router.push('/contractions')}
+          style={{ flex: 1 }}
+        />
+      </View>
+
       <Button
         label="Çıkış yap"
         variant="ghost"

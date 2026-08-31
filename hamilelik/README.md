@@ -111,6 +111,11 @@ php artisan serve
 | PATCH | `/api/v1/appointments/{id}` | Tarih, not, tamamlandı |
 | DELETE | `/api/v1/appointments/{id}` | Elle olanı siler, otomatik olanı tamamlar |
 | POST | `/api/v1/devices` | Bildirim jetonunu kaydeder |
+| POST | `/api/v1/sync` | Çevrimdışı kuyruğun toplu gönderimi |
+| GET | `/api/v1/logs/health` | Kilo, tansiyon, şeker geçmişi |
+| GET | `/api/v1/logs/symptoms` | Belirti günlüğü |
+| GET | `/api/v1/kick-sessions` | Hareket sayımı geçmişi |
+| GET | `/api/v1/contraction-sessions` | Sancı sayımı geçmişi |
 
 ### Kararlar
 
@@ -189,6 +194,38 @@ php artisan app:dispatch-appointment-reminders   # saat başı
 php artisan app:dispatch-weekly-milestones       # her gün 06:00
 ```
 
+## Çevrimdışı kayıt ve takip araçları
+
+**Yazma tek kapıdan geçer: `/sync`.** Uygulama her kaydı önce cihaza yazar,
+sonra göndermeyi dener. Hastanede internet olmadığı için yerel yazma birincil
+yoldur — kullanıcı sancı sayarken bağlantı olup olmadığını düşünmemeli.
+
+Her kayıt cihazda üretilmiş bir `client_uuid` taşır ve sunucu bunu idempotency
+anahtarı olarak kullanır. Bağlantı **yanıt alınmadan** koptuğunda istemci aynı
+kuyruğu güvenle tekrar gönderir; ikinci gönderim kopya üretmez. Hareket
+oturumlarında olaylar da oturumla birlikte yeniden yazılır, yani tekrar
+gönderim aynı hareketleri iki kez eklemez.
+
+Kuyruk cihazda SQLite'ta, web'de localStorage'da durur. `store.ts` /
+`store.web.ts` ayrımını Metro platforma göre kendisi seçer — böylece
+`expo-sqlite` web paketine hiç girmez.
+
+### Güvenlik eşikleri
+
+`/sync` yanıtı, gönderilen kayıtlardan çıkan uyarıları da döndürür. Uygulama
+teşhis koymaz; başvurmayı söyler.
+
+| Eşik | Uyarı |
+|---|---|
+| Tansiyon ≥ 140/90 | `blood_pressure` |
+| 2 saatte 10 hareket sayılamadı | `fetal_movement` |
+| Kasılmalar 5-1-1 kuralına uyuyor | `contractions` |
+| Acil belirti işaretlendi (kanama, görme bulanıklığı, su gelmesi…) | `symptom` |
+
+5-1-1 kuralı hem sunucuda hem istemcide var — çünkü uyarı bağlantı olmadan da
+çıkmalı: doğum sancısı hastaneye giderken başlar, orada internet olmayabilir.
+İkisi de aynı eşikleri kullanır ve ayrı ayrı test edilir.
+
 ### İçerik paneli
 
 Kendi yazdığımız panel: Blade + tek bir elle yazılmış CSS dosyası
@@ -261,6 +298,8 @@ npm run typecheck
 | `/home` | Hafta halkası, tahmini doğum, geri sayım |
 | `/week/[week]` | Hafta detayı: içerik, ölçüler, gözden geçiren hekim |
 | `/calendar` | Tetkik pencereleri ve randevular |
+| `/kick` | Hareket sayacı — 10 hareket, 2 saat sınırı |
+| `/contractions` | Sancı sayacı — süre, aralık, 5-1-1 uyarısı |
 
 **Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
 haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
@@ -277,6 +316,6 @@ Panel de aynı şekilde: giriş, genel bakış, onay kuyruğu, gözden geçirme 
 onay işlemi gerçek tarayıcıda çalıştırıldı — sıfır sayfa/istek hatası.
 Betik `e2e/panel.mjs`, görüntüler `api/screenshots/`.
 
-**Henüz yapılmadı:** içeriğin cihazda saklanması. `/weeks` ucu ETag ile hazır ama
-uygulama onu yerelde tutmuyor — çevrimdışı depolama Sprint 5'te SQLite ile
-geliyor, o parçayı yarım kurmak yerine oraya bıraktım.
+**Henüz yapılmadı:** hafta içeriğinin cihazda önbelleğe alınması. Yazma tarafı
+(kuyruk) çalışıyor, okuma tarafı henüz sunucuya bağlı. `/weeks` ucu ETag ile
+hazır; içeriği kuyruğun yanına yazmak sonraki adım.

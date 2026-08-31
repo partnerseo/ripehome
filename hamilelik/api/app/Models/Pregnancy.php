@@ -80,6 +80,30 @@ class Pregnancy extends Model
         return $this->hasMany(Appointment::class);
     }
 
+    /** @return HasMany<HealthLog, $this> */
+    public function healthLogs(): HasMany
+    {
+        return $this->hasMany(HealthLog::class);
+    }
+
+    /** @return HasMany<KickSession, $this> */
+    public function kickSessions(): HasMany
+    {
+        return $this->hasMany(KickSession::class);
+    }
+
+    /** @return HasMany<ContractionSession, $this> */
+    public function contractionSessions(): HasMany
+    {
+        return $this->hasMany(ContractionSession::class);
+    }
+
+    /** @return HasMany<SymptomLog, $this> */
+    public function symptomLogs(): HasMany
+    {
+        return $this->hasMany(SymptomLog::class);
+    }
+
     /** @return HasMany<PregnancyRedating, $this> */
     public function redatings(): HasMany
     {

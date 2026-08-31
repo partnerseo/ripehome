@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\PregnancyController;
 use App\Http\Controllers\Api\ScreeningTemplateController;
+use App\Http\Controllers\Api\SyncController;
+use App\Http\Controllers\Api\TrackingController;
 use App\Http\Controllers\Api\WeekContentController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,14 @@ Route::prefix('v1')->group(function () {
         Route::post('appointments', [AppointmentController::class, 'store']);
         Route::patch('appointments/{appointment}', [AppointmentController::class, 'update']);
         Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy']);
+
+        // Çevrimdışı yazılan her şey tek kapıdan girer.
+        Route::post('sync', SyncController::class);
+
+        Route::get('logs/health', [TrackingController::class, 'health']);
+        Route::get('logs/symptoms', [TrackingController::class, 'symptoms']);
+        Route::get('kick-sessions', [TrackingController::class, 'kicks']);
+        Route::get('contraction-sessions', [TrackingController::class, 'contractions']);
 
         Route::post('devices', [DeviceController::class, 'store']);
         Route::delete('devices', [DeviceController::class, 'destroy']);
