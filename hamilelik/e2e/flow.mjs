@@ -113,6 +113,40 @@ await page.getByText(/10 hareket .* tamamlandı/).waitFor({ timeout: 15000 });
 console.log('  · hareket sayaci: 10/10 tamamlandi');
 await step('08-hareket-sayaci');
 
+// Acil belirti akisi: gunlukte kirmizi bayrak isaretlenince yonlendirme.
+await page.getByRole('button', { name: 'Ana ekrana dön' }).click();
+const gunluk = page.getByRole('button', { name: 'Günlük', exact: true });
+await gunluk.waitFor({ state: 'visible', timeout: 15000 });
+await gunluk.click();
+await page.getByText('Bugün nasılsınız?').waitFor({ timeout: 15000 });
+
+await page.getByRole('checkbox', { name: 'Vajinal kanama' }).click();
+await page.getByText('Bu belirti beklemez').waitFor({ timeout: 10000 });
+await step('09-belirti-uyarisi');
+
+await page.getByRole('button', { name: 'Kaydet' }).click();
+await page.getByText('Hemen başvurun').waitFor({ timeout: 15000 });
+const call = await page.getByRole('button', { name: /112/ }).count();
+console.log(`  · acil ekrani acildi, arama dugmesi: ${call}`);
+if (call === 0) throw new Error('Acil ekraninda arama dugmesi yok');
+await step('10-acil-ekrani');
+
+// Gebeligi kapatma: kayip secilirse hafta ve geri sayim gosterilmez.
+await page.getByRole('button', { name: 'Geri dön' }).click();
+const profil = page.getByRole('button', { name: 'Profil ve verilerim' });
+await profil.waitFor({ state: 'visible', timeout: 15000 });
+await profil.click();
+await page.getByText('Hesap ve verileriniz').waitFor({ timeout: 15000 });
+await step('11-profil');
+
+await page.getByRole('button', { name: 'Gebelik kaydını kapat' }).click();
+await page.getByText('Gebeliğimi kaybettim').waitFor({ timeout: 15000 });
+await page.getByRole('radio', { name: /Gebeliğimi kaybettim/ }).click();
+await page.getByRole('button', { name: 'Kaydı kapat' }).click();
+await page.getByText('Başınız sağ olsun').waitFor({ timeout: 15000 });
+console.log('  · kayip akisi: hafta ve geri sayim gosterilmiyor');
+await step('12-kapandi');
+
 await browser.close();
 
 console.log(`\nKonsol hatasi: ${errors.length}`);

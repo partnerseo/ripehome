@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DeviceController;
@@ -20,6 +21,9 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('me', [AuthController::class, 'me']);
+        Route::post('consents', [AccountController::class, 'consent']);
+        Route::get('me/export', [AccountController::class, 'exportData']);
+        Route::delete('me', [AccountController::class, 'destroy']);
         Route::post('auth/logout', [AuthController::class, 'logout']);
 
         Route::get('pregnancies/current', [PregnancyController::class, 'current']);

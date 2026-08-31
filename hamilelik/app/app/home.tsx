@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { appointments } from '@/api/appointments';
-import { logout } from '@/api/auth';
 import { currentPregnancy } from '@/api/pregnancy';
 import { registerForPushNotifications } from '@/lib/push';
 import { Button } from '@/components/Button';
@@ -15,8 +14,6 @@ import { radius, spacing, type, usePalette } from '@/theme/tokens';
 
 export default function Home() {
   const palette = usePalette();
-  const queryClient = useQueryClient();
-
   const { data: pregnancy, isPending, isError, refetch } = useQuery({
     queryKey: ['pregnancy', 'current'],
     queryFn: currentPregnancy,
@@ -167,15 +164,9 @@ export default function Home() {
         />
       </View>
 
-      <Button
-        label="Çıkış yap"
-        variant="ghost"
-        onPress={async () => {
-          await logout();
-          queryClient.clear();
-          router.replace('/sign-in');
-        }}
-      />
+      <Button label="Günlük" variant="ghost" onPress={() => router.push('/belirtiler')} />
+
+      <Button label="Profil ve verilerim" variant="ghost" onPress={() => router.push('/profil')} />
     </Screen>
   );
 }

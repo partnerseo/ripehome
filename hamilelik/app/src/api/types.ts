@@ -33,4 +33,5 @@ export interface User {
   name: string | null;
   locale: string;
   timezone: string;
+  has_consent: boolean;
 }

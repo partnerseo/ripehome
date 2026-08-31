@@ -20,6 +20,19 @@ export async function verifyCode(email: string, code: string): Promise<User> {
   return result.user;
 }
 
+export async function acceptConsent(): Promise<void> {
+  await request('/consents', { method: 'POST' });
+}
+
+export async function exportAccountData(): Promise<unknown> {
+  return request('/me/export');
+}
+
+export async function deleteAccount(email: string): Promise<void> {
+  await request('/me', { method: 'DELETE', body: { confirm_email: email } });
+  await session.clear();
+}
+
 export async function me(): Promise<User> {
   const { user } = await request<{ user: User }>('/me');
 

@@ -112,6 +112,9 @@ php artisan serve
 | DELETE | `/api/v1/appointments/{id}` | Elle olanı siler, otomatik olanı tamamlar |
 | POST | `/api/v1/devices` | Bildirim jetonunu kaydeder |
 | POST | `/api/v1/sync` | Çevrimdışı kuyruğun toplu gönderimi |
+| POST | `/api/v1/consents` | Açık rıza kaydı |
+| GET | `/api/v1/me/export` | Tüm verinin dışa aktarımı |
+| DELETE | `/api/v1/me` | Hesabı ve tüm veriyi kalıcı siler |
 | GET | `/api/v1/logs/health` | Kilo, tansiyon, şeker geçmişi |
 | GET | `/api/v1/logs/symptoms` | Belirti günlüğü |
 | GET | `/api/v1/kick-sessions` | Hareket sayımı geçmişi |
@@ -226,6 +229,50 @@ teşhis koymaz; başvurmayı söyler.
 çıkmalı: doğum sancısı hastaneye giderken başlar, orada internet olmayabilir.
 İkisi de aynı eşikleri kullanır ve ayrı ayrı test edilir.
 
+## Acil belirtiler ve gebelik kaybı
+
+### Kırmızı bayrak listesi neden kodda?
+
+Acil belirti listesi (`app/src/lib/redFlags.ts`) bilinçli olarak uygulamanın
+içinde, panelde değil. İki sebebi var:
+
+1. **Her zaman dolu olmalı.** Panelden yönetilseydi bir kayıt yanlışlıkla
+   taslağa düştüğünde liste boşalırdı — boş bir acil belirti listesi,
+   olmamasından daha kötüdür.
+2. **Çevrimdışı çalışmalı.** Kanama başlayan biri bağlantı beklemez.
+
+Metin yine hekim gözden geçirmesinden geçer, ama sürüm yayınıyla: değişiklik
+kod incelemesinden geçer, panelden anlık düzenlenmez.
+
+Günlükte acil bir belirti işaretlendiğinde kullanıcı `/acil` ekranına gider:
+tek cümlelik yönlendirme, tek dokunuşla 112, erteleme düğmesi yok. Yönlendirme
+kaydın gönderilmesine bağlı değil — kayıt kuyrukta kalsa bile ekran açılır.
+
+### Gebelik kaydını kapatma
+
+Uygulamanın en çok özen isteyen ekranı (`/gebelik-kapat`):
+
+- Sebep sormak zorunlu değil, "belirtmek istemiyorum" seçeneği var
+- Dil yargısız ve kısa; "emin misiniz?" tonuna yer yok
+- Kapandığı an tüm hatırlatmalar ve haftalık bildirimler susar
+- Veriler silinmez, arşivlenir
+- Kayıp seçildiyse `/kapandi` ekranı gelir: hafta yok, geri sayım yok, bebek
+  boyutu yok, "yeni gebelik başlat" çağrısı yok
+
+Doğrulanmış davranış: kapanan bir gebelikte zamanı gelmiş hatırlatmalar
+tabloda durur ama **hiçbiri kuyruğa alınmaz**.
+
+## KVKK
+
+- **Açık rıza sürümlenir** (`Consent::CURRENT_VERSION`). Metin değişince eski
+  rıza sayılmaz ve kullanıcıdan yeniden istenir; hangi kullanıcının hangi metne
+  rıza verdiği kayıtta durur.
+- **Dışa aktarma** tüm kayıtları okunabilir JSON olarak verir; uygulamada dosya
+  olarak paylaşılır.
+- **Kalıcı silme** uygulama içinden, destek talebi gerekmeden. Onay için
+  e-postanın birebir yazılması istenir. Cihaz kayıtları da silinir: silinen
+  hesaba bildirim gönderilecek bir yol kalmamalı.
+
 ### İçerik paneli
 
 Kendi yazdığımız panel: Blade + tek bir elle yazılmış CSS dosyası
@@ -300,6 +347,10 @@ npm run typecheck
 | `/calendar` | Tetkik pencereleri ve randevular |
 | `/kick` | Hareket sayacı — 10 hareket, 2 saat sınırı |
 | `/contractions` | Sancı sayacı — süre, aralık, 5-1-1 uyarısı |
+| `/belirtiler` | Günlük: ruh hâli, belirtiler, acil belirti yönlendirmesi |
+| `/acil` | Acil başvuru yönlendirmesi ve 112 |
+| `/profil` | Rıza, veri indirme, hesap silme |
+| `/gebelik-kapat` · `/kapandi` | Gebelik kaydını kapatma ve kayıp sonrası |
 
 **Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
 haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
@@ -309,7 +360,9 @@ olmasının ilk somut karşılığı bu — çevrimdışı ana ekran da aynı yo
 
 Uygulama gerçek API'ye karşı gerçek tarayıcıda uçtan uca çalıştırıldı:
 giriş → kod → kurulum → ana ekran → hafta detayı (yayındaki içerik ve onay satırı
-dahil) → takvim (9 tetkik penceresi), sıfır konsol hatası. İçerik paneli de aynı şekilde doğrulandı.
+dahil) → takvim (9 tetkik penceresi) → hareket sayacı (10 dokunuş, sunucuda
+doğrulandı) → acil belirti yönlendirmesi → gebelik kaydını kapatma; sıfır konsol
+hatası, 12 adım. İçerik paneli de aynı şekilde doğrulandı.
 Betikler `e2e/`, görüntüler `app/screenshots/` ve `api/screenshots/`.
 
 Panel de aynı şekilde: giriş, genel bakış, onay kuyruğu, gözden geçirme ekranı ve

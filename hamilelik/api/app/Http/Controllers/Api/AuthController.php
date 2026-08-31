@@ -93,6 +93,9 @@ class AuthController extends Controller
             'name' => $user->name,
             'locale' => $user->locale,
             'timezone' => $user->timezone,
+            // İstemci rıza ekranını buna göre gösterir; sürüm değişince
+            // kullanıcı tekrar rıza verene kadar false döner.
+            'has_consent' => $user->hasCurrentConsent(),
         ];
     }
 }

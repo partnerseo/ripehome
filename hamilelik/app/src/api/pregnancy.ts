@@ -22,7 +22,9 @@ export async function createPregnancy(input: {
   return data;
 }
 
-export async function endPregnancy(id: number, reason?: string): Promise<Pregnancy> {
+export type EndReason = 'birth' | 'loss' | 'other';
+
+export async function endPregnancy(id: number, reason?: EndReason): Promise<Pregnancy> {
   const { data } = await request<{ data: Pregnancy }>(`/pregnancies/${id}/end`, {
     method: 'POST',
     body: { reason },

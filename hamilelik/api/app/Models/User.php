@@ -28,6 +28,21 @@ class User extends Authenticatable
         return $this->hasMany(Pregnancy::class);
     }
 
+    /** @return HasMany<Consent, $this> */
+    public function consents(): HasMany
+    {
+        return $this->hasMany(Consent::class);
+    }
+
+    /** Yürürlükteki metne verilmiş, geri çekilmemiş rıza var mı? */
+    public function hasCurrentConsent(): bool
+    {
+        return $this->consents()
+            ->where('version', Consent::CURRENT_VERSION)
+            ->whereNull('withdrawn_at')
+            ->exists();
+    }
+
     /** @return HasMany<Device, $this> */
     public function devices(): HasMany
     {
