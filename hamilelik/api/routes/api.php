@@ -3,9 +3,12 @@
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BellyPhotoController;
+use App\Http\Controllers\Api\ChecklistController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\PregnancyController;
 use App\Http\Controllers\Api\ScreeningTemplateController;
+use App\Http\Controllers\Api\ShareController;
 use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\TrackingController;
 use App\Http\Controllers\Api\WeekContentController;
@@ -48,6 +51,23 @@ Route::prefix('v1')->group(function () {
         Route::get('logs/symptoms', [TrackingController::class, 'symptoms']);
         Route::get('kick-sessions', [TrackingController::class, 'kicks']);
         Route::get('contraction-sessions', [TrackingController::class, 'contractions']);
+
+        // Eşin salt-okunur erişimi.
+        Route::get('shares', [ShareController::class, 'index']);
+        Route::post('shares', [ShareController::class, 'store']);
+        Route::post('shares/accept', [ShareController::class, 'accept']);
+        Route::delete('shares/{share}', [ShareController::class, 'destroy']);
+        Route::get('shared-pregnancies', [ShareController::class, 'sharedWithMe']);
+
+        Route::get('belly-photos', [BellyPhotoController::class, 'index']);
+        Route::post('belly-photos', [BellyPhotoController::class, 'store']);
+        Route::get('belly-photos/{bellyPhoto}/file', [BellyPhotoController::class, 'show']);
+        Route::delete('belly-photos/{bellyPhoto}', [BellyPhotoController::class, 'destroy']);
+
+        Route::get('checklist', [ChecklistController::class, 'index']);
+        Route::post('checklist', [ChecklistController::class, 'store']);
+        Route::patch('checklist/{checklistItem}', [ChecklistController::class, 'update']);
+        Route::delete('checklist/{checklistItem}', [ChecklistController::class, 'destroy']);
 
         Route::post('devices', [DeviceController::class, 'store']);
         Route::delete('devices', [DeviceController::class, 'destroy']);

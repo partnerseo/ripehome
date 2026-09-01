@@ -80,6 +80,24 @@ class Pregnancy extends Model
         return $this->hasMany(Appointment::class);
     }
 
+    /** @return HasMany<PregnancyShare, $this> */
+    public function shares(): HasMany
+    {
+        return $this->hasMany(PregnancyShare::class);
+    }
+
+    /** @return HasMany<BellyPhoto, $this> */
+    public function bellyPhotos(): HasMany
+    {
+        return $this->hasMany(BellyPhoto::class);
+    }
+
+    /** @return HasMany<ChecklistItem, $this> */
+    public function checklistItems(): HasMany
+    {
+        return $this->hasMany(ChecklistItem::class);
+    }
+
     /** @return HasMany<HealthLog, $this> */
     public function healthLogs(): HasMany
     {

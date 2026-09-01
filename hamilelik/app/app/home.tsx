@@ -166,6 +166,16 @@ export default function Home() {
 
       <Button label="Günlük" variant="ghost" onPress={() => router.push('/belirtiler')} />
 
+      <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+        <Button
+          label="Hastane çantası"
+          variant="ghost"
+          onPress={() => router.push('/canta')}
+          style={{ flex: 1 }}
+        />
+        <Button label="Paylaş" variant="ghost" onPress={() => router.push('/paylas')} style={{ flex: 1 }} />
+      </View>
+
       <Button label="Profil ve verilerim" variant="ghost" onPress={() => router.push('/profil')} />
     </Screen>
   );

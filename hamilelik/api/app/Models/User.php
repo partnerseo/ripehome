@@ -28,6 +28,12 @@ class User extends Authenticatable
         return $this->hasMany(Pregnancy::class);
     }
 
+    /** @return HasMany<PregnancyShare, $this> */
+    public function sharedWithMe(): HasMany
+    {
+        return $this->hasMany(PregnancyShare::class);
+    }
+
     /** @return HasMany<Consent, $this> */
     public function consents(): HasMany
     {

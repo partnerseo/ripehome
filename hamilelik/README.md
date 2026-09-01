@@ -115,6 +115,12 @@ php artisan serve
 | POST | `/api/v1/consents` | Açık rıza kaydı |
 | GET | `/api/v1/me/export` | Tüm verinin dışa aktarımı |
 | DELETE | `/api/v1/me` | Hesabı ve tüm veriyi kalıcı siler |
+| GET/POST/DELETE | `/api/v1/shares` | Eş paylaşımı: davet, liste, iptal |
+| POST | `/api/v1/shares/accept` | Daveti kabul eder |
+| GET | `/api/v1/shared-pregnancies` | Bana paylaşılan gebelikler (salt okunur) |
+| GET/POST/DELETE | `/api/v1/belly-photos` | Karın fotoğrafı zaman tüneli |
+| GET | `/api/v1/belly-photos/{id}/file` | Dosyayı yalnızca sahibine servis eder |
+| GET/POST/PATCH/DELETE | `/api/v1/checklist` | Hastane çantası listesi |
 | GET | `/api/v1/logs/health` | Kilo, tansiyon, şeker geçmişi |
 | GET | `/api/v1/logs/symptoms` | Belirti günlüğü |
 | GET | `/api/v1/kick-sessions` | Hareket sayımı geçmişi |
@@ -273,6 +279,28 @@ tabloda durur ama **hiçbiri kuyruğa alınmaz**.
   e-postanın birebir yazılması istenir. Cihaz kayıtları da silinir: silinen
   hesaba bildirim gönderilecek bir yol kalmamalı.
 
+## Eş paylaşımı
+
+Paylaşım **yalnızca okuma** verir. Davet edilen kişi kayıt ekleyemez,
+düzenleyemez, gebeliği kapatamaz — bunlar sahibin uçları ve sahiplik
+kontrolünden geçer. `SharingTest` en çok bu yazma denemelerini test eder.
+
+- Davet e-postaya bağlıdır: bağlantı başkasına iletilse bile erişim davet
+  edilen adreste kalır (`invite_email_mismatch`)
+- İptal anında keser; eş bir sonraki istekte boş liste görür
+- Kapanan gebelik eşin listesinden de düşer — kayıp sonrası hafta ve geri
+  sayım eşin ekranında da kalmaz
+
+## Fotoğraflar ve hastane çantası
+
+Karın fotoğrafları **herkese açık diskte durmaz**. Sağlık verisi olduğu için
+her istek kimlik doğrulamasından ve sahiplik kontrolünden geçer; herkese açık
+bir URL yoktur. Kayıt silinince dosya da silinir, yetim dosya birikmez.
+
+Hastane çantası listesi tıbbi bir liste değil, pratik bir hatırlatma — bu
+yüzden hekim onayı kapısından geçmez. Şablon ilk açılışta kurulur (18 madde,
+üç grup), kullanıcı kendi maddesini ekleyebilir.
+
 ### İçerik paneli
 
 Kendi yazdığımız panel: Blade + tek bir elle yazılmış CSS dosyası
@@ -351,6 +379,8 @@ npm run typecheck
 | `/acil` | Acil başvuru yönlendirmesi ve 112 |
 | `/profil` | Rıza, veri indirme, hesap silme |
 | `/gebelik-kapat` · `/kapandi` | Gebelik kaydını kapatma ve kayıp sonrası |
+| `/canta` | Hastane çantası listesi |
+| `/paylas` | Eş paylaşımı: davet ve iptal |
 
 **Kurulumda önizleme istemcide hesaplanır.** Kullanıcı kaydetmeden önce hangi
 haftada olduğunu görür; sunucuya istek gitmez. Motorun istemcide çalışıyor
@@ -372,3 +402,24 @@ Betik `e2e/panel.mjs`, görüntüler `api/screenshots/`.
 **Henüz yapılmadı:** hafta içeriğinin cihazda önbelleğe alınması. Yazma tarafı
 (kuyruk) çalışıyor, okuma tarafı henüz sunucuya bağlı. `/weeks` ucu ETag ile
 hazır; içeriği kuyruğun yanına yazmak sonraki adım.
+
+
+## Mağaza hazırlığı
+
+`app.json` yayına hazır: paket kimlikleri (`app.hamilelik.mobile`), sürüm,
+izin metinleri. İzin metinleri Türkçe ve amacı açık yazıldı — mağaza incelemesi
+bunları okur ve muğlak bir metin ret sebebi olur:
+
+> "Karın fotoğrafı çekmek için kameraya erişim izni gerekir. Fotoğraflarınız
+> yalnızca sizin hesabınızda saklanır."
+
+`eas.json` üç profil tanımlar (development / preview / production), her biri
+kendi API adresiyle.
+
+**Yayından önce kalanlar:**
+
+1. İkon ve açılış ekranı görselleri (şu an Expo şablonundan geliyor)
+2. Gizlilik politikası metni ve barındırılacağı adres — mağaza zorunlu tutuyor
+3. App Store "Sağlık ve Fitness" kategorisi için veri toplama beyanı
+4. Hekim onayı: 42 hafta içeriği ve tetkik takvimi hâlâ taslak
+5. Hafta içeriğinin cihazda önbelleğe alınması

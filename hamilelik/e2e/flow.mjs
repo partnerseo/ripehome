@@ -131,13 +131,38 @@ console.log(`  · acil ekrani acildi, arama dugmesi: ${call}`);
 if (call === 0) throw new Error('Acil ekraninda arama dugmesi yok');
 await step('10-acil-ekrani');
 
-// Gebeligi kapatma: kayip secilirse hafta ve geri sayim gosterilmez.
+// Hastane cantasi: sablon hazir gelir, madde isaretlenir.
 await page.getByRole('button', { name: 'Geri dön' }).click();
-const profil = page.getByRole('button', { name: 'Profil ve verilerim' });
-await profil.waitFor({ state: 'visible', timeout: 15000 });
-await profil.click();
+const canta = page.getByRole('button', { name: 'Hastane çantası', exact: true });
+await canta.waitFor({ state: 'visible', timeout: 15000 });
+await canta.click();
+await page.getByText('Bebek oto koltuğu (çıkış için zorunlu)').waitFor({ timeout: 15000 });
+const bagItems = await page.getByRole('checkbox').count();
+console.log(`  · cantada madde: ${bagItems}`);
+if (bagItems < 10) throw new Error('Hastane cantasi sablonu gelmedi');
+await page.getByRole('checkbox').first().click();
+await page.waitForTimeout(800);
+await step('11-hastane-cantasi');
+
+// Es paylasimi: davet olusturulur.
+await page.getByRole('button', { name: 'Ana ekrana dön' }).click();
+const paylas = page.getByRole('button', { name: 'Paylaş', exact: true });
+await paylas.waitFor({ state: 'visible', timeout: 15000 });
+await paylas.click();
+await page.getByText('Eşinizle paylaşın').waitFor({ timeout: 15000 });
+await page.getByLabel('Davet edilecek e-posta').fill('es@example.com');
+await page.getByRole('button', { name: 'Davet gönder' }).click();
+await page.getByText('Davet bekliyor').waitFor({ timeout: 15000 });
+console.log('  · es davet edildi, durum: davet bekliyor');
+await step('12-paylasim');
+
+await page.getByRole('button', { name: 'Ana ekrana dön' }).click();
+await page.getByRole('button', { name: 'Profil ve verilerim' }).waitFor({ state: 'visible', timeout: 15000 });
+
+// Gebeligi kapatma: kayip secilirse hafta ve geri sayim gosterilmez.
+await page.getByRole('button', { name: 'Profil ve verilerim' }).click();
 await page.getByText('Hesap ve verileriniz').waitFor({ timeout: 15000 });
-await step('11-profil');
+await step('13-profil');
 
 await page.getByRole('button', { name: 'Gebelik kaydını kapat' }).click();
 await page.getByText('Gebeliğimi kaybettim').waitFor({ timeout: 15000 });
@@ -145,7 +170,7 @@ await page.getByRole('radio', { name: /Gebeliğimi kaybettim/ }).click();
 await page.getByRole('button', { name: 'Kaydı kapat' }).click();
 await page.getByText('Başınız sağ olsun').waitFor({ timeout: 15000 });
 console.log('  · kayip akisi: hafta ve geri sayim gosterilmiyor');
-await step('12-kapandi');
+await step('14-kapandi');
 
 await browser.close();
 
